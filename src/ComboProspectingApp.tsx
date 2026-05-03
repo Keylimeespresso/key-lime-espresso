@@ -16,7 +16,7 @@ import {
   Zap,
 } from "lucide-react"
 
-type ViewMode = "methodology" | "marsh"
+type ViewMode = "pipeline" | "figma"
 
 type PillarDef = {
   id: string
@@ -25,8 +25,8 @@ type PillarDef = {
   principle: string
   methodologyTactics: string
   methodologySample: string
-  marshTactics: string
-  marshSample: string
+  figmaTactics: string
+  figmaSample: string
   rubric: string[]
 }
 
@@ -41,14 +41,14 @@ const PILLARS: PillarDef[] = [
       "Build a short list of account-level triggers: leadership changes, M&A, reorgs, earnings themes, major tech migrations, and public AI or efficiency commitments. Tie every first touch to one trigger so the prospect feels timing, not spray-and-pray.",
     methodologySample:
       "Saw your Q3 call emphasis on platform consolidation. That is usually the window where engineering standardization either accelerates or fragments. Worth comparing notes with two peer patterns from similar rollouts.",
-    marshTactics: `January 2026 brand consolidation (Marsh, Guy Carpenter, Mercer, Oliver Wyman → single "Marsh" brand)
+    figmaTactics: `January 2026 brand consolidation (Marsh, Guy Carpenter, Mercer, Oliver Wyman → single "Marsh" brand)
 New BCS (Business and Client Services) unit launched October 2025
 AWS migration in flight, retiring all data centers
 CEO John Doyle's public commitment to making MMC an "AI winner"
 40 AI production systems shipped in 12 months under Niall Maher
 LenAI deployed to all 90,000 employees (700K queries per week), but no equivalent dev productivity tool for the 5,000 engineers in MMTech
 New Mercer CISO role posted (likely just filled)`,
-    marshSample:
+    figmaSample:
       "Saw the BCS announcement. Standardizing the engineering platform during a brand reset is a once-in-a-decade window. Here is what we are seeing at peer F500s in the same moment.",
     rubric: ["Account thesis", "Urgency"],
   },
@@ -62,12 +62,12 @@ New Mercer CISO role posted (likely just filled)`,
       "Match the lens to the persona: CIO sees operating pattern, engineering leader sees delivery risk, security sees governance. One proof point, one trigger, one time-bound ask for a live conversation.",
     methodologySample:
       "Subject: pattern from two peers post-reorg\n\nHi [Name], three bullets in thirty seconds.\n\n1) We see the same consolidation story you described on the last earnings call.\n2) The engineering teams that win standardize AI coding inside ninety days.\n3) I can walk a single slide on how peers did it without slowing delivery.\n\nWorth a short call Tuesday or Thursday?",
-    marshTactics: `Persona-tuned emails to top-of-funnel stakeholders. Different angle per persona:
+    figmaTactics: `Persona-tuned emails to top-of-funnel stakeholders. Different angle per persona:
 Beswick: peer F500 CIO consolidation pattern
 BU CIOs: industry-specific velocity benchmark
 Niall: "we work with engineering leaders running similar AI rollouts" peer reference
 Engineers: technical artifact (a benchmark, a code review, a demo recording)`,
-    marshSample: `Subject: Marsh + AI coding consolidation — pattern from PwC and other peers
+    figmaSample: `Subject: Marsh + AI coding consolidation — pattern from PwC and other peers
 
 Hi Rob, three things in 30 seconds.
 
@@ -87,13 +87,13 @@ Worth 30 minutes? I have Tuesday or Thursday open.`,
     methodologyTactics:
       "Spend two to three weeks adding value in public before any direct ask. Comments should read like a practitioner, not a fan. Repost with a sharp one-line takeaway when it helps your credibility.",
     methodologySample: `Comment: "The part about test harness quality for agents is the bottleneck we see everywhere. Curious if you solved review throughput with a central guild or federated standards."`,
-    marshTactics: `Engage with Niall Maher's posts about AI rollouts at Marsh (he is vocal, posts Claude Code tips, runs the Codú community)
+    figmaTactics: `Engage with Niall Maher's posts about AI rollouts at Marsh (he is vocal, posts Claude Code tips, runs the Codú community)
 Engage with Paul Beswick's posts about AI experimentation
 Comment on Brian Geoghegan's posts about AI engineering practices
 Share Cursor case studies that map to professional services use cases (PwC, Accenture)
 
 Cadence: 2-3 weeks of engagement before any direct DM.`,
-    marshSample:
+    figmaSample:
       "Use the cadence above. Keep comments specific to what they shipped or argued, not generic praise.",
     rubric: ["Stakeholder map", "Pipeline generation"],
   },
@@ -107,9 +107,9 @@ Cadence: 2-3 weeks of engagement before any direct DM.`,
       "Tier messages by seniority and technical depth. Eighty to one hundred twenty words max. Name one trigger. Offer one concrete CTA, usually a short call or a peer story, not a calendar wall.",
     methodologySample:
       "Hi [Name], your write-up on rolling guardrails to five hundred engineers mirrored a pattern we watched at [Peer]. If you are open, I would trade fifteen minutes on what broke at week six versus what held. No deck.",
-    marshTactics:
+    figmaTactics:
       "Tiered messaging. Niall Maher gets a peer-engineer tone referencing his Codú work and his Claude Code posts. Rob Hussey gets a CIO-level message referencing the BCS reorg and peer F500 patterns. Each message is 80-120 words, names a specific trigger, and offers a concrete CTA.",
-    marshSample: `Hi Niall, just joined Cursor as a Strategic AE. Reading up on Marsh has been a rabbit hole. 40 AI production systems in 12 months is nuts, especially in a 150-year-old shop. What you and Codú are building mirrors the bottom-up adoption patterns we see at our F500 customers. I'd love to compare notes some time, no agenda. Curious how you're scaling consistent AI coding workflows from your 100-person team out to the wider 5,000 in MMTech. If you've got 20 minutes, I'd buy the coffee.`,
+    figmaSample: `Hi Niall, just joined Cursor as a Strategic AE. Reading up on Marsh has been a rabbit hole. 40 AI production systems in 12 months is nuts, especially in a 150-year-old shop. What you and Codú are building mirrors the bottom-up adoption patterns we see at our F500 customers. I'd love to compare notes some time, no agenda. Curious how you're scaling consistent AI coding workflows from your 100-person team out to the wider 5,000 in MMTech. If you've got 20 minutes, I'd buy the coffee.`,
     rubric: ["Stakeholder map", "Pipeline generation"],
   },
   {
@@ -117,13 +117,13 @@ Cadence: 2-3 weeks of engagement before any direct DM.`,
     title: "Voicemail",
     Icon: Voicemail,
     principle:
-      "Most voicemails get deleted because they sound like sales calls. The Hughes approach: leave a voicemail that delivers a specific insight, names a peer customer, and tells the prospect you will follow up by email so they have a reason to look for it. Voicemail is not a callback request. It is a value drop.",
+      "Most voicemails get deleted because they sound like sales calls. Leave a voicemail that delivers a specific insight, names a peer customer, and tells the prospect you will follow up by email so they have a reason to look for it. Voicemail is not a callback request. It is a value drop.",
     methodologyTactics:
       "Keep it under sixty seconds. No pitch stack. Promise one artifact by email with an exact subject line so the thread is searchable.",
     methodologySample:
       'Hi [Name], [you] from [company]. Not expecting a callback. I am sending a one-page teardown on how [Peer] cut review latency after their agent rollout. Subject line will be "Review latency after agents." That is all. Thanks for the work you publish on this topic.',
-    marshTactics: "Direct phone outreach sequence support. Pair voicemail with email same day.",
-    marshSample: `Hi Niall, [name] from Cursor. Not expecting a callback. I'm following up to share something specific. We just published a customer story on how Coinbase scaled AI coding adoption from 150 to 500 engineers in six weeks, exactly the curve you're on at Marsh. I'm sending it via email right after this. Look for the subject line "Coinbase 150 to 500 in six weeks." That's all. Have a good one.`,
+    figmaTactics: "Direct phone outreach sequence support. Pair voicemail with email same day.",
+    figmaSample: `Hi Niall, [name] from Cursor. Not expecting a callback. I'm following up to share something specific. We just published a customer story on how Coinbase scaled AI coding adoption from 150 to 500 engineers in six weeks, exactly the curve you're on at Marsh. I'm sending it via email right after this. Look for the subject line "Coinbase 150 to 500 in six weeks." That's all. Have a good one.`,
     rubric: ["Pipeline generation", "Urgency"],
   },
   {
@@ -131,14 +131,14 @@ Cadence: 2-3 weeks of engagement before any direct DM.`,
     title: "Personalized Video",
     Icon: Video,
     principle:
-      "Video cuts through email noise. A sixty-second selfie video showing you have actually researched the prospect, with a personalized whiteboard or screen-share, lifts response rates three to eight times in the data Hughes cites.",
+      "Video cuts through email noise. A sixty-second selfie video showing you have actually researched the prospect, with a personalized whiteboard or screen-share, often lifts response rates versus text-only outreach.",
     methodologyTactics:
       "Loom or Vidyard for top five to ten stakeholders. Screen-share proof of research. One insight, one peer analogy, one CTA. Sixty to ninety seconds max.",
     methodologySample:
       "Hey [Name], quick personal note. I have your last post up behind me because your point on federated guardrails matches what we saw at [Peer]. Three patterns worth fifteen minutes. Calendar in email if useful.",
-    marshTactics:
+    figmaTactics:
       "Loom or Vidyard videos for top 5-10 named stakeholders. Show your screen with their LinkedIn profile open and the Marsh annual report behind you. Reference a specific Marsh trigger event. End with a calendar link. 60-90 seconds max.",
-    marshSample: `Hey Paul, I'm not going to take much of your time. I'm recording this with your LinkedIn open behind me because the BCS announcement caught my eye. We work with two-thirds of the F1000 on AI coding standardization. Three patterns from peer F500 CIOs going through similar reorgs. Worth 20 minutes? Calendar link is in the email. Either way, congrats on the rebrand.`,
+    figmaSample: `Hey Paul, I'm not going to take much of your time. I'm recording this with your LinkedIn open behind me because the BCS announcement caught my eye. We work with two-thirds of the F1000 on AI coding standardization. Three patterns from peer F500 CIOs going through similar reorgs. Worth 20 minutes? Calendar link is in the email. Either way, congrats on the rebrand.`,
     rubric: ["Stakeholder map", "Urgency"],
   },
   {
@@ -151,13 +151,13 @@ Cadence: 2-3 weeks of engagement before any direct DM.`,
       "Cadence one insight share every seven to ten days during warm-up. Never pair with a hard ask. Let the cumulative signal do the work.",
     methodologySample:
       "Sharing a benchmark note on AI coding throughput in regulated services. No ask. If anything is off base, tell me and I will stop at one reply.",
-    marshTactics: `Send relevant Cursor customer studies (Coinbase, NVIDIA, Stripe, Notion)
+    figmaTactics: `Send relevant Cursor customer studies (Coinbase, NVIDIA, Stripe, Notion)
 Share industry research on AI coding ROI in financial services
 Curated reading on agent harness quality, semantic search, and large codebase performance
 Cursor's enterprise security architecture deep-dive for the Lund / Akhawe-equivalent personas
 
 Cadence: One insight share every 7-10 days during the warm-up period. Never paired with a direct ask.`,
-    marshSample:
+    figmaSample:
       "Pair the Coinbase adoption curve story with Niall's public velocity narrative. Keep the email ask-free.",
     rubric: ["Account thesis", "Stakeholder map"],
   },
@@ -171,11 +171,11 @@ Cadence: One insight share every 7-10 days during the warm-up period. Never pair
       "Map three paths: mutual LinkedIn, alumni from the account, and customer references in the same industry. Ask for a specific forwardable blurb, not a vague intro.",
     methodologySample:
       "If you are willing, a two-sentence forward that frames me as someone who studies AI coding governance in professional services would help. I will keep the ask to a single working session.",
-    marshTactics: `Identify shared connections to Beswick, Fike, Hussey, and Lund via LinkedIn
+    figmaTactics: `Identify shared connections to Beswick, Fike, Hussey, and Lund via LinkedIn
 Find ex-MMC technologists in your network (especially recent Dublin and Phoenix departures)
 Leverage peer F500 CIO relationships from existing Cursor customers
 Use Cursor customer references (PwC, Accenture peer professional services firms) for credibility intros`,
-    marshSample:
+    figmaSample:
       "Use warm paths before cold parallel threads. Credibility transfers faster through peer services firms.",
     rubric: ["Stakeholder map", "Pipeline generation"],
   },
@@ -189,10 +189,10 @@ Use Cursor customer references (PwC, Accenture peer professional services firms)
       "Reserve for economic buyers and technical champions after digital warmth. The note must reference something they said publicly so it feels researched, not swag-driven.",
     methodologySample:
       "Send the book you referenced in your post with a three-sentence note on why chapter four maps to their stated bottleneck.",
-    marshTactics: `Send Tony Hughes's "Combo Prospecting" or another relevant business book to Beswick with a hand-written note referencing his "600 AI experiments" LinkedIn post
+    figmaTactics: `Send a relevant business or strategy book to Beswick with a hand-written note referencing his "600 AI experiments" LinkedIn post
 Branded Cursor Moleskine to Niall Maher with a note about Codú
 Custom-printed report on AI coding ROI in professional services for Hussey`,
-    marshSample:
+    figmaSample:
       "Handwritten tie to a specific post beats generic premium items. Follow up with a light email the day it lands.",
     rubric: ["Account thesis", "Urgency"],
   },
@@ -206,7 +206,7 @@ Custom-printed report on AI coding ROI in professional services for Hussey`,
       "Run parallel tracks across economic buyer, BU technology leaders, platform engineering, security, and procurement. Same north star narrative, different proof points.",
     methodologySample:
       "Running three threads this week: CIO pattern, platform engineering throughput, security architecture deep dive. Same ninety-day consolidation thesis on all three.",
-    marshTactics: `30-40 named individuals across MMC, hit in parallel:
+    figmaTactics: `30-40 named individuals across MMC, hit in parallel:
 1 economic buyer (Beswick)
 3 BU CIOs (Hussey, Oliver Wyman digital lead, Guy Carpenter tech lead)
 1 CTO (Fike)
@@ -217,7 +217,7 @@ Custom-printed report on AI coding ROI in professional services for Hussey`,
 Procurement / vendor management
 
 Each gets a tuned message. All aligned to the same "BCS reorg + AI mandate + dev velocity" thesis.`,
-    marshSample:
+    figmaSample:
       "Keep a living map of names and last touch. Stagger channels so the account feels coordinated, not chaotic.",
     rubric: ["Stakeholder map", "Pipeline generation"],
   },
@@ -231,7 +231,7 @@ Each gets a tuned message. All aligned to the same "BCS reorg + AI mandate + dev
       "Filings, podcasts, job posts, conference talks, and ninety days of LinkedIn activity for top stakeholders. Output is a weekly-updated dossier the whole team uses.",
     methodologySample:
       "This week I indexed twelve talks and eight job posts to infer their agent stack and review model. Next week I validate with two mutuals before outreach.",
-    marshTactics: `10-K, 10-Q, earnings transcripts (24B revenue, AI investments named)
+    figmaTactics: `10-K, 10-Q, earnings transcripts (24B revenue, AI investments named)
 LinkedIn profiles of all 30-40 named stakeholders
 Conference talks and podcasts (Beswick on Technovation, Niall Maher on Future Form)
 Job postings (reveal tech stack, pain points, urgency)
@@ -239,25 +239,28 @@ Press releases on BCS, AWS migration, brand consolidation
 LinkedIn posts of all top stakeholders for the last 90 days
 
 Output: A live research dossier that updates weekly.`,
-    marshSample:
+    figmaSample:
       "Weekly dossier refresh is non-negotiable. Triggers and messages drift fast during reorgs.",
     rubric: ["Account thesis", "Stakeholder map", "Urgency"],
   },
 ]
 
+const WHEEL_PILLARS = PILLARS.filter((p) => p.id !== "video")
+const WILD_CARD_PILLAR = PILLARS.find((p) => p.id === "video")!
+
 const HUB = {
   principle:
-    "The phone is the highest-conversion channel and the only one that creates real-time human connection. Every other touch in the combo exists to make the phone call land. Hughes argues that seven to twelve touches across multiple channels are typically needed before the right person picks up. The phone is not just one channel among many. It is the conversion engine.",
+    "The phone is the highest-conversion channel and the only one that creates real-time human connection. Every other touch in the combo exists to make the phone call land. Field teams often plan seven to twelve touches across multiple channels before the right person picks up. The phone is not just one channel among many. It is the conversion engine.",
   methodologyTactics:
     "Place the call after digital warmth and proof. Vary time of day. Prepare a respectful exit line. Treat each attempt as a scheduled conversion event, not a random dial.",
-  marshTactics: `Direct phone outreach to named stakeholders. Priority order:
+  figmaTactics: `Direct phone outreach to named stakeholders. Priority order:
 Niall Maher (AI/Innovation Engineering Leader, Dublin) - Tier 1, highest leverage
 Brian Geoghegan and the LenAI engineering team in Dublin - Tier 2 multi-thread
 Rob Hussey (Mercer CIO) - Tier 1 economic conversation
 David Fike (CTO, runs Dublin Innovation Centre) - Tier 1 architecture conversation
 Jeff Lund (Global CISO, Phoenix) - Tier 2 security pre-work
 Paul Beswick (CIOO, Boston) - Tier 1 but reached only after warmth has been built lower in the org`,
-  marshSample: `Hi Niall, this is [name] from Cursor. We haven't spoken before. I've been following your work on the 40 production AI systems you've shipped at Marsh and I'm calling because something specific caught my eye. Two minutes, then you tell me whether to keep going or not. Fair?`,
+  figmaSample: `Hi Niall, this is [name] from Cursor. We haven't spoken before. I've been following your work on the 40 production AI systems you've shipped at Marsh and I'm calling because something specific caught my eye. Two minutes, then you tell me whether to keep going or not. Fair?`,
   rubric: ["Pipeline generation", "Stakeholder map", "Urgency"],
 }
 
@@ -305,7 +308,7 @@ function Multiline({ text }: { text: string }) {
 }
 
 export default function ComboProspectingApp() {
-  const [view, setView] = useState<ViewMode>("marsh")
+  const [view, setView] = useState<ViewMode>("figma")
   const [selectedId, setSelectedId] = useState<string | null>(null)
   const [hubOpen, setHubOpen] = useState(false)
   const [spokeRadiusPx, setSpokeRadiusPx] = useState(200)
@@ -346,9 +349,9 @@ export default function ComboProspectingApp() {
               Marsh McLennan greenfield motion
             </h1>
             <p className="text-sm leading-relaxed text-slate-400 md:text-base">
-              Tony Hughes combo as the operating system. Phone as conversion engine. Surrounding channels
-              create the conditions for the call to land. Built for a practitioner walkthrough, not a slide
-              deck.
+              A coordinated multi-channel motion: digital touches build proof and familiarity while the phone
+              stays the conversion engine for live conversation. Surrounding channels create the conditions
+              for the call to land. Built for a practitioner walkthrough, not a slide deck.
             </p>
           </div>
           <div className="flex flex-col items-stretch gap-3 md:items-end">
@@ -356,25 +359,25 @@ export default function ComboProspectingApp() {
             <div className="inline-flex rounded-full border border-white/10 bg-slate-900/80 p-1 shadow-inner">
               <button
                 type="button"
-                onClick={() => setView("methodology")}
+                onClick={() => setView("pipeline")}
                 className={`rounded-full px-4 py-2 text-sm font-medium transition ${
-                  view === "methodology"
+                  view === "pipeline"
                     ? "bg-amber-500 text-slate-950 shadow"
                     : "text-slate-400 hover:text-white"
                 }`}
               >
-                Methodology
+                Pipeline
               </button>
               <button
                 type="button"
-                onClick={() => setView("marsh")}
+                onClick={() => setView("figma")}
                 className={`rounded-full px-4 py-2 text-sm font-medium transition ${
-                  view === "marsh"
+                  view === "figma"
                     ? "bg-amber-500 text-slate-950 shadow"
                     : "text-slate-400 hover:text-white"
                 }`}
               >
-                Marsh application
+                FIGMA
               </button>
             </div>
           </div>
@@ -382,15 +385,35 @@ export default function ComboProspectingApp() {
       </header>
 
       <section className="mx-auto max-w-6xl px-4 py-10">
-        <div className="mb-8 flex flex-wrap gap-2">
-          {["Account thesis", "Stakeholder map", "Pipeline generation", "Urgency"].map((tag) => (
-            <span
-              key={tag}
-              className={`rounded-full border px-3 py-1 text-xs font-medium ${rubricColor(tag)}`}
+        <div className="mb-10">
+          <h2 className="text-center text-3xl font-bold tracking-tight text-white md:text-4xl">Disco Rubrics</h2>
+          <div className="relative mx-auto mt-8 max-w-5xl">
+            <div className="flex flex-wrap justify-center gap-3 px-2 md:gap-4 md:px-16">
+              {["Account thesis", "Stakeholder map", "Pipeline generation", "Urgency"].map((tag) => (
+                <span
+                  key={tag}
+                  className={`rounded-full border px-5 py-2.5 text-sm font-semibold md:px-6 md:py-3 md:text-base ${rubricColor(tag)}`}
+                >
+                  {tag}
+                </span>
+              ))}
+            </div>
+            <button
+              type="button"
+              onClick={() => openPillar(WILD_CARD_PILLAR.id)}
+              className="group mx-auto mt-6 flex w-full max-w-[14rem] flex-col items-center gap-2 rounded-2xl border border-violet-400/40 bg-gradient-to-br from-violet-950/90 to-slate-900/95 px-5 py-4 text-center shadow-lg backdrop-blur transition hover:border-violet-300/60 hover:shadow-violet-500/20 focus:outline-none focus-visible:ring-2 focus-visible:ring-violet-400/60 md:absolute md:right-0 md:top-1/2 md:mx-0 md:mt-0 md:max-w-[11rem] md:-translate-y-1/2 md:py-5"
             >
-              {tag}
-            </span>
-          ))}
+              <span className="text-[10px] font-bold uppercase tracking-[0.2em] text-violet-300/95">
+                Wild Card
+              </span>
+              <span className="flex h-11 w-11 items-center justify-center rounded-xl bg-violet-500/20 text-violet-200 transition group-hover:bg-violet-500/30 group-hover:text-white">
+                <Video className="h-5 w-5" strokeWidth={1.75} />
+              </span>
+              <span className="text-xs font-semibold leading-snug text-slate-100 md:text-sm">
+                {WILD_CARD_PILLAR.title}
+              </span>
+            </button>
+          </div>
         </div>
 
         <div className="relative mx-auto aspect-square w-full max-w-[min(100%,720px)] md:aspect-auto md:h-[min(78vh,680px)]">
@@ -400,8 +423,8 @@ export default function ComboProspectingApp() {
             preserveAspectRatio="xMidYMid meet"
             aria-hidden
           >
-            {PILLARS.map((_, i) => {
-              const n = PILLARS.length
+            {WHEEL_PILLARS.map((_, i) => {
+              const n = WHEEL_PILLARS.length
               const a = (i / n) * Math.PI * 2 - Math.PI / 2
               const r = 38
               const cx = 50 + Math.cos(a) * r
@@ -442,8 +465,8 @@ export default function ComboProspectingApp() {
             </span>
           </button>
 
-          {PILLARS.map((pillar, i) => {
-            const n = PILLARS.length
+          {WHEEL_PILLARS.map((pillar, i) => {
+            const n = WHEEL_PILLARS.length
             const angle = (i / n) * Math.PI * 2 - Math.PI / 2
             const rPx = spokeRadiusPx
             const x = Math.cos(angle) * rPx
@@ -531,27 +554,27 @@ export default function ComboProspectingApp() {
                 <>
                   <div>
                     <h4 className="mb-2 text-xs font-bold uppercase tracking-wider text-amber-400/90">
-                      Tony Hughes principle
+                      Core principle
                     </h4>
                     <p className="text-sm leading-relaxed text-slate-300">{HUB.principle}</p>
                   </div>
                   <div>
                     <h4 className="mb-2 text-xs font-bold uppercase tracking-wider text-sky-400/90">
-                      {view === "marsh" ? "Marsh tactic" : "How you run it"}
+                      {view === "figma" ? "FIGMA tactic" : "How you run it"}
                     </h4>
-                    {view === "marsh" ? (
-                      <Multiline text={HUB.marshTactics} />
+                    {view === "figma" ? (
+                      <Multiline text={HUB.figmaTactics} />
                     ) : (
                       <p className="text-sm leading-relaxed text-slate-300">{HUB.methodologyTactics}</p>
                     )}
                   </div>
-                  {view === "marsh" && (
+                  {view === "figma" && (
                     <div>
                       <h4 className="mb-2 text-xs font-bold uppercase tracking-wider text-emerald-400/90">
                         Sample call open
                       </h4>
                       <blockquote className="rounded-lg border border-white/10 bg-slate-900/80 p-4 text-sm italic leading-relaxed text-slate-200">
-                        {HUB.marshSample}
+                        {HUB.figmaSample}
                       </blockquote>
                     </div>
                   )}
@@ -588,16 +611,16 @@ export default function ComboProspectingApp() {
                 <>
                   <div>
                     <h4 className="mb-2 text-xs font-bold uppercase tracking-wider text-amber-400/90">
-                      Tony Hughes principle
+                      Core principle
                     </h4>
                     <p className="text-sm leading-relaxed text-slate-300">{activePillar.principle}</p>
                   </div>
                   <div>
                     <h4 className="mb-2 text-xs font-bold uppercase tracking-wider text-sky-400/90">
-                      {view === "marsh" ? "Marsh tactic" : "Framework application"}
+                      {view === "figma" ? "FIGMA tactic" : "Framework application"}
                     </h4>
-                    {view === "marsh" ? (
-                      <Multiline text={activePillar.marshTactics} />
+                    {view === "figma" ? (
+                      <Multiline text={activePillar.figmaTactics} />
                     ) : (
                       <p className="text-sm leading-relaxed text-slate-300">
                         {activePillar.methodologyTactics}
@@ -606,10 +629,10 @@ export default function ComboProspectingApp() {
                   </div>
                   <div>
                     <h4 className="mb-2 text-xs font-bold uppercase tracking-wider text-emerald-400/90">
-                      {view === "marsh" ? "Sample script or message" : "Sample pattern"}
+                      {view === "figma" ? "Sample script or message" : "Sample pattern"}
                     </h4>
                     <blockquote className="whitespace-pre-wrap rounded-lg border border-white/10 bg-slate-900/80 p-4 text-sm leading-relaxed text-slate-200">
-                      {view === "marsh" ? activePillar.marshSample : activePillar.methodologySample}
+                      {view === "figma" ? activePillar.figmaSample : activePillar.methodologySample}
                     </blockquote>
                   </div>
                   <div>
