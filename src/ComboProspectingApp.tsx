@@ -245,8 +245,46 @@ Output: A live research dossier that updates weekly.`,
   },
 ]
 
-const WHEEL_PILLARS = PILLARS.filter((p) => p.id !== "video")
+/** Order starts at 12 o'clock: Research first = beginning of the plan */
+const WHEEL_PILLAR_IDS_ORDER = [
+  "research",
+  "trigger",
+  "email",
+  "li-engage",
+  "li-dm",
+  "voicemail",
+  "content",
+  "referrals",
+  "dmail",
+  "abm",
+] as const
+
+const WHEEL_PILLARS = WHEEL_PILLAR_IDS_ORDER.map((id) => PILLARS.find((p) => p.id === id)!)
 const WILD_CARD_PILLAR = PILLARS.find((p) => p.id === "video")!
+
+const DISCO_RUBRIC_DETAILS: Record<
+  "Account thesis" | "Stakeholder map",
+  { intro: string; bullets: string[] }
+> = {
+  "Account thesis": {
+    intro:
+      "Your account thesis is the single narrative that explains why this customer should prioritize your motion now — pressures, initiatives, and proof woven together.",
+    bullets: [
+      "Anchor every outbound touch to one thesis so messaging stays coherent across personas.",
+      "Refresh it as triggers change (earnings, leadership, tech migrations, AI mandates).",
+      "Use it to decide which channels earn budget vs. which are supporting casts for the call.",
+    ],
+  },
+  "Stakeholder map": {
+    intro:
+      "The stakeholder map is who matters, who trusts whom, and where deals accelerate or stall — not just names on an org chart.",
+    bullets: [
+      "Track economic buyer, champions, influencers, and blockers with last touch and sentiment.",
+      "Tune proof and channel per persona so multi-threading feels coordinated, not chaotic.",
+      "Expose referral paths and warm intros before you exhaust cold lanes.",
+    ],
+  },
+}
 
 const HUB = {
   principle:
@@ -261,7 +299,7 @@ David Fike (CTO, runs Dublin Innovation Centre) - Tier 1 architecture conversati
 Jeff Lund (Global CISO, Phoenix) - Tier 2 security pre-work
 Paul Beswick (CIOO, Boston) - Tier 1 but reached only after warmth has been built lower in the org`,
   figmaSample: `Hi Niall, this is [name] from Cursor. We haven't spoken before. I've been following your work on the 40 production AI systems you've shipped at Marsh and I'm calling because something specific caught my eye. Two minutes, then you tell me whether to keep going or not. Fair?`,
-  rubric: ["Pipeline generation", "Stakeholder map", "Urgency"],
+  rubric: ["Pipeline generation", "Stakeholder map"],
 }
 
 const CADENCE_DAYS: { day: string; label: string; isPhone: boolean }[] = [
@@ -276,7 +314,7 @@ const CADENCE_DAYS: { day: string; label: string; isPhone: boolean }[] = [
   { day: "Day 14", label: "Direct mail item arrives at his Dublin office", isPhone: false },
   { day: "Day 16", label: "Email referencing the direct mail", isPhone: false },
   { day: "Day 18", label: "Phone call (third attempt)", isPhone: true },
-  { day: "Day 21", label: "Final touch — referral path or \"breakup\" email", isPhone: false },
+  { day: "Day 21", label: 'Final touch — referral path or "now is not a good time"', isPhone: false },
 ]
 
 function rubricColor(tag: string): string {
@@ -308,13 +346,21 @@ function Multiline({ text }: { text: string }) {
 }
 
 export default function ComboProspectingApp() {
-  const [view, setView] = useState<ViewMode>("figma")
+  const [view, setView] = useState<ViewMode>("pipeline")
   const [selectedId, setSelectedId] = useState<string | null>(null)
   const [hubOpen, setHubOpen] = useState(false)
-  const [spokeRadiusPx, setSpokeRadiusPx] = useState(200)
+  const [rubricPanel, setRubricPanel] = useState<"Account thesis" | "Stakeholder map" | null>(null)
+  const [spokeRadiusPx, setSpokeRadiusPx] = useState(222)
 
   useLayoutEffect(() => {
-    const update = () => setSpokeRadiusPx(window.innerWidth < 768 ? 152 : 220)
+    const update = () => {
+      const w = window.innerWidth
+      if (w < 640) setSpokeRadiusPx(168)
+      else if (w < 768) setSpokeRadiusPx(188)
+      else if (w < 1024) setSpokeRadiusPx(228)
+      else if (w < 1280) setSpokeRadiusPx(252)
+      else setSpokeRadiusPx(268)
+    }
     update()
     window.addEventListener("resize", update)
     return () => window.removeEventListener("resize", update)
@@ -322,17 +368,26 @@ export default function ComboProspectingApp() {
 
   const openPillar = useCallback((id: string) => {
     setHubOpen(false)
+    setRubricPanel(null)
     setSelectedId(id)
   }, [])
 
   const openHub = useCallback(() => {
     setSelectedId(null)
+    setRubricPanel(null)
     setHubOpen(true)
+  }, [])
+
+  const openRubricPanel = useCallback((key: "Account thesis" | "Stakeholder map") => {
+    setHubOpen(false)
+    setSelectedId(null)
+    setRubricPanel(key)
   }, [])
 
   const closePanel = useCallback(() => {
     setSelectedId(null)
     setHubOpen(false)
+    setRubricPanel(null)
   }, [])
 
   const activePillar = selectedId ? PILLARS.find((p) => p.id === selectedId) : null
@@ -348,15 +403,23 @@ export default function ComboProspectingApp() {
             <h1 className="text-3xl font-bold tracking-tight text-white md:text-4xl">
               Marsh McLennan greenfield motion
             </h1>
-            <p className="text-sm leading-relaxed text-slate-400 md:text-base">
-              A coordinated multi-channel motion: digital touches build proof and familiarity while the phone
-              stays the conversion engine for live conversation. Surrounding channels create the conditions
-              for the call to land. Built for a practitioner walkthrough, not a slide deck.
+            <p className="max-w-xl text-lg font-medium leading-snug text-slate-200 md:text-xl">
+              Generate and shape pipeline in a greenfield enterprise account — earn whitespace before RFPs and
+              procurement narrow the window, and compound credibility across every touch.
             </p>
           </div>
-          <div className="flex flex-col items-stretch gap-3 md:items-end">
-            <span className="text-xs font-medium uppercase tracking-wider text-slate-500">View</span>
-            <div className="inline-flex rounded-full border border-white/10 bg-slate-900/80 p-1 shadow-inner">
+          <div className="flex flex-col items-stretch gap-2 md:items-end">
+            <span
+              id="view-toggle-label"
+              className="text-center text-xs font-medium uppercase tracking-wider text-slate-500 md:text-right"
+            >
+              View
+            </span>
+            <div
+              role="group"
+              aria-labelledby="view-toggle-label"
+              className="inline-flex items-center rounded-full border border-white/10 bg-slate-900/80 p-1 shadow-inner"
+            >
               <button
                 type="button"
                 onClick={() => setView("pipeline")}
@@ -385,23 +448,36 @@ export default function ComboProspectingApp() {
       </header>
 
       <section className="mx-auto max-w-6xl px-4 py-10">
-        <div className="mb-10">
+        <div className="relative mx-auto mb-10 max-w-6xl">
           <h2 className="text-center text-3xl font-bold tracking-tight text-white md:text-4xl">Disco Rubrics</h2>
-          <div className="relative mx-auto mt-8 max-w-5xl">
-            <div className="flex flex-wrap justify-center gap-3 px-2 md:gap-4 md:px-16">
-              {["Account thesis", "Stakeholder map", "Pipeline generation", "Urgency"].map((tag) => (
-                <span
-                  key={tag}
-                  className={`rounded-full border px-5 py-2.5 text-sm font-semibold md:px-6 md:py-3 md:text-base ${rubricColor(tag)}`}
+          <div className="mt-8 flex flex-col gap-6 lg:flex-row lg:items-start lg:justify-between lg:gap-10">
+            <div className="min-w-0 flex-1 lg:pt-1">
+              <div className="flex flex-wrap justify-center gap-3 md:gap-4 lg:mx-auto lg:max-w-3xl xl:max-w-none">
+                <button
+                  type="button"
+                  onClick={() => openRubricPanel("Account thesis")}
+                  className={`rounded-full border px-5 py-2.5 text-sm font-semibold transition hover:opacity-95 md:px-6 md:py-3 md:text-base ${rubricColor("Account thesis")}`}
                 >
-                  {tag}
+                  Account thesis
+                </button>
+                <button
+                  type="button"
+                  onClick={() => openRubricPanel("Stakeholder map")}
+                  className={`rounded-full border px-5 py-2.5 text-sm font-semibold transition hover:opacity-95 md:px-6 md:py-3 md:text-base ${rubricColor("Stakeholder map")}`}
+                >
+                  Stakeholder map
+                </button>
+                <span
+                  className={`rounded-full border px-5 py-2.5 text-sm font-semibold md:px-6 md:py-3 md:text-base ${rubricColor("Pipeline generation")}`}
+                >
+                  Pipeline generation
                 </span>
-              ))}
+              </div>
             </div>
             <button
               type="button"
               onClick={() => openPillar(WILD_CARD_PILLAR.id)}
-              className="group mx-auto mt-6 flex w-full max-w-[14rem] flex-col items-center gap-2 rounded-2xl border border-violet-400/40 bg-gradient-to-br from-violet-950/90 to-slate-900/95 px-5 py-4 text-center shadow-lg backdrop-blur transition hover:border-violet-300/60 hover:shadow-violet-500/20 focus:outline-none focus-visible:ring-2 focus-visible:ring-violet-400/60 md:absolute md:right-0 md:top-1/2 md:mx-0 md:mt-0 md:max-w-[11rem] md:-translate-y-1/2 md:py-5"
+              className="group mx-auto flex w-full max-w-[14rem] shrink-0 flex-col items-center gap-2 rounded-2xl border border-violet-400/40 bg-gradient-to-br from-violet-950/90 to-slate-900/95 px-5 py-4 text-center shadow-lg backdrop-blur transition hover:border-violet-300/60 hover:shadow-violet-500/20 focus:outline-none focus-visible:ring-2 focus-visible:ring-violet-400/60 lg:mx-0 lg:mt-0 lg:w-[11rem] lg:self-start xl:w-[12rem] xl:py-5"
             >
               <span className="text-[10px] font-bold uppercase tracking-[0.2em] text-violet-300/95">
                 Wild Card
@@ -416,6 +492,21 @@ export default function ComboProspectingApp() {
           </div>
         </div>
 
+        {view === "figma" ? (
+          <div className="mx-auto flex min-h-[min(72vh,640px)] max-w-6xl flex-col rounded-2xl border-2 border-dashed border-white/20 bg-slate-900/25 p-8 shadow-inner backdrop-blur-sm">
+            <p className="mb-2 text-center text-xs font-semibold uppercase tracking-[0.25em] text-slate-500">
+              FIGMA canvas
+            </p>
+            <div className="flex flex-1 flex-col items-center justify-center gap-3 rounded-xl border border-white/5 bg-slate-950/40 px-6 py-16 text-center">
+              <p className="max-w-md text-lg font-medium text-slate-300">Open workspace</p>
+              <p className="max-w-lg text-sm leading-relaxed text-slate-500">
+                Drop frames, exports, or notes here during your working session. This area stays separate from
+                the Pipeline view.
+              </p>
+            </div>
+          </div>
+        ) : (
+          <>
         <div className="relative mx-auto aspect-square w-full max-w-[min(100%,720px)] md:aspect-auto md:h-[min(78vh,680px)]">
           <svg
             className="pointer-events-none absolute inset-0 h-full w-full"
@@ -453,10 +544,10 @@ export default function ComboProspectingApp() {
           <button
             type="button"
             onClick={openHub}
-            className="absolute left-1/2 top-1/2 z-20 flex h-[clamp(7.5rem,22vw,10.5rem)] w-[clamp(7.5rem,22vw,10.5rem)] -translate-x-1/2 -translate-y-1/2 flex-col items-center justify-center rounded-full border-2 border-amber-400/80 bg-gradient-to-br from-amber-500 via-orange-500 to-amber-600 text-slate-950 shadow-[0_0_60px_-10px_rgba(251,191,36,0.65)] transition hover:scale-[1.02] hover:shadow-[0_0_80px_-8px_rgba(251,191,36,0.85)] focus:outline-none focus-visible:ring-4 focus-visible:ring-amber-300/50 animate-pulse-soft"
+            className="absolute left-1/2 top-1/2 z-10 flex h-[clamp(6.75rem,17vw,9.75rem)] w-[clamp(6.75rem,17vw,9.75rem)] -translate-x-1/2 -translate-y-1/2 flex-col items-center justify-center rounded-full border-2 border-amber-400/80 bg-gradient-to-br from-amber-500 via-orange-500 to-amber-600 text-slate-950 shadow-[0_0_52px_-10px_rgba(251,191,36,0.55)] transition hover:scale-[1.02] hover:shadow-[0_0_72px_-8px_rgba(251,191,36,0.78)] focus:outline-none focus-visible:ring-4 focus-visible:ring-amber-300/50 animate-pulse-soft"
             aria-label="Open phone hub and cadence"
           >
-            <Phone className="mb-1 h-9 w-9 md:h-11 md:w-11" strokeWidth={2.25} />
+            <Phone className="mb-1 h-8 w-8 md:h-10 md:w-10" strokeWidth={2.25} />
             <span className="px-2 text-center text-xs font-bold uppercase tracking-wide md:text-sm">
               The call
             </span>
@@ -472,6 +563,7 @@ export default function ComboProspectingApp() {
             const x = Math.cos(angle) * rPx
             const y = Math.sin(angle) * rPx
             const Icon = pillar.Icon
+            const isStart = pillar.id === "research"
             return (
               <button
                 key={pillar.id}
@@ -481,8 +573,13 @@ export default function ComboProspectingApp() {
                   left: `calc(50% + ${x}px)`,
                   top: `calc(50% + ${y}px)`,
                 }}
-                className="group absolute z-10 flex -translate-x-1/2 -translate-y-1/2 flex-col items-center gap-1 rounded-2xl border border-white/10 bg-slate-900/90 px-2.5 py-2 shadow-lg backdrop-blur transition hover:-translate-y-[calc(50%+2px)] hover:border-amber-400/40 hover:bg-slate-800/95 hover:shadow-xl focus:outline-none focus-visible:ring-2 focus-visible:ring-amber-400/60 md:px-3 md:py-2.5"
+                className="group absolute z-20 flex -translate-x-1/2 -translate-y-1/2 flex-col items-center gap-1 rounded-2xl border border-white/10 bg-slate-900/90 px-2.5 py-2 shadow-lg backdrop-blur transition hover:-translate-y-[calc(50%+2px)] hover:border-amber-400/40 hover:bg-slate-800/95 hover:shadow-xl focus:outline-none focus-visible:ring-2 focus-visible:ring-amber-400/60 md:px-3 md:py-2.5"
               >
+                {isStart && (
+                  <span className="mb-0.5 whitespace-nowrap rounded-full bg-emerald-500/25 px-2 py-0.5 text-[8px] font-bold uppercase tracking-wider text-emerald-200 ring-1 ring-emerald-400/35">
+                    Start here
+                  </span>
+                )}
                 <span className="flex h-9 w-9 items-center justify-center rounded-xl bg-slate-800/90 text-amber-400 transition group-hover:bg-amber-500/20 group-hover:text-amber-300 md:h-10 md:w-10">
                   <Icon className="h-4 w-4 md:h-5 md:w-5" strokeWidth={1.75} />
                 </span>
@@ -497,7 +594,6 @@ export default function ComboProspectingApp() {
         <div className="mt-14 rounded-2xl border border-white/10 bg-slate-900/40 p-6 backdrop-blur md:p-8">
           <div className="mb-4 flex flex-wrap items-end justify-between gap-3">
             <h2 className="text-xl font-semibold text-white">Sample cadence · Niall Maher</h2>
-            <p className="text-xs text-slate-500">Fourteen to twenty-one day combo · phone appears three plus times</p>
           </div>
           <ol className="grid gap-3 md:grid-cols-2">
             {CADENCE_DAYS.map((step, idx) => (
@@ -521,9 +617,11 @@ export default function ComboProspectingApp() {
             ))}
           </ol>
         </div>
+          </>
+        )}
       </section>
 
-      {(hubOpen || activePillar) && (
+      {(hubOpen || activePillar || rubricPanel) && (
         <div
           className="fixed inset-0 z-50 flex justify-end bg-slate-950/70 backdrop-blur-sm"
           role="presentation"
@@ -537,7 +635,11 @@ export default function ComboProspectingApp() {
           >
             <div className="sticky top-0 z-10 flex items-center justify-between border-b border-white/10 bg-[#0a0f1a]/95 px-5 py-4 backdrop-blur">
               <h3 className="text-lg font-semibold text-white">
-                {hubOpen ? "Phone · cadence model" : activePillar?.title}
+                {hubOpen
+                  ? "Phone · cadence model"
+                  : rubricPanel
+                    ? rubricPanel
+                    : activePillar?.title}
               </h3>
               <button
                 type="button"
@@ -550,6 +652,32 @@ export default function ComboProspectingApp() {
             </div>
 
             <div className="space-y-6 px-5 py-6">
+              {rubricPanel && DISCO_RUBRIC_DETAILS[rubricPanel] && (
+                <>
+                  <div>
+                    <h4 className="mb-2 text-xs font-bold uppercase tracking-wider text-amber-400/90">
+                      Disco rubric
+                    </h4>
+                    <p className="text-sm leading-relaxed text-slate-300">
+                      {DISCO_RUBRIC_DETAILS[rubricPanel].intro}
+                    </p>
+                  </div>
+                  <div>
+                    <h4 className="mb-2 text-xs font-bold uppercase tracking-wider text-sky-400/90">
+                      How to use it
+                    </h4>
+                    <ul className="list-none space-y-3 text-sm leading-relaxed text-slate-300">
+                      {DISCO_RUBRIC_DETAILS[rubricPanel].bullets.map((b) => (
+                        <li key={b} className="flex gap-2">
+                          <span className="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-sky-500/80" />
+                          <span>{b}</span>
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                </>
+              )}
+
               {hubOpen && (
                 <>
                   <div>
