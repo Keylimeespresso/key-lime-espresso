@@ -245,19 +245,26 @@ Output: A live research dossier that updates weekly.`,
   },
 ]
 
-/** Order starts at 12 o'clock: Research first = beginning of the plan */
+/**
+ * Order starts at 12 o'clock (research = start). Neighbors of slot 0 wrap to index 9 — we place
+ * short-title pillars (email, dmail) beside research so long labels are never adjacent on the ring.
+ */
 const WHEEL_PILLAR_IDS_ORDER = [
   "research",
-  "trigger",
   "email",
+  "content",
   "li-engage",
+  "referrals",
   "li-dm",
   "voicemail",
-  "content",
-  "referrals",
-  "dmail",
   "abm",
+  "trigger",
+  "dmail",
 ] as const
+
+/** Horizontal stretch keeps perimeter spacing more even with wide labels (matches SVG spokes). */
+const ORBIT_ELLIPSE_X = 1.1
+const ORBIT_ELLIPSE_Y = 1.02
 
 const WHEEL_PILLARS = WHEEL_PILLAR_IDS_ORDER.map((id) => PILLARS.find((p) => p.id === id)!)
 const WILD_CARD_PILLAR = PILLARS.find((p) => p.id === "video")!
@@ -350,16 +357,16 @@ export default function ComboProspectingApp() {
   const [selectedId, setSelectedId] = useState<string | null>(null)
   const [hubOpen, setHubOpen] = useState(false)
   const [rubricPanel, setRubricPanel] = useState<"Account thesis" | "Stakeholder map" | null>(null)
-  const [spokeRadiusPx, setSpokeRadiusPx] = useState(236)
+  const [spokeRadiusPx, setSpokeRadiusPx] = useState(248)
 
   useLayoutEffect(() => {
     const update = () => {
       const w = window.innerWidth
-      if (w < 640) setSpokeRadiusPx(178)
-      else if (w < 768) setSpokeRadiusPx(200)
-      else if (w < 1024) setSpokeRadiusPx(242)
-      else if (w < 1280) setSpokeRadiusPx(266)
-      else setSpokeRadiusPx(284)
+      if (w < 640) setSpokeRadiusPx(188)
+      else if (w < 768) setSpokeRadiusPx(212)
+      else if (w < 1024) setSpokeRadiusPx(254)
+      else if (w < 1280) setSpokeRadiusPx(278)
+      else setSpokeRadiusPx(298)
     }
     update()
     window.addEventListener("resize", update)
@@ -519,9 +526,10 @@ export default function ComboProspectingApp() {
             {WHEEL_PILLARS.map((_, i) => {
               const n = WHEEL_PILLARS.length
               const a = (i / n) * Math.PI * 2 - Math.PI / 2
-              const r = 38
-              const cx = 50 + Math.cos(a) * r
-              const cy = 50 + Math.sin(a) * r
+              const rx = 38 * ORBIT_ELLIPSE_X
+              const ry = 38 * ORBIT_ELLIPSE_Y
+              const cx = 50 + Math.cos(a) * rx
+              const cy = 50 + Math.sin(a) * ry
               return (
                 <line
                   key={i}
@@ -562,8 +570,8 @@ export default function ComboProspectingApp() {
             const n = WHEEL_PILLARS.length
             const angle = (i / n) * Math.PI * 2 - Math.PI / 2
             const rPx = spokeRadiusPx
-            const x = Math.cos(angle) * rPx
-            const y = Math.sin(angle) * rPx
+            const x = Math.cos(angle) * rPx * ORBIT_ELLIPSE_X
+            const y = Math.sin(angle) * rPx * ORBIT_ELLIPSE_Y
             const Icon = pillar.Icon
             const isStart = pillar.id === "research"
             return (
@@ -584,12 +592,12 @@ export default function ComboProspectingApp() {
                   <button
                     type="button"
                     onClick={() => openPillar(pillar.id)}
-                    className="group flex min-w-[5.75rem] flex-col items-center gap-2 rounded-2xl border border-white/10 bg-slate-900/90 px-3.5 py-3 shadow-lg backdrop-blur transition hover:-translate-y-0.5 hover:border-amber-400/40 hover:bg-slate-800/95 hover:shadow-xl focus:outline-none focus-visible:ring-2 focus-visible:ring-amber-400/60 md:min-w-[6.75rem] md:gap-2.5 md:px-4 md:py-3.5"
+                    className="group flex w-[7.25rem] shrink-0 flex-col items-center gap-2 rounded-2xl border border-white/10 bg-slate-900/90 px-3 py-3 shadow-lg backdrop-blur transition hover:-translate-y-0.5 hover:border-amber-400/40 hover:bg-slate-800/95 hover:shadow-xl focus:outline-none focus-visible:ring-2 focus-visible:ring-amber-400/60 md:w-[8.125rem] md:gap-2 md:px-3.5 md:py-3.5"
                   >
-                    <span className="flex h-11 w-11 items-center justify-center rounded-xl bg-slate-800/90 text-amber-400 transition group-hover:bg-amber-500/20 group-hover:text-amber-300 md:h-12 md:w-12">
+                    <span className="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-slate-800/90 text-amber-400 transition group-hover:bg-amber-500/20 group-hover:text-amber-300 md:h-12 md:w-12">
                       <Icon className="h-5 w-5 md:h-6 md:w-6" strokeWidth={1.75} />
                     </span>
-                    <span className="max-w-[8rem] text-center text-[11px] font-semibold leading-snug text-slate-100 md:max-w-[9.5rem] md:text-xs">
+                    <span className="flex min-h-[3rem] w-full items-center justify-center px-0.5 text-center text-[10px] font-semibold leading-tight text-slate-100 text-balance md:min-h-[3.25rem] md:text-[11px] md:leading-snug">
                       {pillar.title}
                     </span>
                   </button>
