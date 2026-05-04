@@ -395,8 +395,8 @@ export default function ComboProspectingApp() {
   return (
     <div className="min-h-screen bg-gradient-to-b from-slate-950 via-[#0c1222] to-slate-950 text-slate-100">
       <header className="border-b border-white/10 bg-slate-950/80 backdrop-blur-md">
-        <div className="mx-auto flex max-w-6xl flex-col gap-6 px-4 py-8 md:flex-row md:items-end md:justify-between md:py-10">
-          <div className="max-w-2xl space-y-3">
+        <div className="mx-auto grid max-w-6xl grid-cols-1 gap-8 px-4 py-8 md:grid-cols-[1fr_auto_1fr] md:items-end md:gap-6 md:py-10">
+          <div className="max-w-2xl space-y-3 md:col-span-1 md:justify-self-start">
             <p className="text-xs font-semibold uppercase tracking-[0.2em] text-amber-400/90">
               Combo Prospecting
             </p>
@@ -408,10 +408,10 @@ export default function ComboProspectingApp() {
               procurement narrow the window, and compound credibility across every touch.
             </p>
           </div>
-          <div className="flex flex-col items-stretch gap-2 md:items-end">
+          <div className="flex flex-col items-center gap-2 md:col-start-2 md:justify-self-center md:pb-0.5">
             <span
               id="view-toggle-label"
-              className="text-center text-xs font-medium uppercase tracking-wider text-slate-500 md:text-right"
+              className="text-center text-xs font-medium uppercase tracking-wider text-slate-500"
             >
               View
             </span>
