@@ -350,16 +350,16 @@ export default function ComboProspectingApp() {
   const [selectedId, setSelectedId] = useState<string | null>(null)
   const [hubOpen, setHubOpen] = useState(false)
   const [rubricPanel, setRubricPanel] = useState<"Account thesis" | "Stakeholder map" | null>(null)
-  const [spokeRadiusPx, setSpokeRadiusPx] = useState(222)
+  const [spokeRadiusPx, setSpokeRadiusPx] = useState(236)
 
   useLayoutEffect(() => {
     const update = () => {
       const w = window.innerWidth
-      if (w < 640) setSpokeRadiusPx(168)
-      else if (w < 768) setSpokeRadiusPx(188)
-      else if (w < 1024) setSpokeRadiusPx(228)
-      else if (w < 1280) setSpokeRadiusPx(252)
-      else setSpokeRadiusPx(268)
+      if (w < 640) setSpokeRadiusPx(178)
+      else if (w < 768) setSpokeRadiusPx(200)
+      else if (w < 1024) setSpokeRadiusPx(242)
+      else if (w < 1280) setSpokeRadiusPx(266)
+      else setSpokeRadiusPx(284)
     }
     update()
     window.addEventListener("resize", update)
@@ -567,28 +567,34 @@ export default function ComboProspectingApp() {
             const Icon = pillar.Icon
             const isStart = pillar.id === "research"
             return (
-              <button
+              <div
                 key={pillar.id}
-                type="button"
-                onClick={() => openPillar(pillar.id)}
                 style={{
                   left: `calc(50% + ${x}px)`,
                   top: `calc(50% + ${y}px)`,
                 }}
-                className="group absolute z-20 flex -translate-x-1/2 -translate-y-1/2 flex-col items-center gap-1 rounded-2xl border border-white/10 bg-slate-900/90 px-2.5 py-2 shadow-lg backdrop-blur transition hover:-translate-y-[calc(50%+2px)] hover:border-amber-400/40 hover:bg-slate-800/95 hover:shadow-xl focus:outline-none focus-visible:ring-2 focus-visible:ring-amber-400/60 md:px-3 md:py-2.5"
+                className="absolute z-20 -translate-x-1/2 -translate-y-1/2"
               >
-                {isStart && (
-                  <span className="mb-0.5 whitespace-nowrap rounded-full bg-emerald-500/25 px-2 py-0.5 text-[8px] font-bold uppercase tracking-wider text-emerald-200 ring-1 ring-emerald-400/35">
-                    Start here
-                  </span>
-                )}
-                <span className="flex h-9 w-9 items-center justify-center rounded-xl bg-slate-800/90 text-amber-400 transition group-hover:bg-amber-500/20 group-hover:text-amber-300 md:h-10 md:w-10">
-                  <Icon className="h-4 w-4 md:h-5 md:w-5" strokeWidth={1.75} />
-                </span>
-                <span className="max-w-[5.5rem] text-center text-[9px] font-semibold leading-tight text-slate-200 md:max-w-[6.5rem] md:text-[10px]">
-                  {pillar.title}
-                </span>
-              </button>
+                <div className="relative flex flex-col items-center">
+                  {isStart && (
+                    <span className="absolute bottom-full left-1/2 z-10 mb-2 -translate-x-1/2 whitespace-nowrap rounded-full bg-emerald-500/25 px-2.5 py-1 text-[9px] font-bold uppercase tracking-wider text-emerald-200 ring-1 ring-emerald-400/40 md:px-3 md:text-[10px]">
+                      Start here
+                    </span>
+                  )}
+                  <button
+                    type="button"
+                    onClick={() => openPillar(pillar.id)}
+                    className="group flex min-w-[5.75rem] flex-col items-center gap-2 rounded-2xl border border-white/10 bg-slate-900/90 px-3.5 py-3 shadow-lg backdrop-blur transition hover:-translate-y-0.5 hover:border-amber-400/40 hover:bg-slate-800/95 hover:shadow-xl focus:outline-none focus-visible:ring-2 focus-visible:ring-amber-400/60 md:min-w-[6.75rem] md:gap-2.5 md:px-4 md:py-3.5"
+                  >
+                    <span className="flex h-11 w-11 items-center justify-center rounded-xl bg-slate-800/90 text-amber-400 transition group-hover:bg-amber-500/20 group-hover:text-amber-300 md:h-12 md:w-12">
+                      <Icon className="h-5 w-5 md:h-6 md:w-6" strokeWidth={1.75} />
+                    </span>
+                    <span className="max-w-[8rem] text-center text-[11px] font-semibold leading-snug text-slate-100 md:max-w-[9.5rem] md:text-xs">
+                      {pillar.title}
+                    </span>
+                  </button>
+                </div>
+              </div>
             )
           })}
         </div>
