@@ -60,8 +60,23 @@ New Mercer CISO role posted (likely just filled)`,
       "Insight-led, not pitch-led. The email's job is to demonstrate that you have done the homework, surface a specific insight or trigger, and earn the right to a phone call. Five sentences max. No deck attachments. One CTA, and the CTA is a call.",
     methodologyTactics:
       "Match the lens to the persona: CIO sees operating pattern, engineering leader sees delivery risk, security sees governance. One proof point, one trigger, one time-bound ask for a live conversation.",
-    methodologySample:
-      "Subject: pattern from two peers post-reorg\n\nHi [Name], three bullets in thirty seconds.\n\n1) We see the same consolidation story you described on the last earnings call.\n2) The engineering teams that win standardize AI coding inside ninety days.\n3) I can walk a single slide on how peers did it without slowing delivery.\n\nWorth a short call Tuesday or Thursday?",
+    methodologySample: `I've chosen the Leader of Innovation Engineering at Marsh Global. He's the liaison for identifying transformation opportunities and delivering measurable outcomes for the engineering team.
+
+Outbound email to Niall
+
+Hi Niall,
+
+My name is Mazen with Cursor. I saw your work leading Innovation Engineering at Marsh and the focus on identifying transformation opportunities that actually deliver measurable outcomes. Just connected with you on LinkedIn too.
+
+Over the past few months, we've been working with developer productivity leaders at global insurance and financial services firms on AI coding rollouts that actually lead to real business impact.
+
+Given Marsh's investment in the Innovation Centre and the engineering build-out across Dublin and Phoenix, your role sits right where Cursor delivers the most leverage. We're helping dev teams ship 30% faster without compromising the security posture Jeff needs to sign off on to actually push it into production.
+
+It would be great to connect with you and share how we just helped Optiver roll Cursor out firm-wide and what that's done for their engineering velocity. More than anything, I'd love your perspective on what you're driving at Marsh and where the real friction is for your team.
+
+Are you open to a quick chat this week or next? Happy to work with an admin to set up time at your convenience.
+
+Warmest,`,
     figmaTactics: `Persona-tuned emails to top-of-funnel stakeholders. Different angle per persona:
 Beswick: peer F500 CIO consolidation pattern
 BU CIOs: industry-specific velocity benchmark
