@@ -25,6 +25,8 @@ type PillarDef = {
   principle: string
   methodologyTactics: string
   methodologySample: string
+  methodologyLink?: string
+  methodologyImageUrl?: string
   figmaTactics: string
   figmaSample: string
   rubric: string[]
@@ -182,6 +184,10 @@ Attached: MIT Technology Review Insights image ("Building agent-first governance
 Link: https://technologyreview.com/2026/04/21/1136158/building-agent-first-governance-and-security/
 
 No ask in this note. If it's useful, happy to send a one-pager version your team can reuse in customer conversations.`,
+    methodologyLink:
+      "https://www.technologyreview.com/2026/04/21/1136158/building-agent-first-governance-and-security/",
+    methodologyImageUrl:
+      "https://images.ctfassets.net/v1v4g1n6s3ha/6VgPN6t3mK2x9S0Xq1jQ8P/4b5d1f95e1d6f2f8e1d9d5de5ab2f8dd/building-agent-first-governance-and-security.jpg",
     figmaTactics: `Send relevant Cursor customer studies (Coinbase, NVIDIA, Stripe, Notion)
 Share industry research on AI coding ROI in financial services
 Curated reading on agent harness quality, semantic search, and large codebase performance
@@ -852,6 +858,24 @@ export default function ComboProspectingApp() {
                     <blockquote className="whitespace-pre-wrap rounded-lg border border-white/10 bg-slate-900/80 p-4 text-sm leading-relaxed text-slate-200">
                       {view === "figma" ? activePillar.figmaSample : activePillar.methodologySample}
                     </blockquote>
+                    {view !== "figma" && activePillar.methodologyImageUrl && (
+                      <img
+                        src={activePillar.methodologyImageUrl}
+                        alt="Supporting content preview"
+                        className="mt-3 w-full max-w-md rounded-lg border border-white/10"
+                        loading="lazy"
+                      />
+                    )}
+                    {view !== "figma" && activePillar.methodologyLink && (
+                      <a
+                        href={activePillar.methodologyLink}
+                        target="_blank"
+                        rel="noreferrer"
+                        className="mt-3 inline-block text-sm font-medium text-sky-300 underline underline-offset-4 hover:text-sky-200"
+                      >
+                        {activePillar.methodologyLink}
+                      </a>
+                    )}
                   </div>
                   <div>
                     <h4 className="mb-2 text-xs font-bold uppercase tracking-wider text-slate-400">
