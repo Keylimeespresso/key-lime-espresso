@@ -221,45 +221,16 @@ Cadence: One insight share every 7-10 days during the warm-up period. Never pair
       "Map three paths: mutual LinkedIn, alumni from the account, and customer references in the same industry. Ask for a specific forwardable blurb, not a vague intro.",
     methodologySample: `Warm Intro Paths
 
-- Board member connections:
-  I map the target's board to my investors, advisors, and execs.
-  One intro from a board member to the CEO or CTO carries more weight than 50 cold emails.
-
-- Partner community connections:
-  I tap my existing customer base for shared connections into the target.
-  A peer CTO vouching for Cursor's impact on dev velocity is gold.
-
-- GSI connections:
-  Accenture, Deloitte, Slalom, and similar firms are already inside the account on transformation work.
-  I get them to surface Cursor as part of the modernization conversation.
-
-- VC and investor backchannels:
-  If the target is VC-backed, I work the portfolio.
-  Founders and operating partners love sharing tools that move the needle on engineering output.
-
-- Hyperscaler and cloud rep alignment:
-  AWS, Azure, and GCP reps are in every dev shop.
-  I co-sell with them when Cursor accelerates cloud-native build-out.
-
-- Dev tool ecosystem partners:
-  GitHub, GitLab, Datadog, Snyk, and similar reps already have champions inside the account.
-  I trade intros and co-pitch the developer productivity story.
-
-- Alumni and former colleague intros:
-  I mine LinkedIn for ex-coworkers now sitting at the target.
-  A "we used to build together" note lands warmer than any cold sequence.
-
-- Customer champion-to-peer intros:
-  Existing Cursor power users almost always know engineering leaders at the target.
-  I ask directly for intros to the VP Eng or Head of Platform.
-
-- Community and conference connections:
-  Engineering leaders meet at re:Invent, KubeCon, and local CTO dinners.
-  I use shared event attendance as the warm opener.
-
-- Internal champion-led intros:
-  Once I land one developer or team lead inside the account, I turn them into my guide.
-  They know who controls budget, who blocks deals, and who to pull in next.
+- Board member connections: I map the target's board to my investors, advisors, and execs; one intro from a board member to the CEO or CTO carries more weight than 50 cold emails.
+- Partner community connections: I tap my existing customer base for shared connections into the target; a peer CTO vouching for Cursor's impact on dev velocity is gold.
+- GSI connections: Accenture, Deloitte, Slalom, and similar firms are already inside the account on transformation work, so I get them to surface Cursor as part of the modernization conversation.
+- VC and investor backchannels: If the target is VC-backed, I work the portfolio because founders and operating partners share tools that move the needle on engineering output.
+- Hyperscaler and cloud rep alignment: AWS, Azure, and GCP reps are in every dev shop, and I co-sell with them when Cursor accelerates cloud-native build-out.
+- Dev tool ecosystem partners: GitHub, GitLab, Datadog, Snyk, and similar reps already have champions inside the account; I trade intros and co-pitch the developer productivity story.
+- Alumni and former colleague intros: I mine LinkedIn for ex-coworkers now sitting at the target; a "we used to build together" note lands warmer than any cold sequence.
+- Customer champion-to-peer intros: Existing Cursor power users almost always know engineering leaders at the target, and I ask directly for intros to the VP Eng or Head of Platform.
+- Community and conference connections: Engineering leaders meet at re:Invent, KubeCon, and local CTO dinners, and I use shared event attendance as the warm opener.
+- Internal champion-led intros: Once I land one developer or team lead inside the account, I turn them into my guide to budget owners, blockers, and next stakeholders.
 
 Bottom Line
 
@@ -459,6 +430,42 @@ function Multiline({ text }: { text: string }) {
         </li>
       ))}
     </ul>
+  )
+}
+
+function StructuredSample({ text }: { text: string }) {
+  const lines = text.split("\n")
+  return (
+    <div className="space-y-2 text-sm leading-relaxed text-slate-200">
+      {lines.map((raw, i) => {
+        const line = raw.trim()
+        if (!line) return <div key={i} className="h-1" />
+        if (line === "Warm Intro Paths" || line === "Bottom Line") {
+          return (
+            <p key={i} className="pt-1 text-xs font-bold uppercase tracking-wider text-amber-300/95">
+              {line}
+            </p>
+          )
+        }
+        if (line.startsWith("- ")) {
+          const content = line.slice(2)
+          const colon = content.indexOf(":")
+          if (colon > 0) {
+            const lead = content.slice(0, colon + 1)
+            const rest = content.slice(colon + 1).trim()
+            return (
+              <p key={i} className="flex gap-2">
+                <span className="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-sky-500/80" />
+                <span>
+                  <span className="font-semibold text-white">{lead}</span> {rest}
+                </span>
+              </p>
+            )
+          }
+        }
+        return <p key={i}>{line}</p>
+      })}
+    </div>
   )
 }
 
@@ -933,7 +940,13 @@ export default function ComboProspectingApp() {
                       </a>
                     )}
                     <blockquote className="whitespace-pre-wrap rounded-lg border border-white/10 bg-slate-900/80 p-4 text-sm leading-relaxed text-slate-200">
-                      {view === "figma" ? activePillar.figmaSample : activePillar.methodologySample}
+                      {view === "figma" ? (
+                        activePillar.figmaSample
+                      ) : activePillar.id === "referrals" ? (
+                        <StructuredSample text={activePillar.methodologySample} />
+                      ) : (
+                        activePillar.methodologySample
+                      )}
                     </blockquote>
                   </div>
                   <div>
