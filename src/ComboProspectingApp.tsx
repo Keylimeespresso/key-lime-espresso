@@ -458,7 +458,14 @@ export default function ComboProspectingApp() {
 
       <section className="mx-auto max-w-6xl px-4 py-10">
         <div className="relative mx-auto mb-10 max-w-6xl">
-          <h2 className="text-center text-3xl font-bold tracking-tight text-white md:text-4xl">Disco Rubrics</h2>
+          <div className="text-center">
+            <h2 className="text-2xl font-bold tracking-tight text-white md:text-3xl">
+              Who do I want to talk to?
+            </h2>
+            <h2 className="mt-2 text-2xl font-bold tracking-tight text-white md:text-3xl">
+              What do I want to talk about?
+            </h2>
+          </div>
           <div className="mt-8 flex flex-col gap-6 lg:flex-row lg:items-start lg:justify-between lg:gap-10">
             <div className="min-w-0 flex-1 lg:pt-1">
               <div className="flex flex-wrap justify-center gap-3 md:gap-4 lg:mx-auto lg:max-w-3xl xl:max-w-none">
@@ -672,7 +679,7 @@ export default function ComboProspectingApp() {
                 <>
                   <div>
                     <h4 className="mb-2 text-xs font-bold uppercase tracking-wider text-amber-400/90">
-                      Disco rubric
+                      Rubric detail
                     </h4>
                     <p className="text-sm leading-relaxed text-slate-300">
                       {DISCO_RUBRIC_DETAILS[rubricPanel].intro}
