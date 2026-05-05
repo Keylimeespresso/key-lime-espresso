@@ -103,7 +103,20 @@ Worth 30 minutes? I have Tuesday or Thursday open.`,
       "Be present in your prospect's feed before you are in their inbox. Comment substantively on their posts. Share insights they would value. Build social proof and familiarity before reaching out.",
     methodologyTactics:
       "Spend two to three weeks adding value in public before any direct ask. Comments should read like a practitioner, not a fan. Repost with a sharp one-line takeaway when it helps your credibility.",
-    methodologySample: `Comment: "The part about test harness quality for agents is the bottleneck we see everywhere. Curious if you solved review throughput with a central guild or federated standards."`,
+    methodologySample: `74% of companies plan to deploy agentic AI within two years.
+Only 21% have a mature governance model for it.
+
+That is the gap MIT Technology Review and Deloitte's Microsoft Technology Practice just flagged in the 2026 State of AI report. Top executive worries: data privacy, IP and legal exposure, and oversight.
+
+Now look at Cursor. It is already inside most engineering orgs, often adopted developer-by-developer, with access to source code, secrets, and internal systems. No central policy, no audit trail, no kill switch.
+
+That is not an AI strategy. That is unmanaged execution at scale.
+
+The companies that thread the needle here will not be the ones that block Cursor. They will be the ones who give it a control plane before the rollout outpaces the guardrails.
+
+How is your team handling it?`,
+    methodologyLink:
+      "https://technologyreview.com/2026/04/21/1136158/building-agent-first-governance-and-security/",
     figmaTactics: `Engage with Niall Maher's posts about AI rollouts at Marsh (he is vocal, posts Claude Code tips, runs the Codú community)
 Engage with Paul Beswick's posts about AI experimentation
 Comment on Brian Geoghegan's posts about AI engineering practices
@@ -187,7 +200,7 @@ No ask in this note. If it's useful, happy to send a one-pager version your team
     methodologyLink:
       "https://www.technologyreview.com/2026/04/21/1136158/building-agent-first-governance-and-security/",
     methodologyImageUrl:
-      "https://images.ctfassets.net/v1v4g1n6s3ha/6VgPN6t3mK2x9S0Xq1jQ8P/4b5d1f95e1d6f2f8e1d9d5de5ab2f8dd/building-agent-first-governance-and-security.jpg",
+      "https://image.thum.io/get/width/900/https://www.technologyreview.com/2026/04/21/1136158/building-agent-first-governance-and-security/",
     figmaTactics: `Send relevant Cursor customer studies (Coinbase, NVIDIA, Stripe, Notion)
 Share industry research on AI coding ROI in financial services
 Curated reading on agent harness quality, semantic search, and large codebase performance
@@ -855,14 +868,11 @@ export default function ComboProspectingApp() {
                     <h4 className="mb-2 text-xs font-bold uppercase tracking-wider text-emerald-400/90">
                       {view === "figma" ? "Sample script or message" : "Sample pattern"}
                     </h4>
-                    <blockquote className="whitespace-pre-wrap rounded-lg border border-white/10 bg-slate-900/80 p-4 text-sm leading-relaxed text-slate-200">
-                      {view === "figma" ? activePillar.figmaSample : activePillar.methodologySample}
-                    </blockquote>
                     {view !== "figma" && activePillar.methodologyImageUrl && (
                       <img
                         src={activePillar.methodologyImageUrl}
                         alt="Supporting content preview"
-                        className="mt-3 w-full max-w-md rounded-lg border border-white/10"
+                        className="mb-3 w-full max-w-md rounded-lg border border-white/10"
                         loading="lazy"
                       />
                     )}
@@ -871,11 +881,14 @@ export default function ComboProspectingApp() {
                         href={activePillar.methodologyLink}
                         target="_blank"
                         rel="noreferrer"
-                        className="mt-3 inline-block text-sm font-medium text-sky-300 underline underline-offset-4 hover:text-sky-200"
+                        className="mb-3 inline-block text-sm font-medium text-sky-300 underline underline-offset-4 hover:text-sky-200"
                       >
                         {activePillar.methodologyLink}
                       </a>
                     )}
+                    <blockquote className="whitespace-pre-wrap rounded-lg border border-white/10 bg-slate-900/80 p-4 text-sm leading-relaxed text-slate-200">
+                      {view === "figma" ? activePillar.figmaSample : activePillar.methodologySample}
+                    </blockquote>
                   </div>
                   <div>
                     <h4 className="mb-2 text-xs font-bold uppercase tracking-wider text-slate-400">
