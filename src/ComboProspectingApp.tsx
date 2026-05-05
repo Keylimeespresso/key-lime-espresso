@@ -219,19 +219,54 @@ Cadence: One insight share every 7-10 days during the warm-up period. Never pair
       "A warm intro converts at five to ten times the rate of cold outreach. Always exhaust the network before going cold.",
     methodologyTactics:
       "Map three paths: mutual LinkedIn, alumni from the account, and customer references in the same industry. Ask for a specific forwardable blurb, not a vague intro.",
-    methodologySample: `Board member connections — I map the target's board to my investors, advisors, and execs. One intro from a board member to the CEO or CTO carries more weight than 50 cold emails.
-Partner community connections — I tap my existing customer base for shared connections into the target. A peer CTO vouching for Cursor's impact on their dev velocity is gold.
-GSI connections — Accenture, Deloitte, Slalom, and the like are already inside the account on transformation work. I get them to surface Cursor as part of the modernization conversation.
-VC and investor backchannels — If the target is VC-backed, I work the portfolio. Founders and operating partners love sharing tools that move the needle on engineering output.
-Hyperscaler and cloud rep alignment — AWS, Azure, and GCP reps are in every dev shop. I co-sell with them when Cursor accelerates cloud-native build-out.
-Dev tool ecosystem partners — GitHub, GitLab, Datadog, Snyk, and similar reps already have champions inside the account. I trade intros and co-pitch the developer productivity story.
-Alumni and former colleague intros — I mine LinkedIn for ex-coworkers now sitting at the target. A "we used to build together" note lands warmer than any cold sequence.
-Customer champion-to-peer intros — My existing Cursor power users almost always know engineering leaders at the target. I ask directly for the intro to the VP Eng or Head of Platform.
-Community and conference connections — Engineering leaders meet at re:Invent, KubeCon, and local CTO dinners. I use shared event attendance as the warm opener.
-Internal champion-led intros — Once I land one developer or team lead inside the account, I turn them into my guide. They know who controls budget, who blocks deals, and who to pull in next.
+    methodologySample: `Warm Intro Paths
 
-The Bottom Line
-Cold is expensive. Warm is leverage. Every account has a path in. My job is to find it before the competition does.`,
+- Board member connections:
+  I map the target's board to my investors, advisors, and execs.
+  One intro from a board member to the CEO or CTO carries more weight than 50 cold emails.
+
+- Partner community connections:
+  I tap my existing customer base for shared connections into the target.
+  A peer CTO vouching for Cursor's impact on dev velocity is gold.
+
+- GSI connections:
+  Accenture, Deloitte, Slalom, and similar firms are already inside the account on transformation work.
+  I get them to surface Cursor as part of the modernization conversation.
+
+- VC and investor backchannels:
+  If the target is VC-backed, I work the portfolio.
+  Founders and operating partners love sharing tools that move the needle on engineering output.
+
+- Hyperscaler and cloud rep alignment:
+  AWS, Azure, and GCP reps are in every dev shop.
+  I co-sell with them when Cursor accelerates cloud-native build-out.
+
+- Dev tool ecosystem partners:
+  GitHub, GitLab, Datadog, Snyk, and similar reps already have champions inside the account.
+  I trade intros and co-pitch the developer productivity story.
+
+- Alumni and former colleague intros:
+  I mine LinkedIn for ex-coworkers now sitting at the target.
+  A "we used to build together" note lands warmer than any cold sequence.
+
+- Customer champion-to-peer intros:
+  Existing Cursor power users almost always know engineering leaders at the target.
+  I ask directly for intros to the VP Eng or Head of Platform.
+
+- Community and conference connections:
+  Engineering leaders meet at re:Invent, KubeCon, and local CTO dinners.
+  I use shared event attendance as the warm opener.
+
+- Internal champion-led intros:
+  Once I land one developer or team lead inside the account, I turn them into my guide.
+  They know who controls budget, who blocks deals, and who to pull in next.
+
+Bottom Line
+
+Cold is expensive.
+Warm is leverage.
+Every account has a path in.
+My job is to find it before the competition does.`,
     figmaTactics: `Identify shared connections to Beswick, Fike, Hussey, and Lund via LinkedIn
 Find ex-MMC technologists in your network (especially recent Dublin and Phoenix departures)
 Leverage peer F500 CIO relationships from existing Cursor customers
