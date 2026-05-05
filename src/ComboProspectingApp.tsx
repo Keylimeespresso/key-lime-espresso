@@ -721,7 +721,15 @@ export default function ComboProspectingApp() {
                       {DISCO_RUBRIC_DETAILS[rubricPanel].bullets.map((b) => (
                         <li key={b} className="flex gap-2">
                           <span className="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-sky-500/80" />
-                          <span>{b}</span>
+                          <span
+                            className={
+                              rubricPanel === "Pipeline generation" && b.startsWith("The Discipline:")
+                                ? "font-semibold text-slate-100"
+                                : undefined
+                            }
+                          >
+                            {b}
+                          </span>
                         </li>
                       ))}
                     </ul>
