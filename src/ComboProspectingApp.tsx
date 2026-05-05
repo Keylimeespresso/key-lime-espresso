@@ -164,8 +164,24 @@ Cadence: 2-3 weeks of engagement before any direct DM.`,
       "Earn the right to be heard by giving first. Share research, benchmarks, and customer stories that the prospect would value, with no ask attached.",
     methodologyTactics:
       "Cadence one insight share every seven to ten days during warm-up. Never pair with a hard ask. Let the cumulative signal do the work.",
-    methodologySample:
-      "Sharing a benchmark note on AI coding throughput in regulated services. No ask. If anything is off base, tell me and I will stop at one reply.",
+    methodologySample: `Subject: useful asset for your GTM and executive talk track
+
+Hi [Name],
+
+I'd like to share something with you and the team that is highly relevant for your go-to-market motion and executive talk track.
+
+One of the laws of sales is this: you get delegated up or down to the person for whom you sound like you should be speaking with.
+
+MIT Technology Review and Deloitte's Microsoft Technology Practice warn that enterprises are deploying AI agents faster than they can govern them. Deloitte's 2026 State of AI report finds 74% of companies plan to deploy agentic AI within two years, but only 21% have a mature governance model. Top concerns are data privacy, IP and legal compliance, and oversight gaps.
+
+AI agents now act as non-human identities with real access to sensitive systems and data, creating a fresh attack surface. Deloitte's Andrew Rafla argues the fix is a control plane: a centralized layer governing which agents run, with what permissions, under which policies, and using which models and tools. Without it, you have unmanaged execution at scale, and deployments fail unpredictably rather than safely.
+
+Cursor is the clearest live example. It is already inside most engineering orgs, often adopted developer-by-developer, with access to source code, secrets, and internal systems. That is exactly the unmanaged execution Deloitte is flagging.
+
+Attached: MIT Technology Review Insights image ("Building agent-first governance and security")
+Link: https://technologyreview.com/2026/04/21/1136158/building-agent-first-governance-and-security/
+
+No ask in this note. If it's useful, happy to send a one-pager version your team can reuse in customer conversations.`,
     figmaTactics: `Send relevant Cursor customer studies (Coinbase, NVIDIA, Stripe, Notion)
 Share industry research on AI coding ROI in financial services
 Curated reading on agent harness quality, semantic search, and large codebase performance
@@ -173,7 +189,7 @@ Cursor's enterprise security architecture deep-dive for the Lund / Akhawe-equiva
 
 Cadence: One insight share every 7-10 days during the warm-up period. Never paired with a direct ask.`,
     figmaSample:
-      "Pair the Coinbase adoption curve story with Niall's public velocity narrative. Keep the email ask-free.",
+      'Share the MIT Technology Review + Deloitte governance asset as an executive narrative: "agents are scaling faster than controls; control planes are now GTM-relevant." Keep it ask-free and position it as reusable talk-track material.',
     rubric: ["Account thesis", "Stakeholder map"],
   },
   {
