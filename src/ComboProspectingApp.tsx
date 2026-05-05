@@ -275,11 +275,13 @@ const DISCO_RUBRIC_DETAILS: Record<
 > = {
   "Account thesis": {
     intro:
-      "Your account thesis is the single narrative that explains why this customer should prioritize your motion now — pressures, initiatives, and proof woven together.",
+      "Marsh has publicly bet the company on AI productivity and already proved it can ship at scale. LenAI now serves 90,000 colleagues, handles 700,000 queries per week, and saves an estimated one million hours annually. CEO John Doyle named AI productivity a strategic priority on the Q4 2025 earnings call, and CIOO Paul Beswick rang the NYSE bell for the January 2026 rebrand to Marsh.",
     bullets: [
-      "Anchor every outbound touch to one thesis so messaging stays coherent across personas.",
-      "Refresh it as triggers change (earnings, leadership, tech migrations, AI mandates).",
-      "Use it to decide which channels earn budget vs. which are supporting casts for the call.",
+      "What Marsh has not yet done is bring the same step-change to the 5,000 engineers in MMTech who build every system LenAI runs on. Three transformations have collapsed into one window: the BCS reorganization, the AWS migration, and the brand consolidation.",
+      "Tooling decisions made now become the new enterprise standard. Decisions deferred lock in legacy Copilot sprawl across business units for years.",
+      "Cursor fits the exact gap: model-neutral so Beswick's flexibility principle holds, codebase-aware so it works on real Marsh repos, enterprise-secure so Lund's team can sign off, and out-of-the-box fast so it matches Beswick's \"ship every week\" philosophy.",
+      "CEO John Doyle (Q4 2025): \"BCS has introduced dozens of AI productivity tools. We need more colleagues to become power users to drive further efficiency.\" AI productivity is now a public, measured strategic priority.",
+      "Paul Beswick (LinkedIn): \"We've shipped 600+ AI experiments. Your 18-month AI strategy? It's going to fail.\" The operating preference is clear: vendors that ship in days, not months. With Niall Maher shipping 40 AI systems in 12 months, the champion is identified and the window closes as BCS settles.",
     ],
   },
   "Stakeholder map": {
@@ -679,7 +681,7 @@ export default function ComboProspectingApp() {
                 <>
                   <div>
                     <h4 className="mb-2 text-xs font-bold uppercase tracking-wider text-amber-400/90">
-                      Rubric detail
+                      {rubricPanel === "Account thesis" ? "Core thesis" : "Rubric detail"}
                     </h4>
                     <p className="text-sm leading-relaxed text-slate-300">
                       {DISCO_RUBRIC_DETAILS[rubricPanel].intro}
@@ -687,7 +689,7 @@ export default function ComboProspectingApp() {
                   </div>
                   <div>
                     <h4 className="mb-2 text-xs font-bold uppercase tracking-wider text-sky-400/90">
-                      How to use it
+                      {rubricPanel === "Account thesis" ? "Supporting points" : "How to use it"}
                     </h4>
                     <ul className="list-none space-y-3 text-sm leading-relaxed text-slate-300">
                       {DISCO_RUBRIC_DETAILS[rubricPanel].bullets.map((b) => (
