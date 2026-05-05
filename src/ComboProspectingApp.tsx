@@ -270,7 +270,7 @@ const WHEEL_PILLARS = WHEEL_PILLAR_IDS_ORDER.map((id) => PILLARS.find((p) => p.i
 const WILD_CARD_PILLAR = PILLARS.find((p) => p.id === "video")!
 
 const DISCO_RUBRIC_DETAILS: Record<
-  "Account thesis" | "Stakeholder map",
+  "Account thesis" | "Pipeline generation" | "Stakeholder map",
   { intro: string; bullets: string[] }
 > = {
   "Account thesis": {
@@ -282,6 +282,18 @@ const DISCO_RUBRIC_DETAILS: Record<
       "Cursor fits the exact gap: model-neutral so Beswick's flexibility principle holds, codebase-aware so it works on real Marsh repos, enterprise-secure so Lund's team can sign off, and out-of-the-box fast so it matches Beswick's \"ship every week\" philosophy.",
       "CEO John Doyle (Q4 2025): \"BCS has introduced dozens of AI productivity tools. We need more colleagues to become power users to drive further efficiency.\" AI productivity is now a public, measured strategic priority.",
       "Paul Beswick (LinkedIn): \"We've shipped 600+ AI experiments. Your 18-month AI strategy? It's going to fail.\" The operating preference is clear: vendors that ship in days, not months. With Niall Maher shipping 40 AI systems in 12 months, the champion is identified and the window closes as BCS settles.",
+    ],
+  },
+  "Pipeline generation": {
+    intro:
+      "My Sales Play. One channel gets ignored. The combo gets answered.",
+    bullets: [
+      "The Problem With Single-Channel: selling to senior executives breaks when you lean on one motion. Email alone gets ignored. Cold calls alone hit voicemail. Social touches alone get scrolled past.",
+      "The Combo: thread the needle with a coordinated sequence across phone, email, voicemail, LinkedIn, and video, all anchored to a real business trigger and a sharp point of view.",
+      "The Phone Still Wins: the phone is still my most powerful weapon, but only when paired with research, insight, and disciplined follow-up across other channels inside a tight window.",
+      "Quality Beats Quantity: fewer, better-fit accounts. Tighter messaging tied to the buyer's actual pain. More courage to pick up the phone after the email lands.",
+      "The Discipline: prospecting is an executive-level discipline, not a numbers game of spray-and-pray sequences. If I want meetings with the C-suite, I need a researched hypothesis, a multi-touch combo, and the consistency to run it.",
+      "The Bottom Line: cut through the noise. Win the meeting. Own the conversation.",
     ],
   },
   "Stakeholder map": {
@@ -358,7 +370,9 @@ export default function ComboProspectingApp() {
   const [view, setView] = useState<ViewMode>("pipeline")
   const [selectedId, setSelectedId] = useState<string | null>(null)
   const [hubOpen, setHubOpen] = useState(false)
-  const [rubricPanel, setRubricPanel] = useState<"Account thesis" | "Stakeholder map" | null>(null)
+  const [rubricPanel, setRubricPanel] = useState<
+    "Account thesis" | "Pipeline generation" | "Stakeholder map" | null
+  >(null)
   const [spokeRadiusPx, setSpokeRadiusPx] = useState(248)
 
   useLayoutEffect(() => {
@@ -387,11 +401,14 @@ export default function ComboProspectingApp() {
     setHubOpen(true)
   }, [])
 
-  const openRubricPanel = useCallback((key: "Account thesis" | "Stakeholder map") => {
+  const openRubricPanel = useCallback(
+    (key: "Account thesis" | "Pipeline generation" | "Stakeholder map") => {
     setHubOpen(false)
     setSelectedId(null)
     setRubricPanel(key)
-  }, [])
+    },
+    []
+  )
 
   const closePanel = useCallback(() => {
     setSelectedId(null)
@@ -413,8 +430,7 @@ export default function ComboProspectingApp() {
               Marsh McLennan greenfield motion
             </h1>
             <p className="max-w-xl text-lg font-medium leading-snug text-slate-200 md:text-xl">
-              Generate and shape pipeline in a greenfield enterprise account — earn whitespace before RFPs and
-              procurement narrow the window, and compound credibility across every touch.
+              The Combo Is The Unlock. Break through the noise. Earn the meeting.
             </p>
           </div>
           <div className="flex flex-col items-center gap-2 md:items-end md:pb-0.5">
@@ -480,16 +496,18 @@ export default function ComboProspectingApp() {
                 </button>
                 <button
                   type="button"
+                  onClick={() => openRubricPanel("Pipeline generation")}
+                  className={`rounded-full border px-5 py-2.5 text-sm font-semibold transition hover:opacity-95 md:px-6 md:py-3 md:text-base ${rubricColor("Pipeline generation")}`}
+                >
+                  Pipeline generation
+                </button>
+                <button
+                  type="button"
                   onClick={() => openRubricPanel("Stakeholder map")}
                   className={`rounded-full border px-5 py-2.5 text-sm font-semibold transition hover:opacity-95 md:px-6 md:py-3 md:text-base ${rubricColor("Stakeholder map")}`}
                 >
                   Stakeholder map
                 </button>
-                <span
-                  className={`rounded-full border px-5 py-2.5 text-sm font-semibold md:px-6 md:py-3 md:text-base ${rubricColor("Pipeline generation")}`}
-                >
-                  Pipeline generation
-                </span>
               </div>
             </div>
             <button
@@ -681,7 +699,11 @@ export default function ComboProspectingApp() {
                 <>
                   <div>
                     <h4 className="mb-2 text-xs font-bold uppercase tracking-wider text-amber-400/90">
-                      {rubricPanel === "Account thesis" ? "Core thesis" : "Rubric detail"}
+                      {rubricPanel === "Account thesis"
+                        ? "Core thesis"
+                        : rubricPanel === "Pipeline generation"
+                          ? "Core play"
+                          : "Rubric detail"}
                     </h4>
                     <p className="text-sm leading-relaxed text-slate-300">
                       {DISCO_RUBRIC_DETAILS[rubricPanel].intro}
@@ -689,7 +711,11 @@ export default function ComboProspectingApp() {
                   </div>
                   <div>
                     <h4 className="mb-2 text-xs font-bold uppercase tracking-wider text-sky-400/90">
-                      {rubricPanel === "Account thesis" ? "Supporting points" : "How to use it"}
+                      {rubricPanel === "Account thesis"
+                        ? "Supporting points"
+                        : rubricPanel === "Pipeline generation"
+                          ? "Operating moves"
+                          : "How to use it"}
                     </h4>
                     <ul className="list-none space-y-3 text-sm leading-relaxed text-slate-300">
                       {DISCO_RUBRIC_DETAILS[rubricPanel].bullets.map((b) => (
