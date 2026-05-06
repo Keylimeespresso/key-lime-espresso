@@ -1061,20 +1061,17 @@ export default function ComboProspectingApp() {
               </button>
             </div>
 
-            <div className="space-y-6 px-5 py-6">
+            <div
+              className={
+                rubricPanel === "Stakeholder map"
+                  ? "space-y-4 px-5 pb-6 pt-3"
+                  : "space-y-6 px-5 py-6"
+              }
+            >
               {rubricPanel && DISCO_RUBRIC_DETAILS[rubricPanel] && (
                 <>
                   {rubricPanel === "Stakeholder map" ? (
-                    <div className="space-y-5">
-                      <div>
-                        <h4 className="mb-2 text-xs font-bold uppercase tracking-wider text-amber-400/90">
-                          Stakeholder map org chart
-                        </h4>
-                        <p className="text-sm leading-relaxed text-slate-300">
-                          Clean enterprise account map for Marsh McLennan technology leadership.
-                        </p>
-                      </div>
-
+                    <div className="space-y-3">
                       <div className="rounded-xl border border-amber-400/35 bg-slate-950/45 p-3">
                         <h5 className="mb-2 text-xs font-bold uppercase tracking-wider text-amber-300/95">
                           Marsh McLennan corporate org overview
