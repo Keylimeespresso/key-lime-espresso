@@ -789,16 +789,18 @@ export default function ComboProspectingApp() {
     <div className="min-h-screen bg-gradient-to-b from-slate-950 via-[#0c1222] to-slate-950 text-slate-100">
       <header className="border-b border-white/10 bg-slate-950/80 backdrop-blur-md">
         <div className="mx-auto flex max-w-6xl flex-col gap-6 px-4 py-8 md:flex-row md:items-end md:justify-between md:py-10">
-          <div className="max-w-2xl space-y-3">
+          <div className="min-w-0 max-w-2xl space-y-3 md:max-w-none md:min-w-0 md:flex-1 md:pr-8">
             <p className="text-xs font-semibold uppercase tracking-[0.2em] text-amber-400/90">
               Combo Prospecting
             </p>
             <h1 className="text-3xl font-bold tracking-tight text-white md:text-4xl">
               Marsh McLennan greenfield motion
             </h1>
-            <p className="max-w-xl text-lg font-medium leading-snug text-slate-200 md:text-xl">
-              The Combo Is The Unlock. Break through the noise. Earn the meeting.
-            </p>
+            <div className="w-full min-w-0 overflow-x-auto [scrollbar-width:thin]">
+              <p className="text-lg font-medium leading-snug text-slate-200 md:text-xl whitespace-nowrap">
+                The Combo Is The Unlock. Break through the noise. Earn the meeting.
+              </p>
+            </div>
           </div>
           <div className="flex flex-col items-center gap-2 md:items-end md:pb-0.5">
             <div className="flex w-full flex-col items-center gap-2 md:w-auto">
@@ -843,7 +845,33 @@ export default function ComboProspectingApp() {
 
       <section className="mx-auto max-w-6xl px-4 py-10">
         <div className="relative mx-auto mb-10 max-w-6xl">
-          <div className="text-center">
+          <aside className="mb-5 max-w-[11rem] text-left sm:absolute sm:left-0 sm:top-0 sm:z-10 sm:mb-0">
+            <p className="text-[10px] font-bold uppercase tracking-[0.18em] text-slate-500">Rubric reference</p>
+            <ul className="mt-2 space-y-1.5 text-[11px] leading-tight text-slate-300 md:text-xs">
+              <li>
+                <span
+                  className={`inline-block rounded border px-1.5 py-0.5 ${rubricColor("Account thesis")}`}
+                >
+                  Account thesis
+                </span>
+              </li>
+              <li>
+                <span
+                  className={`inline-block rounded border px-1.5 py-0.5 ${rubricColor("Stakeholder map")}`}
+                >
+                  Stakeholder map
+                </span>
+              </li>
+              <li>
+                <span
+                  className={`inline-block rounded border px-1.5 py-0.5 ${rubricColor("Urgency")}`}
+                >
+                  Urgency
+                </span>
+              </li>
+            </ul>
+          </aside>
+          <div className="text-center sm:min-h-[4.5rem] sm:pl-[12rem] md:pl-[13rem] sm:pt-0">
             <h2 className="text-2xl font-bold tracking-tight text-white md:text-3xl">
               Who do I want to talk to?
             </h2>
