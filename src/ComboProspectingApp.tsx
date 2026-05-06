@@ -538,6 +538,14 @@ const CORPORATE_UNITS: CorporateUnit[] = [
   },
 ]
 
+const STAKEHOLDER_MAP_WHO_I_TARGET = {
+  title: "Who I Target and Why",
+  paragraphs: [
+    "I run a parallel motion, not a top-down or bottom-up motion in isolation. Top-down alone stalls in procurement. Bottom-up alone caps at a 50-seat Pro purchase. The motion that actually closes enterprise Cursor deals is a champion in engineering paired with executive air cover.",
+    "My primary targets are the Platform and Tech Lead tiers. They feel velocity pain personally, they own a budget line for tooling, and they reply to outreach. Executives are a parallel track for air cover, not the entry point.",
+  ],
+} as const
+
 const ORG_TOP: Stakeholder = {
   name: "Rob Hussey",
   role: "Global CIO, Marsh",
@@ -1238,7 +1246,18 @@ export default function ComboProspectingApp() {
               {rubricPanel && DISCO_RUBRIC_DETAILS[rubricPanel] && (
                 <>
                   {rubricPanel === "Stakeholder map" ? (
-                    <div className="space-y-3">
+                    <div className="space-y-4">
+                      <div className="rounded-xl border border-sky-500/35 bg-gradient-to-br from-sky-950/55 to-slate-950/50 p-4 shadow-[0_0_0_1px_rgba(14,165,233,0.12)]">
+                        <h5 className="mb-3 text-sm font-semibold tracking-tight text-sky-100">
+                          {STAKEHOLDER_MAP_WHO_I_TARGET.title}
+                        </h5>
+                        <div className="space-y-3 text-sm leading-relaxed text-slate-300">
+                          {STAKEHOLDER_MAP_WHO_I_TARGET.paragraphs.map((p, i) => (
+                            <p key={i}>{p}</p>
+                          ))}
+                        </div>
+                      </div>
+
                       <div className="rounded-xl border border-amber-400/35 bg-slate-950/45 p-3">
                         <h5 className="mb-2 text-xs font-bold uppercase tracking-wider text-amber-300/95">
                           Marsh McLennan corporate org overview
