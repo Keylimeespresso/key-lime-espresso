@@ -407,6 +407,7 @@ type Stakeholder = {
   team: string
   linkedin: string
   fn: StakeholderFunction
+  note?: string
 }
 
 const STAKEHOLDER_FUNCTION_STYLE: Record<StakeholderFunction, string> = {
@@ -467,61 +468,49 @@ const CORPORATE_UNITS: CorporateUnit[] = [
 ]
 
 const ORG_TOP: Stakeholder = {
-  name: "Paul Beswick",
-  role: "SVP, Chief Information & Operations Officer (CIOO)",
-  team: "Corporate IT",
-  linkedin: "linkedin.com/in/paul-beswick/",
+  name: "Rob Hussey",
+  role: "Global CIO, Marsh",
+  team: "Executive Tier",
+  linkedin: "https://www.linkedin.com/in/rob-j-hussey/",
   fn: "executive",
+  note: "Leads Marsh Tech and can carry the board-level AI productivity story.",
 }
 
 const ORG_CORPORATE: Stakeholder[] = [
   {
-    name: "David Fike",
-    role: "CTO, Marsh McLennan",
-    team: "Corporate IT",
-    linkedin: "linkedin.com/in/david-fike-13945310/",
+    name: "Charlie Masters",
+    role: "CTO, Mercer",
+    team: "Executive Tier",
+    linkedin: "https://www.linkedin.com/in/charlie-masters-a21112197/",
     fn: "executive",
+    note: "Separate motion from Marsh and a potential easier first win.",
   },
   {
-    name: "Jeff Lund",
-    role: "Global CISO & Head of Technology Infrastructure",
-    team: "Security",
-    linkedin: "linkedin.com/in/jeff-lund-930381/",
-    fn: "security",
+    name: "John Connors",
+    role: "CIO, Guy Carpenter",
+    team: "Executive Tier",
+    linkedin: "https://www.linkedin.com/in/john-connors-548781111/",
+    fn: "executive",
+    note: "Sister-company entry point for parallel pilot momentum.",
   },
   {
-    name: "Dan Bowden",
-    role: "Global Business CISO",
-    team: "Security",
-    linkedin: "LinkedIn TBD",
+    name: "Mercer CISO",
+    role: "Open role",
+    team: "Executive Tier / Security",
+    linkedin: "Open role",
     fn: "security",
+    note: "Track for new hire. Fresh CISOs often reset tooling and security partnerships.",
   },
 ]
 
-const ORG_BU_CIOS: Stakeholder[] = [
-  { name: "Rob Hussey", role: "CIO, Mercer", team: "Mercer", linkedin: "LinkedIn TBD", fn: "executive" },
-  {
-    name: "Mercer CISO (Open/Unknown)",
-    role: "Chief Information Security Officer",
-    team: "Mercer",
-    linkedin: "TBD",
-    fn: "security",
-  },
-  {
-    name: "Oliver Wyman Digital Lead (Unknown)",
-    role: "Head of Digital / CTO",
-    team: "Oliver Wyman",
-    linkedin: "TBD",
-    fn: "engineering",
-  },
-  {
-    name: "Guy Carpenter Tech Leader (Unknown)",
-    role: "CIO / Head of Technology",
-    team: "Guy Carpenter / Marsh Re",
-    linkedin: "TBD",
-    fn: "engineering",
-  },
-]
+const ORG_COACH_SOURCE: Stakeholder = {
+  name: "Tushar Patel",
+  role: "Former MMC Cloud & AI exec",
+  team: "Coach / Intro Source",
+  linkedin: "https://www.linkedin.com/in/tkakp/",
+  fn: "engineering",
+  note: "Warm mutuals Jonathan and Lakshman. Use for intel and intros.",
+}
 
 const ORG_TECH_CHAMPIONS: Stakeholder[] = [
   {
@@ -533,37 +522,92 @@ const ORG_TECH_CHAMPIONS: Stakeholder[] = [
   },
   {
     name: "Brian Geoghegan",
-    role: "Software Engineer",
+    role: "Staff Software Engineer, Innovation Center (Ireland)",
     team: "Innovation Centre Dublin",
-    linkedin: "linkedin.com/in/brian-geoghegan-12935383/",
+    linkedin: "https://www.linkedin.com/in/brian-geoghegan-12935383/",
     fn: "ai",
   },
-  { name: "Susanne Hart", role: "AI Engineer / LenAI Team", team: "LenAI Team", linkedin: "TBD", fn: "ai" },
-  { name: "Gareth Neacy", role: "AI Engineer / LenAI Team", team: "LenAI Team", linkedin: "TBD", fn: "ai" },
-  { name: "Cathal Hughes", role: "AI Engineer / LenAI Team", team: "LenAI Team", linkedin: "TBD", fn: "ai" },
-  { name: "Rasika Deodhar", role: "AI Engineer / LenAI Team", team: "LenAI Team", linkedin: "TBD", fn: "ai" },
-  { name: "James Miles", role: "AI Engineer / LenAI Team", team: "LenAI Team", linkedin: "TBD", fn: "ai" },
-  { name: "Robin O'Shea", role: "AI Engineer / LenAI Team", team: "LenAI Team", linkedin: "TBD", fn: "ai" },
-  { name: "Dez Iddon", role: "AI Engineer / LenAI Team", team: "LenAI Team", linkedin: "TBD", fn: "ai" },
-  { name: "Joanne Seery", role: "Leadership Role TBD", team: "Leadership / Romania Hub", linkedin: "TBD", fn: "engineering" },
-  { name: "Attila Takacs", role: "Engineering Leadership", team: "Cluj Engineering Hub", linkedin: "TBD", fn: "engineering" },
 ]
 
 const ORG_ADDITIONAL_ENG: Stakeholder[] = [
-  { name: "Tushar Patel", role: "Program Director (VP)", team: "Engineering / Chicago", linkedin: "TBD", fn: "engineering" },
   {
-    name: "Mohit Chandanapurkar",
-    role: "Director, Quality Engineering",
-    team: "MMA Engineering",
-    linkedin: "TBD",
+    name: "Shravya Vorugallu",
+    role: "Platform Engineer, Security & Infra (Santa Clara)",
+    team: "Engineering Tier (Ranked)",
+    linkedin: "https://www.linkedin.com/in/shravyavorugallu/",
+    fn: "engineering",
+    note: "Warm intro via Mike Grandel.",
+  },
+  {
+    name: "Sandip Sankpal",
+    role: "Senior Platform Engineer (London)",
+    team: "Engineering Tier (Ranked)",
+    linkedin: "https://www.linkedin.com/in/sandipsankpal/",
+    fn: "engineering",
+    note: "Warm intro via Lakshman Srinivasa.",
+  },
+  {
+    name: "Doug Aird",
+    role: "Senior Engineering Manager (Dublin)",
+    team: "Engineering Tier (Ranked)",
+    linkedin: "https://www.linkedin.com/in/airdd/",
     fn: "engineering",
   },
   {
-    name: "David Slade",
-    role: "Security Leadership / Former CISO Listing",
-    team: "Security",
-    linkedin: "TBD",
-    fn: "security",
+    name: "Steve Mycock",
+    role: "Global Head Platform Team (UK)",
+    team: "Engineering Tier (Ranked)",
+    linkedin: "https://www.linkedin.com/in/steve-mycock-11937498/",
+    fn: "engineering",
+  },
+  {
+    name: "Michael Cai",
+    role: "Tech Lead AI/ML (Toronto)",
+    team: "Engineering Tier (Ranked)",
+    linkedin: "https://www.linkedin.com/in/caimichael/",
+    fn: "ai",
+  },
+  {
+    name: "Vinaykumar Tawale",
+    role: "Platform Engineer (Oregon)",
+    team: "Engineering Tier (Ranked)",
+    linkedin: "https://www.linkedin.com/in/tawalevinaykumar/",
+    fn: "engineering",
+  },
+  {
+    name: "Nehal Bathani",
+    role: "Tech Lead, Apps Dev (New Jersey)",
+    team: "Engineering Tier (Ranked)",
+    linkedin: "https://www.linkedin.com/in/nehal-bathani-34002075/",
+    fn: "engineering",
+  },
+  {
+    name: "Aman Pathak",
+    role: "Senior Platform Engineer (Toronto)",
+    team: "Engineering Tier (Ranked)",
+    linkedin: "https://www.linkedin.com/in/aman-pathak-716882ba/",
+    fn: "engineering",
+  },
+  {
+    name: "Vrushabh Deokar",
+    role: "Senior Principal Engineer, Data/ML (Mumbai)",
+    team: "Engineering Tier (Ranked)",
+    linkedin: "https://www.linkedin.com/in/vrushabhb4a115178/",
+    fn: "engineering",
+  },
+  {
+    name: "Brian Geoghegan",
+    role: "Staff Software Engineer, Innovation Center (Ireland)",
+    team: "Engineering Tier (Ranked)",
+    linkedin: "https://www.linkedin.com/in/brian-geoghegan-12935383/",
+    fn: "ai",
+  },
+  {
+    name: "Niall Maher",
+    role: "AI / Innovation Engineering Leader",
+    team: "Engineering Tier (Ranked)",
+    linkedin: "https://www.linkedin.com/in/nialljoemaher/",
+    fn: "ai",
   },
 ]
 
@@ -669,6 +713,32 @@ function StakeholderCard({ person }: { person: Stakeholder }) {
       <p className="mt-0.5">{person.role}</p>
       <p className="mt-1 text-[11px] opacity-90">Team: {person.team}</p>
       <p className="mt-1 truncate text-[11px] opacity-80">{person.linkedin}</p>
+    </div>
+  )
+}
+
+function ExecutiveStakeholderCard({ person }: { person: Stakeholder }) {
+  const isUrl = person.linkedin.startsWith("http")
+  return (
+    <div className={`rounded-lg border p-3 text-xs leading-relaxed ${STAKEHOLDER_FUNCTION_STYLE[person.fn]}`}>
+      <p className="font-semibold text-white">{person.name}</p>
+      <p className="mt-0.5">{person.role}</p>
+      <p className="mt-1 text-[11px] opacity-90">Team: {person.team}</p>
+      <details className="mt-2 rounded border border-white/15 bg-slate-950/30 p-2">
+        <summary className="cursor-pointer text-[11px] font-semibold uppercase tracking-wide text-slate-200">
+          Why now
+        </summary>
+        {person.note && <p className="mt-2 text-[11px] leading-relaxed text-slate-200">{person.note}</p>}
+        <p className="mt-2 text-[11px] text-slate-300">
+          {isUrl ? (
+            <a href={person.linkedin} target="_blank" rel="noreferrer" className="underline underline-offset-2">
+              {person.linkedin}
+            </a>
+          ) : (
+            person.linkedin
+          )}
+        </p>
+      </details>
     </div>
   )
 }
@@ -1081,26 +1151,24 @@ export default function ComboProspectingApp() {
                         </h5>
                         <div className="flex justify-center">
                           <div className="w-full max-w-xs">
-                            <StakeholderCard person={ORG_TOP} />
+                            <ExecutiveStakeholderCard person={ORG_TOP} />
                           </div>
                         </div>
                         <div className="mx-auto mt-3 h-4 w-px bg-white/20" />
                         <div className="mx-auto h-px w-4/5 bg-white/20" />
                         <div className="mt-3 grid gap-2 sm:grid-cols-3">
                           {ORG_CORPORATE.map((p) => (
-                            <StakeholderCard key={p.name} person={p} />
+                            <ExecutiveStakeholderCard key={p.name} person={p} />
                           ))}
                         </div>
                       </div>
 
                       <div className="rounded-xl border border-white/10 bg-slate-950/40 p-4">
                         <h5 className="mb-3 text-xs font-bold uppercase tracking-wider text-slate-300">
-                          Business unit CIOs
+                          Coach / intro source
                         </h5>
-                        <div className="grid gap-2 sm:grid-cols-2">
-                          {ORG_BU_CIOS.map((p) => (
-                            <StakeholderCard key={p.name} person={p} />
-                          ))}
+                        <div className="grid gap-2">
+                          <ExecutiveStakeholderCard person={ORG_COACH_SOURCE} />
                         </div>
                       </div>
 
@@ -1120,7 +1188,7 @@ export default function ComboProspectingApp() {
 
                       <div className="rounded-xl border border-white/10 bg-slate-950/40 p-4">
                         <h5 className="mb-3 text-xs font-bold uppercase tracking-wider text-slate-300">
-                          Additional engineering leaders
+                          Engineering tier (ranked)
                         </h5>
                         <div className="grid gap-2 sm:grid-cols-2">
                           {ORG_ADDITIONAL_ENG.map((p) => (
