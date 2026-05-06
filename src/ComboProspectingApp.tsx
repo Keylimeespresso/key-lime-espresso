@@ -517,8 +517,10 @@ const ORG_TECH_CHAMPIONS: Stakeholder[] = [
     name: "Niall Maher",
     role: "AI / Innovation Engineering Leader",
     team: "Innovation Centre Dublin",
-    linkedin: "linkedin.com/in/nialljoemaher/",
+    linkedin: "https://www.linkedin.com/in/nialljoemaher/",
     fn: "ai",
+    note:
+      "AI/Innovation Engineering Leader who scaled his team from 4 to 100+ engineers and shipped 40 production AI systems in 12 months, proving he runs the velocity playbook Cursor amplifies. He posts publicly about Claude Code and runs Codú (Ireland's largest engineering community), making him the most credible bottom-up champion candidate inside MMTech.",
   },
   {
     name: "Brian Geoghegan",
@@ -526,6 +528,8 @@ const ORG_TECH_CHAMPIONS: Stakeholder[] = [
     team: "Innovation Centre Dublin",
     linkedin: "https://www.linkedin.com/in/brian-geoghegan-12935383/",
     fn: "ai",
+    note:
+      "Software engineer at the Marsh Innovation Centre and CIO Award winner for LenAI, who posts publicly about how senior engineers should triage code review with AI tools. He's the kind of opinionated, tooling-fluent engineer who becomes a shadow Cursor user first and a vocal internal advocate second.",
   },
 ]
 
@@ -594,20 +598,6 @@ const ORG_ADDITIONAL_ENG: Stakeholder[] = [
     team: "Engineering Tier (Ranked)",
     linkedin: "https://www.linkedin.com/in/vrushabhb4a115178/",
     fn: "engineering",
-  },
-  {
-    name: "Brian Geoghegan",
-    role: "Staff Software Engineer, Innovation Center (Ireland)",
-    team: "Engineering Tier (Ranked)",
-    linkedin: "https://www.linkedin.com/in/brian-geoghegan-12935383/",
-    fn: "ai",
-  },
-  {
-    name: "Niall Maher",
-    role: "AI / Innovation Engineering Leader",
-    team: "Engineering Tier (Ranked)",
-    linkedin: "https://www.linkedin.com/in/nialljoemaher/",
-    fn: "ai",
   },
 ]
 
@@ -1181,7 +1171,7 @@ export default function ComboProspectingApp() {
                         </p>
                         <div className="grid gap-2 sm:grid-cols-2">
                           {ORG_TECH_CHAMPIONS.map((p) => (
-                            <StakeholderCard key={p.name} person={p} />
+                            <ExecutiveStakeholderCard key={p.name} person={p} />
                           ))}
                         </div>
                       </div>
