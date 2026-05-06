@@ -23,7 +23,7 @@ import {
   ChevronRight,
 } from "lucide-react"
 
-type ViewMode = "pipeline" | "figma"
+type ViewMode = "pipeline" | "roleplay"
 
 type PillarDef = {
   id: string
@@ -152,10 +152,10 @@ function RolePlayImpactQuotes() {
   return (
     <div className="mx-auto flex w-full max-w-3xl flex-col">
       <div className="mb-6 text-center">
-        <h2 className="text-2xl font-bold tracking-tight text-white md:text-3xl">Role Play</h2>
-        <p className="mt-2 text-xs font-semibold uppercase tracking-[0.2em] text-slate-500">
+        <h2 className="text-xl font-bold tracking-tight text-white md:text-2xl">
           Five Cursor Business Impact Quotes
-        </p>
+        </h2>
+        <p className="mt-2 text-xs text-slate-500">Live meeting references — click a chip or use Previous / Next</p>
       </div>
 
       <div className="mb-5 flex flex-wrap justify-center gap-2">
@@ -1034,26 +1034,6 @@ function rubricColor(tag: string): string {
   return "bg-white/10 text-slate-200 border-white/15"
 }
 
-function Multiline({ text }: { text: string }) {
-  const lines = text.trim().split("\n")
-  return (
-    <ul className="list-none space-y-2 text-sm leading-relaxed text-slate-300">
-      {lines.map((line, i) => (
-        <li key={i} className="pl-0">
-          {line.startsWith("- ") ? (
-            <span className="flex gap-2">
-              <span className="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-amber-500/80" />
-              <span>{line.slice(2)}</span>
-            </span>
-          ) : (
-            line
-          )}
-        </li>
-      ))}
-    </ul>
-  )
-}
-
 const APPENDIX_SECTION_TITLE_SET = new Set<string>(ACCOUNT_THESIS_APPENDIX_SECTIONS)
 
 function AccountThesisSupportingBlock({ text }: { text: string }) {
@@ -1274,6 +1254,15 @@ export default function ComboProspectingApp() {
     setRubricPanel(null)
   }, [])
 
+  const switchView = useCallback((next: ViewMode) => {
+    setView(next)
+    if (next === "roleplay") {
+      setSelectedId(null)
+      setHubOpen(false)
+      setRubricPanel(null)
+    }
+  }, [])
+
   const activePillar = selectedId ? PILLARS.find((p) => p.id === selectedId) : null
 
   return (
@@ -1308,7 +1297,7 @@ export default function ComboProspectingApp() {
               >
               <button
                 type="button"
-                onClick={() => setView("pipeline")}
+                onClick={() => switchView("pipeline")}
                 className={`rounded-full px-4 py-2 text-sm font-medium transition ${
                   view === "pipeline"
                     ? "bg-amber-500 text-slate-950 shadow"
@@ -1319,14 +1308,14 @@ export default function ComboProspectingApp() {
               </button>
               <button
                 type="button"
-                onClick={() => setView("figma")}
+                onClick={() => switchView("roleplay")}
                 className={`rounded-full px-4 py-2 text-sm font-medium transition ${
-                  view === "figma"
+                  view === "roleplay"
                     ? "bg-amber-500 text-slate-950 shadow"
                     : "text-slate-400 hover:text-white"
                 }`}
               >
-                FIGMA
+                Role Play
               </button>
               </div>
             </div>
@@ -1335,6 +1324,7 @@ export default function ComboProspectingApp() {
       </header>
 
       <section className="mx-auto max-w-6xl px-4 py-10">
+        {view === "pipeline" && (
         <div className="relative mx-auto mb-10 max-w-6xl">
           <aside className="mb-5 max-w-[11rem] text-left sm:absolute sm:left-0 sm:top-0 sm:z-10 sm:mb-0">
             <p className="text-[10px] font-bold uppercase tracking-[0.18em] text-slate-500">Rubric reference</p>
@@ -1413,9 +1403,10 @@ export default function ComboProspectingApp() {
             </button>
           </div>
         </div>
+        )}
 
-        {view === "figma" ? (
-          <div className="mx-auto flex min-h-[min(72vh,680px)] max-w-6xl flex-col rounded-2xl border-2 border-dashed border-white/20 bg-slate-900/25 p-6 shadow-inner backdrop-blur-sm md:p-10">
+        {view === "roleplay" ? (
+          <div className="mx-auto flex min-h-[min(70vh,720px)] w-full max-w-4xl flex-col px-1 pb-6 pt-2 md:px-4">
             <RolePlayImpactQuotes />
           </div>
         ) : (
@@ -1541,7 +1532,7 @@ export default function ComboProspectingApp() {
         )}
       </section>
 
-      {(hubOpen || activePillar || rubricPanel) && (
+      {(hubOpen || activePillar || rubricPanel) && view === "pipeline" && (
         <div
           className="fixed inset-0 z-50 flex justify-end bg-slate-950/70 backdrop-blur-sm"
           role="presentation"
@@ -1775,24 +1766,10 @@ export default function ComboProspectingApp() {
                   </div>
                   <div>
                     <h4 className="mb-2 text-xs font-bold uppercase tracking-wider text-sky-400/90">
-                      {view === "figma" ? "FIGMA tactic" : "How you run it"}
+                      How you run it
                     </h4>
-                    {view === "figma" ? (
-                      <Multiline text={HUB.figmaTactics} />
-                    ) : (
-                      <p className="text-sm leading-relaxed text-slate-300">{HUB.methodologyTactics}</p>
-                    )}
+                    <p className="text-sm leading-relaxed text-slate-300">{HUB.methodologyTactics}</p>
                   </div>
-                  {view === "figma" && (
-                    <div>
-                      <h4 className="mb-2 text-xs font-bold uppercase tracking-wider text-emerald-400/90">
-                        Sample call open
-                      </h4>
-                      <blockquote className="rounded-lg border border-white/10 bg-slate-900/80 p-4 text-sm italic leading-relaxed text-slate-200">
-                        {HUB.figmaSample}
-                      </blockquote>
-                    </div>
-                  )}
                   <div>
                     <h4 className="mb-2 text-xs font-bold uppercase tracking-wider text-slate-400">
                       Cadence model
@@ -1832,25 +1809,17 @@ export default function ComboProspectingApp() {
                   </div>
                   <div>
                     <h4 className="mb-2 text-xs font-bold uppercase tracking-wider text-sky-400/90">
-                      {view === "figma" ? "FIGMA tactic" : "Framework application"}
+                      Framework application
                     </h4>
-                    {view === "figma" ? (
-                      <Multiline text={activePillar.figmaTactics} />
-                    ) : (
-                      <p className="text-sm leading-relaxed text-slate-300">
-                        {activePillar.methodologyTactics}
-                      </p>
-                    )}
+                    <p className="text-sm leading-relaxed text-slate-300">
+                      {activePillar.methodologyTactics}
+                    </p>
                   </div>
                   <div>
                     <h4 className="mb-2 text-xs font-bold uppercase tracking-wider text-emerald-400/90">
-                      {view === "figma"
-                        ? "Sample script or message"
-                        : activePillar.id === "dmail"
-                          ? "Worked example"
-                          : "Sample pattern"}
+                      {activePillar.id === "dmail" ? "Worked example" : "Sample pattern"}
                     </h4>
-                    {view !== "figma" && activePillar.methodologyImageUrl && (
+                    {activePillar.methodologyImageUrl && (
                       <img
                         src={activePillar.methodologyImageUrl}
                         alt="Supporting content preview"
@@ -1858,7 +1827,7 @@ export default function ComboProspectingApp() {
                         loading="lazy"
                       />
                     )}
-                    {view !== "figma" && activePillar.methodologyLink && (
+                    {activePillar.methodologyLink && (
                       <a
                         href={activePillar.methodologyLink}
                         target="_blank"
@@ -1870,12 +1839,10 @@ export default function ComboProspectingApp() {
                     )}
                     <blockquote
                       className={`rounded-lg border border-white/10 bg-slate-900/80 p-4 text-sm leading-relaxed text-slate-200 ${
-                        activePillar.id === "dmail" && view !== "figma" ? "" : "whitespace-pre-wrap"
+                        activePillar.id === "dmail" ? "" : "whitespace-pre-wrap"
                       }`}
                     >
-                      {view === "figma" ? (
-                        activePillar.figmaSample
-                      ) : activePillar.id === "dmail" ? (
+                      {activePillar.id === "dmail" ? (
                         <DirectMailWorkedExampleBody />
                       ) : activePillar.id === "referrals" ? (
                         <StructuredSample text={activePillar.methodologySample} />
@@ -1884,7 +1851,7 @@ export default function ComboProspectingApp() {
                       )}
                     </blockquote>
                   </div>
-                  {activePillar.id === "dmail" && view !== "figma" && <DirectMailVitoSection />}
+                  {activePillar.id === "dmail" && <DirectMailVitoSection />}
                   {activePillar.methodologyAppendix && (
                     <div className="mt-6 border-t border-white/15 pt-5">
                       <h4 className="mb-3 text-xs font-bold uppercase tracking-wider text-amber-400/90">
