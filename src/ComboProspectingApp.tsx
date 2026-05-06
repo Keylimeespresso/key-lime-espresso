@@ -135,8 +135,26 @@ Cadence: 2-3 weeks of engagement before any direct DM.`,
       'When you DM, be specific, brief, and human. No "I would love to connect" templates. Reference something specific they published, posted, or shipped.',
     methodologyTactics:
       "Tier messages by seniority and technical depth. Eighty to one hundred twenty words max. Name one trigger. Offer one concrete CTA, usually a short call or a peer story, not a calendar wall.",
-    methodologySample:
-      "Hi [Name], your write-up on rolling guardrails to five hundred engineers mirrored a pattern we watched at [Peer]. If you are open, I would trade fifteen minutes on what broke at week six versus what held. No deck.",
+    methodologySample: `Example 1
+Hi Niall, just joined Cursor as a Strategic AE covering financial services. Reading up on Marsh has been a rabbit hole. Forty production AI systems in 12 months is nuts, especially inside a 150-year-old shop.
+
+What you and Codú are building mirrors a lot of the bottom-up adoption patterns we see at our F500 customers. I'd love to compare notes some time, with no agenda. Curious how you're thinking about scaling consistent AI coding workflows from your 100-person team out to the wider 5,000 in MMTech.
+
+Example 2
+Niall, saw your Claude Code tip about the co-author footer the other day. That's the kind of small friction my team hears about constantly.
+
+Just started at Cursor. Your AI rollout at Marsh is one of the more interesting stories I've come across, mostly because of the speed and the team scale-up. We've seen similar arcs at Coinbase, Stripe, and Notion when they hit the 100-developer mark and started caring about consistency.
+
+Worth a 20-min call to swap notes? Happy to share what's worked at companies your size. No pitch unless you ask. Either way, congrats on the Codú momentum.
+
+Example 3
+Niall, big fan of what you've built with Codú. The Dublin engineering community is lucky to have it.
+
+Just joined Cursor as a Strategic AE. Not reaching out to sell you anything, more genuinely curious how you balance the Marsh role with the community work, and whether AI coding tools have changed how you spend your time. I'm building my own perspective on how the bottom-up adoption playbook actually works at scale, and you've lived it.
+
+If you ever want to swap notes over coffee or a call, the door is open. Either way, following along.
+
+If you've got 20 minutes in the next few weeks, I'd buy the coffee. If not, no worries. Keep shipping.`,
     figmaTactics:
       "Tiered messaging. Niall Maher gets a peer-engineer tone referencing his Codú work and his Claude Code posts. Rob Hussey gets a CIO-level message referencing the BCS reorg and peer F500 patterns. Each message is 80-120 words, names a specific trigger, and offers a concrete CTA.",
     figmaSample: `Hi Niall, just joined Cursor as a Strategic AE. Reading up on Marsh has been a rabbit hole. 40 AI production systems in 12 months is nuts, especially in a 150-year-old shop. What you and Codú are building mirrors the bottom-up adoption patterns we see at our F500 customers. I'd love to compare notes some time, no agenda. Curious how you're scaling consistent AI coding workflows from your 100-person team out to the wider 5,000 in MMTech. If you've got 20 minutes, I'd buy the coffee.`,
