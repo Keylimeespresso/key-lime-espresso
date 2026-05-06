@@ -365,14 +365,131 @@ const DISCO_RUBRIC_DETAILS: Record<
   },
   "Stakeholder map": {
     intro:
-      "The stakeholder map is who matters, who trusts whom, and where deals accelerate or stall — not just names on an org chart.",
+      "Clean enterprise account map for Marsh McLennan technology leadership.",
     bullets: [
-      "Track economic buyer, champions, influencers, and blockers with last touch and sentiment.",
-      "Tune proof and channel per persona so multi-threading feels coordinated, not chaotic.",
-      "Expose referral paths and warm intros before you exhaust cold lanes.",
+      "Optimized for account mapping and deal motion, not HR reporting precision.",
+      "Use as a live map for multi-threading and warm-intro strategy.",
     ],
   },
 }
+
+type StakeholderFunction = "executive" | "security" | "ai" | "engineering"
+
+type Stakeholder = {
+  name: string
+  role: string
+  team: string
+  linkedin: string
+  fn: StakeholderFunction
+}
+
+const STAKEHOLDER_FUNCTION_STYLE: Record<StakeholderFunction, string> = {
+  executive: "border-sky-400/45 bg-sky-500/10 text-sky-100",
+  security: "border-rose-400/45 bg-rose-500/10 text-rose-100",
+  ai: "border-emerald-400/45 bg-emerald-500/10 text-emerald-100",
+  engineering: "border-slate-400/35 bg-slate-500/10 text-slate-100",
+}
+
+const ORG_TOP: Stakeholder = {
+  name: "Paul Beswick",
+  role: "SVP, Chief Information & Operations Officer (CIOO)",
+  team: "Corporate IT",
+  linkedin: "linkedin.com/in/paul-beswick/",
+  fn: "executive",
+}
+
+const ORG_CORPORATE: Stakeholder[] = [
+  {
+    name: "David Fike",
+    role: "CTO, Marsh McLennan",
+    team: "Corporate IT",
+    linkedin: "linkedin.com/in/david-fike-13945310/",
+    fn: "executive",
+  },
+  {
+    name: "Jeff Lund",
+    role: "Global CISO & Head of Technology Infrastructure",
+    team: "Security",
+    linkedin: "linkedin.com/in/jeff-lund-930381/",
+    fn: "security",
+  },
+  {
+    name: "Dan Bowden",
+    role: "Global Business CISO",
+    team: "Security",
+    linkedin: "LinkedIn TBD",
+    fn: "security",
+  },
+]
+
+const ORG_BU_CIOS: Stakeholder[] = [
+  { name: "Rob Hussey", role: "CIO, Mercer", team: "Mercer", linkedin: "LinkedIn TBD", fn: "executive" },
+  {
+    name: "Mercer CISO (Open/Unknown)",
+    role: "Chief Information Security Officer",
+    team: "Mercer",
+    linkedin: "TBD",
+    fn: "security",
+  },
+  {
+    name: "Oliver Wyman Digital Lead (Unknown)",
+    role: "Head of Digital / CTO",
+    team: "Oliver Wyman",
+    linkedin: "TBD",
+    fn: "engineering",
+  },
+  {
+    name: "Guy Carpenter Tech Leader (Unknown)",
+    role: "CIO / Head of Technology",
+    team: "Guy Carpenter / Marsh Re",
+    linkedin: "TBD",
+    fn: "engineering",
+  },
+]
+
+const ORG_TECH_CHAMPIONS: Stakeholder[] = [
+  {
+    name: "Niall Maher",
+    role: "AI / Innovation Engineering Leader",
+    team: "Innovation Centre Dublin",
+    linkedin: "linkedin.com/in/nialljoemaher/",
+    fn: "ai",
+  },
+  {
+    name: "Brian Geoghegan",
+    role: "Software Engineer",
+    team: "Innovation Centre Dublin",
+    linkedin: "linkedin.com/in/brian-geoghegan-12935383/",
+    fn: "ai",
+  },
+  { name: "Susanne Hart", role: "AI Engineer / LenAI Team", team: "LenAI Team", linkedin: "TBD", fn: "ai" },
+  { name: "Gareth Neacy", role: "AI Engineer / LenAI Team", team: "LenAI Team", linkedin: "TBD", fn: "ai" },
+  { name: "Cathal Hughes", role: "AI Engineer / LenAI Team", team: "LenAI Team", linkedin: "TBD", fn: "ai" },
+  { name: "Rasika Deodhar", role: "AI Engineer / LenAI Team", team: "LenAI Team", linkedin: "TBD", fn: "ai" },
+  { name: "James Miles", role: "AI Engineer / LenAI Team", team: "LenAI Team", linkedin: "TBD", fn: "ai" },
+  { name: "Robin O'Shea", role: "AI Engineer / LenAI Team", team: "LenAI Team", linkedin: "TBD", fn: "ai" },
+  { name: "Dez Iddon", role: "AI Engineer / LenAI Team", team: "LenAI Team", linkedin: "TBD", fn: "ai" },
+  { name: "Joanne Seery", role: "Leadership Role TBD", team: "Leadership / Romania Hub", linkedin: "TBD", fn: "engineering" },
+  { name: "Attila Takacs", role: "Engineering Leadership", team: "Cluj Engineering Hub", linkedin: "TBD", fn: "engineering" },
+]
+
+const ORG_ADDITIONAL_ENG: Stakeholder[] = [
+  { name: "Tushar Patel", role: "Program Director (VP)", team: "Engineering / Chicago", linkedin: "TBD", fn: "engineering" },
+  {
+    name: "Mohit Chandanapurkar",
+    role: "Director, Quality Engineering",
+    team: "MMA Engineering",
+    linkedin: "TBD",
+    fn: "engineering",
+  },
+  {
+    name: "David Slade",
+    role: "Security Leadership / Former CISO Listing",
+    team: "Security",
+    linkedin: "TBD",
+    fn: "security",
+  },
+]
 
 const HUB = {
   principle:
@@ -465,6 +582,17 @@ function StructuredSample({ text }: { text: string }) {
         }
         return <p key={i}>{line}</p>
       })}
+    </div>
+  )
+}
+
+function StakeholderCard({ person }: { person: Stakeholder }) {
+  return (
+    <div className={`rounded-lg border p-3 text-xs leading-relaxed ${STAKEHOLDER_FUNCTION_STYLE[person.fn]}`}>
+      <p className="font-semibold text-white">{person.name}</p>
+      <p className="mt-0.5">{person.role}</p>
+      <p className="mt-1 text-[11px] opacity-90">Team: {person.team}</p>
+      <p className="mt-1 truncate text-[11px] opacity-80">{person.linkedin}</p>
     </div>
   )
 }
@@ -800,6 +928,88 @@ export default function ComboProspectingApp() {
             <div className="space-y-6 px-5 py-6">
               {rubricPanel && DISCO_RUBRIC_DETAILS[rubricPanel] && (
                 <>
+                  {rubricPanel === "Stakeholder map" ? (
+                    <div className="space-y-5">
+                      <div>
+                        <h4 className="mb-2 text-xs font-bold uppercase tracking-wider text-amber-400/90">
+                          Stakeholder map org chart
+                        </h4>
+                        <p className="text-sm leading-relaxed text-slate-300">
+                          Clean enterprise account map for Marsh McLennan technology leadership.
+                        </p>
+                      </div>
+
+                      <div className="flex flex-wrap gap-2 text-[11px]">
+                        <span className="rounded-full border border-sky-400/45 bg-sky-500/10 px-2 py-1 text-sky-100">
+                          Blue = Executive Leadership
+                        </span>
+                        <span className="rounded-full border border-rose-400/45 bg-rose-500/10 px-2 py-1 text-rose-100">
+                          Red = Security
+                        </span>
+                        <span className="rounded-full border border-emerald-400/45 bg-emerald-500/10 px-2 py-1 text-emerald-100">
+                          Green = AI / Innovation
+                        </span>
+                        <span className="rounded-full border border-slate-400/35 bg-slate-500/10 px-2 py-1 text-slate-200">
+                          Gray = Engineering / Operations
+                        </span>
+                      </div>
+
+                      <div className="rounded-xl border border-white/10 bg-slate-950/40 p-4">
+                        <h5 className="mb-3 text-xs font-bold uppercase tracking-wider text-slate-300">
+                          Executive leadership / economic buyers
+                        </h5>
+                        <div className="flex justify-center">
+                          <div className="w-full max-w-xs">
+                            <StakeholderCard person={ORG_TOP} />
+                          </div>
+                        </div>
+                        <div className="mx-auto mt-3 h-4 w-px bg-white/20" />
+                        <div className="mx-auto h-px w-4/5 bg-white/20" />
+                        <div className="mt-3 grid gap-2 sm:grid-cols-3">
+                          {ORG_CORPORATE.map((p) => (
+                            <StakeholderCard key={p.name} person={p} />
+                          ))}
+                        </div>
+                      </div>
+
+                      <div className="rounded-xl border border-white/10 bg-slate-950/40 p-4">
+                        <h5 className="mb-3 text-xs font-bold uppercase tracking-wider text-slate-300">
+                          Business unit CIOs
+                        </h5>
+                        <div className="grid gap-2 sm:grid-cols-2">
+                          {ORG_BU_CIOS.map((p) => (
+                            <StakeholderCard key={p.name} person={p} />
+                          ))}
+                        </div>
+                      </div>
+
+                      <div className="rounded-xl border border-white/10 bg-slate-950/40 p-4">
+                        <h5 className="mb-3 text-xs font-bold uppercase tracking-wider text-slate-300">
+                          Technical champions / AI leaders
+                        </h5>
+                        <p className="mb-3 text-xs text-slate-500">
+                          Technical champions and LenAI engineers aligned beneath Innovation Centre leadership.
+                        </p>
+                        <div className="grid gap-2 sm:grid-cols-2">
+                          {ORG_TECH_CHAMPIONS.map((p) => (
+                            <StakeholderCard key={p.name} person={p} />
+                          ))}
+                        </div>
+                      </div>
+
+                      <div className="rounded-xl border border-white/10 bg-slate-950/40 p-4">
+                        <h5 className="mb-3 text-xs font-bold uppercase tracking-wider text-slate-300">
+                          Additional engineering leaders
+                        </h5>
+                        <div className="grid gap-2 sm:grid-cols-2">
+                          {ORG_ADDITIONAL_ENG.map((p) => (
+                            <StakeholderCard key={p.name} person={p} />
+                          ))}
+                        </div>
+                      </div>
+                    </div>
+                  ) : (
+                    <>
                   <div>
                     <h4 className="mb-2 text-xs font-bold uppercase tracking-wider text-amber-400/90">
                       {rubricPanel === "Account thesis"
@@ -837,6 +1047,8 @@ export default function ComboProspectingApp() {
                       ))}
                     </ul>
                   </div>
+                    </>
+                  )}
                 </>
               )}
 
