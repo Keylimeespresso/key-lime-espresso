@@ -97,8 +97,8 @@ function DirectMailWorkedExampleBody() {
       </p>
       <div className="mt-5 space-y-1 text-sm text-slate-300">
         <p>Respectfully,</p>
-        <p>[Your Name]</p>
-        <p>[Title]</p>
+        <p>Mazen Abdu</p>
+        <p>Strategic Account Executive</p>
       </div>
       <p className="mt-5 border-l-2 border-amber-500/50 pl-3 text-sm italic leading-relaxed text-slate-400">
         P.S. I will call you Tuesday, [DATE], at 10:15 a.m. ET. [EA Name] has the time held on your calendar.
@@ -144,16 +144,6 @@ function DirectMailVitoSection() {
           <span>
             Closing hook replaces the meeting ask. VITOs respond to competitive urgency, not calendar requests.
           </span>
-        </li>
-        <li className="flex gap-2">
-          <span className="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-sky-500/70" />
-          <span>
-            CTA lives in the PS, addressed to the VITO directly, with the exact date and time of the call.
-          </span>
-        </li>
-        <li className="flex gap-2">
-          <span className="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-sky-500/70" />
-          <span>Equal business stature. Sign with a title that puts you peer to peer.</span>
         </li>
       </ul>
     </div>
