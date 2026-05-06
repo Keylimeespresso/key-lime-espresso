@@ -98,7 +98,7 @@ function DirectMailWorkedExampleBody() {
       <div className="mt-5 space-y-1 text-sm text-slate-300">
         <p>Respectfully,</p>
         <p>Mazen Abdu</p>
-        <p>Strategic Account Executive</p>
+        <p>Strategic Account Executive, Cursor</p>
       </div>
       <p className="mt-5 border-l-2 border-amber-500/50 pl-3 text-sm italic leading-relaxed text-slate-400">
         P.S. I will call you Tuesday, [DATE], at 10:15 a.m. ET. [EA Name] has the time held on your calendar.
