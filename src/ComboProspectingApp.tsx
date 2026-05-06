@@ -58,7 +58,10 @@ type RolePlayQuote = {
   title: string
   lines?: { kind: "quote" | "text"; text: string }[]
   bullets?: string[]
-  source: { label: string; href?: string }
+  /** Optional headline + prose for Product & harness deck */
+  hook?: string
+  body?: string
+  source?: { label: string; href?: string }
 }
 
 const ROLE_PLAY_QUOTES: RolePlayQuote[] = [
@@ -142,31 +145,112 @@ const ROLE_PLAY_QUOTES: RolePlayQuote[] = [
   },
 ]
 
+const ROLE_PLAY_HARNESS_QUOTES: RolePlayQuote[] = [
+  {
+    id: "h1",
+    chip: "1 · Harness",
+    title: "The harness, not just the model",
+    hook: "The real magic isn't the model—it's the harness.",
+    body: "Cursor's proprietary agent harness turns any top model into something faster, smarter, and dramatically more token-efficient inside the actual editor. While others just swap in the latest LLM, we've built the infrastructure layer that makes agents actually reliable for real coding work—so your team ships higher-quality code with fewer headaches.",
+  },
+  {
+    id: "h2",
+    chip: "2 · Production",
+    title: "Agents like production software",
+    hook: "We treat AI agents like production software.",
+    body: "Cursor continuously tests harness improvements, monitors for any performance degradations in real time, and proactively repairs them before you even notice. That means consistent, dependable AI behavior day after day—no more frustrating \"the model got dumber\" moments that kill momentum.",
+  },
+  {
+    id: "h3",
+    chip: "3 · Efficiency",
+    title: "Token efficiency that compounds",
+    hook: "Token efficiency and speed that actually compound.",
+    body: "Our harness optimizations deliver meaningful gains in latency, context handling, and token usage, so you can tackle bigger refactors, multi-file changes, and complex tasks without watching the meter spin or burning budget. Developers tell us it feels like the AI is finally keeping up with them instead of slowing them down.",
+  },
+  {
+    id: "h4",
+    chip: "4 · Customization",
+    title: "Deep model customization",
+    hook: "Deep model customization without the integration pain.",
+    body: "We customize the harness specifically for each model's strengths and quirks—dynamic context, tailored prompting, edit formats, the works—so switching models mid-conversation stays seamless and high-performing. You get the best of every LLM without the usual friction or loss of quality.",
+  },
+  {
+    id: "h5",
+    chip: "5 · Future",
+    title: "Built for the multi-agent future",
+    hook: "Built for the long game and multi-agent future.",
+    body: "By obsessing over the agent layer (error reduction, keep-rate metrics, real-user signals, and orchestration), Cursor isn't just riding the next model wave—it's creating the reliable foundation for agentic workflows that scale. Teams using it today are already seeing the productivity edge that others are still chasing.",
+  },
+]
+
 function RolePlayImpactQuotes() {
+  const [deck, setDeck] = useState<"impact" | "harness">("impact")
   const [idx, setIdx] = useState(0)
-  const n = ROLE_PLAY_QUOTES.length
-  const q = ROLE_PLAY_QUOTES[idx]
+
+  const list = deck === "impact" ? ROLE_PLAY_QUOTES : ROLE_PLAY_HARNESS_QUOTES
+  const n = list.length
+  const q = list[idx]
 
   const go = (next: number) => setIdx((next + n) % n)
 
+  const selectDeck = (next: "impact" | "harness") => {
+    setDeck(next)
+    setIdx(0)
+  }
+
+  const isHarnessCard = deck === "harness" && q.hook && q.body
+
   return (
     <div className="mx-auto flex w-full max-w-3xl flex-col">
-      <div className="mb-6 text-center">
-        <h2 className="text-xl font-bold tracking-tight text-white md:text-2xl">
-          Five Cursor Business Impact Quotes
-        </h2>
-        <p className="mt-2 text-xs text-slate-500">Live meeting references — click a chip or use Previous / Next</p>
+      <div className="mb-5 text-center">
+        <h2 className="text-xl font-bold tracking-tight text-white md:text-2xl">Role Play references</h2>
+        <p className="mt-2 text-xs text-slate-500">
+          Live meeting — pick a deck, then a chip or Previous / Next
+        </p>
+
+        <div className="mx-auto mt-5 inline-flex rounded-full border border-white/10 bg-slate-950/80 p-1 shadow-inner">
+          <button
+            type="button"
+            onClick={() => selectDeck("impact")}
+            className={`rounded-full px-4 py-2 text-xs font-semibold transition sm:text-sm ${
+              deck === "impact"
+                ? "bg-amber-500 text-slate-950 shadow"
+                : "text-slate-400 hover:text-white"
+            }`}
+          >
+            Business impact
+          </button>
+          <button
+            type="button"
+            onClick={() => selectDeck("harness")}
+            className={`rounded-full px-4 py-2 text-xs font-semibold transition sm:text-sm ${
+              deck === "harness"
+                ? "bg-violet-500 text-white shadow"
+                : "text-slate-400 hover:text-white"
+            }`}
+          >
+            Product &amp; harness
+          </button>
+        </div>
+
+        <p className="mt-4 text-sm font-medium text-slate-400">
+          {deck === "impact"
+            ? "Five Cursor Business Impact Quotes"
+            : "Harness & positioning — talking points"}
+        </p>
       </div>
 
       <div className="mb-5 flex flex-wrap justify-center gap-2">
-        {ROLE_PLAY_QUOTES.map((item, i) => (
+        {list.map((item, i) => (
           <button
             key={item.id}
             type="button"
             onClick={() => setIdx(i)}
             className={`rounded-full border px-3 py-1.5 text-xs font-semibold transition ${
               i === idx
-                ? "border-amber-400/70 bg-amber-500/20 text-amber-100 shadow-[0_0_20px_-8px_rgba(251,191,36,0.5)]"
+                ? deck === "impact"
+                  ? "border-amber-400/70 bg-amber-500/20 text-amber-100 shadow-[0_0_20px_-8px_rgba(251,191,36,0.5)]"
+                  : "border-violet-400/70 bg-violet-500/20 text-violet-100 shadow-[0_0_20px_-8px_rgba(167,139,250,0.45)]"
                 : "border-white/15 bg-slate-950/50 text-slate-400 hover:border-white/25 hover:text-slate-200"
             }`}
           >
@@ -176,53 +260,67 @@ function RolePlayImpactQuotes() {
       </div>
 
       <div className="rounded-2xl border border-white/10 bg-slate-950/70 p-6 shadow-inner md:p-8">
-        <h3 className="text-lg font-semibold leading-snug text-amber-200/95 md:text-xl">{q.title}</h3>
+        {isHarnessCard ? (
+          <>
+            <h3 className="text-base font-semibold leading-snug text-violet-200/95 md:text-lg">{q.title}</h3>
+            <blockquote className="mt-4 border-l-[3px] border-violet-500/60 pl-4 text-base font-medium italic leading-relaxed text-white md:text-lg">
+              &ldquo;{q.hook}&rdquo;
+            </blockquote>
+            <p className="mt-5 text-sm leading-relaxed text-slate-300">{q.body}</p>
+          </>
+        ) : (
+          <>
+            <h3 className="text-lg font-semibold leading-snug text-amber-200/95 md:text-xl">{q.title}</h3>
 
-        {q.lines && q.lines.length > 0 && (
-          <div className="mt-5 space-y-4 text-sm leading-relaxed">
-            {q.lines.map((line, i) =>
-              line.kind === "quote" ? (
-                <blockquote
-                  key={i}
-                  className="border-l-[3px] border-amber-500/55 pl-4 text-slate-200 italic"
-                >
-                  &ldquo;{line.text}&rdquo;
-                </blockquote>
-              ) : (
-                <p key={i} className="text-sm text-slate-400">
-                  {line.text}
-                </p>
-              ),
+            {q.lines && q.lines.length > 0 && (
+              <div className="mt-5 space-y-4 text-sm leading-relaxed">
+                {q.lines.map((line, i) =>
+                  line.kind === "quote" ? (
+                    <blockquote
+                      key={i}
+                      className="border-l-[3px] border-amber-500/55 pl-4 text-slate-200 italic"
+                    >
+                      &ldquo;{line.text}&rdquo;
+                    </blockquote>
+                  ) : (
+                    <p key={i} className="text-sm text-slate-400">
+                      {line.text}
+                    </p>
+                  ),
+                )}
+              </div>
             )}
-          </div>
+
+            {q.bullets && q.bullets.length > 0 && (
+              <ul className="mt-5 list-none space-y-3 text-sm leading-relaxed text-slate-300">
+                {q.bullets.map((b) => (
+                  <li key={b} className="flex gap-2">
+                    <span className="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-sky-500/85" />
+                    <span>{b}</span>
+                  </li>
+                ))}
+              </ul>
+            )}
+          </>
         )}
 
-        {q.bullets && q.bullets.length > 0 && (
-          <ul className="mt-5 list-none space-y-3 text-sm leading-relaxed text-slate-300">
-            {q.bullets.map((b) => (
-              <li key={b} className="flex gap-2">
-                <span className="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-sky-500/85" />
-                <span>{b}</span>
-              </li>
-            ))}
-          </ul>
+        {q.source && (
+          <p className="mt-6 border-t border-white/10 pt-4 text-xs text-slate-500">
+            Source:{" "}
+            {q.source.href ? (
+              <a
+                href={q.source.href}
+                target="_blank"
+                rel="noreferrer"
+                className="font-medium text-sky-400 underline underline-offset-2 hover:text-sky-300"
+              >
+                {q.source.label}
+              </a>
+            ) : (
+              <span className="text-slate-400">{q.source.label}</span>
+            )}
+          </p>
         )}
-
-        <p className="mt-6 border-t border-white/10 pt-4 text-xs text-slate-500">
-          Source:{" "}
-          {q.source.href ? (
-            <a
-              href={q.source.href}
-              target="_blank"
-              rel="noreferrer"
-              className="font-medium text-sky-400 underline underline-offset-2 hover:text-sky-300"
-            >
-              {q.source.label}
-            </a>
-          ) : (
-            <span className="text-slate-400">{q.source.label}</span>
-          )}
-        </p>
       </div>
 
       <div className="mt-6 flex items-center justify-between gap-4">
