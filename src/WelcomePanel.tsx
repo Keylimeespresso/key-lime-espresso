@@ -49,15 +49,15 @@ export default function WelcomePanel() {
         }`}
         style={{ transitionDelay: mounted ? "0ms" : "0ms" }}
       >
-        <div className="flex items-center gap-4">
-          <CursorCubeIcon className="h-10 w-10 shrink-0 md:h-11 md:w-11" />
-          <span className="font-mono text-xs font-bold uppercase tracking-[0.18em] text-slate-200 md:text-sm md:tracking-[0.16em]">
-            Strategic AE / Final Round
+        <div className="flex items-center gap-4 md:gap-5">
+          <CursorCubeIcon className="h-11 w-11 shrink-0 md:h-[3.25rem] md:w-[3.25rem]" />
+          <span className="font-mono text-sm font-bold uppercase tracking-[0.14em] text-slate-200 md:text-lg md:tracking-[0.13em]">
+            Strategic AE / Disco
           </span>
         </div>
-        <div className="flex items-center gap-3 font-mono text-[11px] text-slate-400">
-          <time dateTime="2026-05-06">05.06.2026</time>
-          <span className="rounded border border-amber-500/35 bg-amber-500/10 px-2 py-1 text-amber-200/95">
+        <div className="flex flex-wrap items-center gap-3 font-mono text-sm text-slate-400 md:gap-4 md:text-base">
+          <time dateTime="2026-05-07">05.07.2026</time>
+          <span className="rounded border border-amber-500/35 bg-amber-500/10 px-3 py-1.5 text-amber-200/95 md:px-3.5 md:py-2">
             60 MIN
           </span>
         </div>
@@ -70,10 +70,7 @@ export default function WelcomePanel() {
         }`}
         style={{ transitionDelay: mounted ? "70ms" : "0ms" }}
       >
-        <p className="font-mono text-[10px] font-semibold uppercase tracking-[0.35em] text-amber-500/85">
-          Discovery and Deal Review Panel
-        </p>
-        <h1 className="mt-4 font-serif text-5xl font-normal tracking-tight text-[#f4f4f2] md:text-6xl lg:text-7xl">
+        <h1 className="font-serif text-5xl font-normal tracking-tight text-[#f4f4f2] md:text-6xl lg:text-7xl">
           Welcome.
         </h1>
         <p className="mt-5 max-w-2xl font-sans text-lg font-normal leading-relaxed text-slate-400 md:text-xl">
@@ -91,16 +88,14 @@ export default function WelcomePanel() {
         <h2 className="font-mono text-xs font-bold uppercase tracking-[0.22em] text-amber-400/95 md:text-sm md:tracking-[0.2em]">
           Cursor Positioning at a Glance
         </h2>
-        <div className="mt-8 grid gap-12 lg:mt-10 lg:grid-cols-2 lg:gap-14 lg:items-start">
-          <div className="flex flex-col items-center space-y-8 text-center lg:items-start lg:text-left">
-            <blockquote className="font-serif text-3xl font-normal italic leading-[1.15] text-[#ececea] md:text-4xl lg:text-[2.75rem] lg:leading-[1.12]">
-              Cursor wins on workflow, context, and execution.
-            </blockquote>
-            <p className="w-full text-center font-mono text-sm font-bold uppercase tracking-[0.26em] text-slate-400 md:text-base lg:text-left">
-              Strategic positioning · 2026 GTM
-            </p>
-          </div>
-          <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 sm:gap-4 md:gap-5">
+        <div className="mt-8 grid gap-8 lg:mt-10 lg:grid-cols-2 lg:items-start lg:gap-x-6 lg:gap-y-4">
+          <blockquote className="font-serif text-3xl font-normal italic leading-[1.15] text-[#ececea] md:text-4xl lg:col-start-1 lg:row-start-1 lg:text-[2.75rem] lg:leading-[1.12]">
+            Cursor wins on workflow, context, and execution.
+          </blockquote>
+          <p className="text-center font-mono text-sm font-bold uppercase tracking-[0.26em] text-slate-400 md:text-base lg:col-start-1 lg:row-start-2 lg:pt-1 lg:text-left">
+            Strategic positioning · 05.07.2026
+          </p>
+          <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 sm:gap-4 md:gap-5 lg:col-start-2 lg:row-span-2 lg:row-start-1">
             {[
               {
                 n: "01",
@@ -120,7 +115,8 @@ export default function WelcomePanel() {
               {
                 n: "04",
                 label: "Platform Across the SDLC",
-                sub: "Plan, write, review, ship. Bugbot, Agent Review, Automations.",
+                sub:
+                  "Ship as a system. Agents, human review, and automation stay tied to your repo from plan through production.",
               },
             ].map((t) => (
               <div
@@ -131,7 +127,7 @@ export default function WelcomePanel() {
                 <p className="mt-4 font-sans text-base font-semibold leading-snug text-slate-100 md:text-lg">
                   {t.label}
                 </p>
-                <p className="mt-auto pt-4 font-mono text-[11px] leading-relaxed text-slate-400 md:text-xs md:leading-relaxed">
+                <p className="mt-auto pt-4 font-mono text-sm leading-relaxed text-slate-400 md:text-[0.95rem] md:leading-relaxed">
                   {t.sub}
                 </p>
               </div>
@@ -140,17 +136,17 @@ export default function WelcomePanel() {
         </div>
       </section>
 
-      <div className="my-12 h-px w-full bg-white/[0.06] md:my-14" aria-hidden />
+      <div className="mt-12 h-px w-full bg-white/[0.06] md:mt-14" aria-hidden />
 
       {/* 4. Agenda */}
       <section
-        className={`transition-all duration-500 ${mounted ? "translate-y-0 opacity-100" : "translate-y-2 opacity-0"}`}
+        className={`-mt-1 pt-5 transition-all duration-500 md:pt-6 ${mounted ? "translate-y-0 opacity-100" : "translate-y-2 opacity-0"}`}
         style={{ transitionDelay: mounted ? "210ms" : "0ms" }}
       >
-        <h2 className="font-mono text-[10px] font-semibold uppercase tracking-[0.28em] text-slate-500">
+        <h2 className="font-mono text-xs font-bold uppercase tracking-[0.24em] text-slate-400 md:text-sm">
           Agenda
         </h2>
-        <div className="mt-8 grid gap-5 md:grid-cols-3">
+        <div className="mt-5 grid gap-6 md:grid-cols-3 md:gap-6">
           {[
             {
               num: "01",
@@ -179,19 +175,21 @@ export default function WelcomePanel() {
           ].map((card) => (
             <article
               key={card.num}
-              className="flex flex-col border border-white/[0.07] bg-slate-950/40 p-5 transition hover:border-white/[0.12]"
+              className="flex flex-col border border-white/[0.07] bg-slate-950/40 p-6 transition hover:border-white/[0.12] md:p-7"
             >
-              <div className="flex items-baseline justify-between gap-2 font-mono text-[10px] uppercase tracking-wider text-slate-500">
+              <div className="flex items-baseline justify-between gap-2 font-mono text-[11px] uppercase tracking-wider text-slate-500 md:text-xs">
                 <span className="text-amber-500/90">{card.num}</span>
                 <span className="text-slate-600">{card.time}</span>
               </div>
-              <h3 className="mt-4 font-sans text-base font-semibold leading-snug text-[#ececec]">{card.title}</h3>
-              <p className="mt-3 flex-1 font-sans text-sm leading-relaxed text-slate-400">{card.purpose}</p>
-              <div className="mt-4 flex flex-wrap gap-2">
+              <h3 className="mt-5 font-sans text-lg font-semibold leading-snug text-[#ececec] md:text-xl">
+                {card.title}
+              </h3>
+              <p className="mt-4 flex-1 font-sans text-base leading-relaxed text-slate-400">{card.purpose}</p>
+              <div className="mt-5 flex flex-wrap gap-2">
                 {card.tags.map((tag) => (
                   <span
                     key={tag}
-                    className="rounded border border-white/[0.06] bg-white/[0.02] px-2 py-0.5 font-mono text-[10px] text-slate-500"
+                    className="rounded border border-white/[0.06] bg-white/[0.02] px-2.5 py-1 font-mono text-[11px] text-slate-500 md:text-xs"
                   >
                     {tag}
                   </span>
@@ -212,7 +210,7 @@ export default function WelcomePanel() {
         style={{ transitionDelay: mounted ? `${70 * (SECTION_COUNT - 1)}ms` : "0ms" }}
       >
         <p className="font-mono text-[10px] uppercase tracking-[0.22em] text-slate-600">
-          Cursor / Discovery Panel / 05.06.2026
+          Cursor / Discovery Panel / 05.07.2026
         </p>
         <p className="font-mono text-[11px] text-slate-400">
           READY <span className="inline-block animate-blink text-amber-400">▊</span>

@@ -1371,11 +1371,8 @@ export default function ComboProspectingApp() {
           <div className="min-w-0 max-w-2xl space-y-3 md:max-w-none md:min-w-0 md:flex-1 md:pr-8">
             {view === "welcome" ? (
               <div className="mx-auto w-full max-w-xl text-center md:mx-0 md:max-w-none md:text-left">
-                <p className="font-mono text-xs font-semibold uppercase tracking-[0.22em] text-slate-400 md:text-sm">
-                  Cursor · Hiring
-                </p>
-                <h1 className="mt-2 font-serif text-3xl font-bold tracking-tight text-[#f4f4f2] md:text-4xl">
-                  Discovery and deal review
+                <h1 className="font-serif text-3xl font-normal tracking-tight text-[#f4f4f2] md:text-4xl">
+                  Pipeline Generation and Roleplay
                 </h1>
               </div>
             ) : (
@@ -2010,7 +2007,7 @@ export default function ComboProspectingApp() {
       <footer className="border-t border-white/10 py-8 text-center text-xs text-slate-600">
         {view === "welcome" ? (
           <span className="font-mono text-[10px] uppercase tracking-[0.2em] text-slate-600">
-            Cursor · Discovery panel · 05.06.2026
+            Cursor · Discovery panel · 05.07.2026
           </span>
         ) : (
           <>Marsh McLennan (MMC) · Combo Prospecting visualization · interview artifact</>
