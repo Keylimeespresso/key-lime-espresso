@@ -364,17 +364,28 @@ const WILD_CARD_PILLAR = PILLARS.find((p) => p.id === "video")!
 
 const DISCO_RUBRIC_DETAILS: Record<
   "Account thesis" | "Pipeline generation" | "Stakeholder map",
-  { intro: string; bullets: string[] }
+  { intro: string; bullets: string[]; appendix?: string[] }
 > = {
   "Account thesis": {
-    intro:
-      "Marsh has publicly bet the company on AI productivity and already proved it can ship at scale. LenAI now serves 90,000 colleagues, handles 700,000 queries per week, and saves an estimated one million hours annually. CEO John Doyle named AI productivity a strategic priority on the Q4 2025 earnings call, and CIOO Paul Beswick rang the NYSE bell for the January 2026 rebrand to Marsh.",
+    intro: "Selling Cursor to Marsh",
     bullets: [
-      "What Marsh has not yet done is bring the same step-change to the 5,000 engineers in MMTech who build every system LenAI runs on. Three transformations have collapsed into one window: the BCS reorganization, the AWS migration, and the brand consolidation.",
-      "Tooling decisions made now become the new enterprise standard. Decisions deferred lock in legacy Copilot sprawl across business units for years.",
-      "Cursor fits the exact gap: model-neutral so Beswick's flexibility principle holds, codebase-aware so it works on real Marsh repos, enterprise-secure so Lund's team can sign off, and out-of-the-box fast so it matches Beswick's \"ship every week\" philosophy.",
-      "CEO John Doyle (Q4 2025): \"BCS has introduced dozens of AI productivity tools. We need more colleagues to become power users to drive further efficiency.\" AI productivity is now a public, measured strategic priority.",
-      "Paul Beswick (LinkedIn): \"We've shipped 600+ AI experiments. Your 18-month AI strategy? It's going to fail.\" The operating preference is clear: vendors that ship in days, not months. With Niall Maher shipping 40 AI systems in 12 months, the champion is identified and the window closes as BCS settles.",
+      "The MMTech gap (platform shift urgency). Marsh built LenAI for 70,000 employees, but the same step-change hasn't reached the 5,000 engineers in MMTech who build every system underneath. Three transformations are converging right now. The BCS consolidation under Beswick, the AWS migration, and the brand simplification to \"Marsh.\" Tooling decisions made now become the new enterprise standard. Wait, and Copilot sprawl locks in across business units for years.",
+      "Thrive's $400M math (cost and productivity mandate). The Thrive program is publicly committed to $400 million in efficiency savings, with AI productivity as one of three explicit pillars alongside new revenue and back-office automation through BCS. Doyle on the Q4 2025 call: Marsh has dozens of AI tools deployed and needs more colleagues becoming power users. Engineering productivity isn't a nice-to-have anymore. It's a board-level number.",
+      "Cursor's leverage across the lifecycle (velocity, code quality, onboarding). Velocity. Coinbase engineers now refactor and upgrade in days instead of months. Code quality. Cursor's codebase indexing learns Marsh's patterns and conventions, so suggestions match standards instead of polluting them. Onboarding. Engineers navigating freshly migrated AWS systems and consolidated MMTech repos ramp faster when the AI actually understands the repo. Copilot can't do this.",
+      "Enterprise governance the security team can sign off on. SOC 2 Type II on AWS infrastructure. SAML SSO with Okta, Azure AD, and Google Workspace. SCIM provisioning, RBAC, audit logs, GDPR and CCPA. Privacy Mode with Zero Data Retention from model providers, so code isn't stored or used for training. Already deployed at 64% of the Fortune 500 including Stripe and Coinbase. The compliance lift is short.",
+      "Cursor matches Beswick's operating preference (AI strategy fit). Model-neutral so the flexibility principle holds across Claude, GPT, and Gemini. Out-of-the-box fast matches \"ship every week.\" Beswick on LinkedIn: 600+ AI experiments shipped, 18-month AI strategies are dead on arrival, the operating preference is vendors that ship in days. With Niall Maher having shipped 40 AI systems in 12 months, the champion is identified. The window closes as BCS settles.",
+    ],
+    appendix: [
+      'Marsh: formerly Marsh McLennan. In January 2026, the company simplified its name to "Marsh" and consolidated its four businesses (Marsh, Guy Carpenter, Mercer, Oliver Wyman) under one brand.',
+      "LenAI: Marsh's in-house generative AI assistant, built by the Innovation Centre in Ireland. About 25,000 employees use it weekly across 130 countries. Won the 2025 AI Ireland award for Best Application of AI in a Large Enterprise.",
+      'Paul Beswick: Senior VP and Global Chief Information and Operations Officer at Marsh. Leads the 5,000-person tech org. The "ship every week" and "flexibility" principles come from his public LinkedIn posts.',
+      "MMTech: Marsh McLennan Technology. The unified IT organization Beswick created to consolidate the four business units' previously separate tech orgs. About 5,000 technologists.",
+      "John Doyle: President and CEO of Marsh.",
+      "Q4 2025 earnings call: Held January 29, 2026. Doyle's comments on BCS, dozens of AI tools deployed, and the need for more power users came from this call.",
+      "BCS (Business and Client Services): Announced on the Q4 2025 call. Consolidates operations and technology under Beswick to accelerate AI adoption.",
+      "Thrive: Marsh's efficiency and growth program announced in 2025, targeting roughly $400 million in efficiency savings with about $500 million in expected program charges. AI productivity is one of three pillars (revenue, productivity, back-office efficiency).",
+      "AWS migration: Marsh selected AWS as its preferred cloud provider as part of its broader digital transformation.",
+      "Niall Maher: Marsh tech leader credited internally with shipping 40 AI systems in 12 months. Likely champion for Cursor adoption.",
     ],
   },
   "Pipeline generation": {
@@ -1217,7 +1228,7 @@ export default function ComboProspectingApp() {
                   <div>
                     <h4 className="mb-2 text-xs font-bold uppercase tracking-wider text-amber-400/90">
                       {rubricPanel === "Account thesis"
-                        ? "Core thesis"
+                        ? "Hypothesis"
                         : rubricPanel === "Pipeline generation"
                           ? "Core play"
                           : "Rubric detail"}
@@ -1234,23 +1245,53 @@ export default function ComboProspectingApp() {
                           ? "Operating moves"
                           : "How to use it"}
                     </h4>
-                    <ul className="list-none space-y-3 text-sm leading-relaxed text-slate-300">
-                      {DISCO_RUBRIC_DETAILS[rubricPanel].bullets.map((b) => (
-                        <li key={b} className="flex gap-2">
-                          <span className="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-sky-500/80" />
-                          <span
-                            className={
-                              rubricPanel === "Pipeline generation" && b.startsWith("The Discipline:")
-                                ? "font-semibold text-slate-100"
-                                : undefined
-                            }
-                          >
+                    {rubricPanel === "Account thesis" ? (
+                      <ol className="ml-1 list-decimal space-y-3 pl-4 text-sm leading-relaxed text-slate-300 marker:font-semibold marker:text-sky-400/95">
+                        {DISCO_RUBRIC_DETAILS["Account thesis"].bullets.map((b) => (
+                          <li key={b} className="pl-1">
                             {b}
-                          </span>
-                        </li>
-                      ))}
-                    </ul>
+                          </li>
+                        ))}
+                      </ol>
+                    ) : (
+                      <ul className="list-none space-y-3 text-sm leading-relaxed text-slate-300">
+                        {DISCO_RUBRIC_DETAILS[rubricPanel].bullets.map((b) => (
+                          <li key={b} className="flex gap-2">
+                            <span className="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-sky-500/80" />
+                            <span
+                              className={
+                                rubricPanel === "Pipeline generation" && b.startsWith("The Discipline:")
+                                  ? "font-semibold text-slate-100"
+                                  : undefined
+                              }
+                            >
+                              {b}
+                            </span>
+                          </li>
+                        ))}
+                      </ul>
+                    )}
                   </div>
+                  {rubricPanel === "Account thesis" &&
+                    DISCO_RUBRIC_DETAILS["Account thesis"].appendix &&
+                    DISCO_RUBRIC_DETAILS["Account thesis"].appendix.length > 0 && (
+                      <>
+                        <hr className="my-6 border-t border-white/15" />
+                        <div>
+                          <h4 className="mb-3 text-xs font-bold uppercase tracking-wider text-amber-400/90">
+                            Appendix
+                          </h4>
+                          <ul className="list-none space-y-2.5 text-sm leading-relaxed text-slate-400">
+                            {DISCO_RUBRIC_DETAILS["Account thesis"].appendix.map((line, i) => (
+                              <li key={i} className="flex gap-2">
+                                <span className="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-amber-500/70" />
+                                <span>{line}</span>
+                              </li>
+                            ))}
+                          </ul>
+                        </div>
+                      </>
+                    )}
                     </>
                   )}
                 </>
