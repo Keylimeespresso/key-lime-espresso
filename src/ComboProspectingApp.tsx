@@ -173,13 +173,14 @@ If you've got 20 minutes in the next few weeks, I'd buy the coffee. If not, no w
     title: "Voicemail",
     Icon: Voicemail,
     principle:
-      "Most voicemails get deleted because they sound like sales calls. Leave a voicemail that delivers a specific insight, names a peer customer, and tells the prospect you will follow up by email so they have a reason to look for it. Voicemail is not a callback request. It is a value drop.",
+      "Most voicemails get deleted because they sound like sales calls. I leave voicemails that deliver a specific insight, name a peer customer, and tell my prospect I'll follow up by email so they have a reason to look for it. For me, voicemail is not a callback request. It's a value drop.",
     methodologyTactics:
-      "Keep it under sixty seconds. No pitch stack. Promise one artifact by email with an exact subject line so the thread is searchable.",
+      "I keep it under sixty seconds. No pitch stack. I promise one artifact by email with an exact subject line so the thread is searchable.",
     methodologySample:
-      'Hi [Name], [you] from [company]. Not expecting a callback. I am sending a one-page teardown on how [Peer] cut review latency after their agent rollout. Subject line will be "Review latency after agents." That is all. Thanks for the work you publish on this topic.',
-    figmaTactics: "Direct phone outreach sequence support. Pair voicemail with email same day.",
-    figmaSample: `Hi Niall, [name] from Cursor. Not expecting a callback. I'm following up to share something specific. We just published a customer story on how Coinbase scaled AI coding adoption from 150 to 500 engineers in six weeks, exactly the curve you're on at Marsh. I'm sending it via email right after this. Look for the subject line "Coinbase 150 to 500 in six weeks." That's all. Have a good one.`,
+      'Hi [Name], this is [your name] from [company]. I\'m not expecting a callback. I\'m sending a one-page teardown on how [Peer] cut review latency after their agent rollout. The subject line will be "Review latency after agents." That\'s all. Thanks for the work you publish on this topic.',
+    figmaTactics:
+      "I run voicemail as part of my direct phone sequence — I pair each voicemail with email the same day.",
+    figmaSample: `Hi Niall, this is [your name] from Cursor. I'm not expecting a callback. I'm following up to share something specific. We just published a customer story on how Coinbase scaled AI coding adoption from 150 to 500 engineers in six weeks — exactly the curve you're on at Marsh. I'm sending it via email right after this. Look for the subject line "Coinbase 150 to 500 in six weeks." That's all. Have a good one.`,
     rubric: ["Pipeline generation", "Urgency"],
   },
   {
