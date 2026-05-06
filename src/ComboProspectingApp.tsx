@@ -19,6 +19,8 @@ import {
   Voicemail,
   X,
   Zap,
+  ChevronLeft,
+  ChevronRight,
 } from "lucide-react"
 
 type ViewMode = "pipeline" | "figma"
@@ -49,6 +51,204 @@ Paste into LinkedIn Sales Navigator (or any search that honors Boolean). This is
 You can spin dozens or hundreds of save-worthy personas from a single query like this; the account still needs judgment, but the list-building work is deliberately unlimited.
 
 ${ABM_MASTER_BOOLEAN_SEARCH}`
+
+type RolePlayQuote = {
+  id: string
+  chip: string
+  title: string
+  lines?: { kind: "quote" | "text"; text: string }[]
+  bullets?: string[]
+  source: { label: string; href?: string }
+}
+
+const ROLE_PLAY_QUOTES: RolePlayQuote[] = [
+  {
+    id: "jensen",
+    chip: "1 · Jensen",
+    title: "Jensen Huang, CEO of NVIDIA — the headline quote",
+    lines: [
+      {
+        kind: "quote",
+        text: "My favorite enterprise AI service is Cursor. Cursor is an AI coder, and every one of our engineers, 100%, is now assisted by AI coders, and our productivity has gone up incredibly.",
+      },
+      { kind: "text", text: "He also said:" },
+      {
+        kind: "quote",
+        text: "If I were to realize the Cursor team was raising money before, I would have given them all of my money.",
+      },
+    ],
+    source: { label: "CNBC Squawk Box, October 8, 2025" },
+  },
+  {
+    id: "nvidia-study",
+    chip: "2 · NVIDIA",
+    title: "NVIDIA case study — the proof behind Jensen's words",
+    bullets: [
+      "30,000+ developers use Cursor daily, driving a 3x increase in committed code.",
+      "Used across the full SDLC: code generation, reviews, test cases, debugging, QA.",
+    ],
+    source: { label: "cursor.com/blog/nvidia", href: "https://cursor.com/blog/nvidia" },
+  },
+  {
+    id: "box",
+    chip: "3 · Box",
+    title: "Box — 85% adoption, 30-50% roadmap throughput, 80-90% faster migrations",
+    lines: [
+      {
+        kind: "quote",
+        text: 'Over 85% of developers at Box now use Cursor daily, driving a 30-50% increase in product roadmap throughput. Box is completing major migrations 80-90% faster while improving overall product quality and security.',
+      },
+    ],
+    source: { label: "cursor.com/blog/box", href: "https://cursor.com/blog/box" },
+  },
+  {
+    id: "coinbase",
+    chip: "4 · Coinbase",
+    title: "Coinbase — 150 to 500 engineers in weeks",
+    lines: [
+      {
+        kind: "quote",
+        text: "Cursor has transformed the way our engineering teams write and ship code, with adoption growing from 150 to over 500 engineers (~60% of our org) in just a few weeks.",
+      },
+      {
+        kind: "text",
+        text: "By February 2025, every Coinbase engineer had used Cursor.",
+      },
+    ],
+    source: { label: "cursor.com/customers", href: "https://cursor.com/customers" },
+  },
+  {
+    id: "trimble",
+    chip: "5 · Trimble",
+    title: "Trimble — 50% more code shipped",
+    lines: [
+      {
+        kind: "quote",
+        text: "Across roles and levels, we're seeing an increase of over 25% in PR volume and over 100% in the average PR size. Together, that means we're shipping about 50% more code.",
+      },
+      { kind: "text", text: "— Jonah McIntire, CPTO" },
+    ],
+    source: { label: "cursor.com/customers", href: "https://cursor.com/customers" },
+  },
+  {
+    id: "bonus",
+    chip: "Bonus",
+    title: "Enterprise scale",
+    bullets: [
+      "64% of Fortune 500 companies use Cursor.",
+      "93% of engineers select Cursor as their preferred AI coding tool in head-to-head evaluations.",
+    ],
+    source: { label: "cursor.com/enterprise", href: "https://cursor.com/enterprise" },
+  },
+]
+
+function RolePlayImpactQuotes() {
+  const [idx, setIdx] = useState(0)
+  const n = ROLE_PLAY_QUOTES.length
+  const q = ROLE_PLAY_QUOTES[idx]
+
+  const go = (next: number) => setIdx((next + n) % n)
+
+  return (
+    <div className="mx-auto flex w-full max-w-3xl flex-col">
+      <div className="mb-6 text-center">
+        <h2 className="text-2xl font-bold tracking-tight text-white md:text-3xl">Role Play</h2>
+        <p className="mt-2 text-xs font-semibold uppercase tracking-[0.2em] text-slate-500">
+          Five Cursor Business Impact Quotes
+        </p>
+      </div>
+
+      <div className="mb-5 flex flex-wrap justify-center gap-2">
+        {ROLE_PLAY_QUOTES.map((item, i) => (
+          <button
+            key={item.id}
+            type="button"
+            onClick={() => setIdx(i)}
+            className={`rounded-full border px-3 py-1.5 text-xs font-semibold transition ${
+              i === idx
+                ? "border-amber-400/70 bg-amber-500/20 text-amber-100 shadow-[0_0_20px_-8px_rgba(251,191,36,0.5)]"
+                : "border-white/15 bg-slate-950/50 text-slate-400 hover:border-white/25 hover:text-slate-200"
+            }`}
+          >
+            {item.chip}
+          </button>
+        ))}
+      </div>
+
+      <div className="rounded-2xl border border-white/10 bg-slate-950/70 p-6 shadow-inner md:p-8">
+        <h3 className="text-lg font-semibold leading-snug text-amber-200/95 md:text-xl">{q.title}</h3>
+
+        {q.lines && q.lines.length > 0 && (
+          <div className="mt-5 space-y-4 text-sm leading-relaxed">
+            {q.lines.map((line, i) =>
+              line.kind === "quote" ? (
+                <blockquote
+                  key={i}
+                  className="border-l-[3px] border-amber-500/55 pl-4 text-slate-200 italic"
+                >
+                  &ldquo;{line.text}&rdquo;
+                </blockquote>
+              ) : (
+                <p key={i} className="text-sm text-slate-400">
+                  {line.text}
+                </p>
+              ),
+            )}
+          </div>
+        )}
+
+        {q.bullets && q.bullets.length > 0 && (
+          <ul className="mt-5 list-none space-y-3 text-sm leading-relaxed text-slate-300">
+            {q.bullets.map((b) => (
+              <li key={b} className="flex gap-2">
+                <span className="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-sky-500/85" />
+                <span>{b}</span>
+              </li>
+            ))}
+          </ul>
+        )}
+
+        <p className="mt-6 border-t border-white/10 pt-4 text-xs text-slate-500">
+          Source:{" "}
+          {q.source.href ? (
+            <a
+              href={q.source.href}
+              target="_blank"
+              rel="noreferrer"
+              className="font-medium text-sky-400 underline underline-offset-2 hover:text-sky-300"
+            >
+              {q.source.label}
+            </a>
+          ) : (
+            <span className="text-slate-400">{q.source.label}</span>
+          )}
+        </p>
+      </div>
+
+      <div className="mt-6 flex items-center justify-between gap-4">
+        <button
+          type="button"
+          onClick={() => go(idx - 1)}
+          className="inline-flex items-center gap-2 rounded-full border border-white/15 bg-slate-900/80 px-4 py-2 text-sm font-medium text-slate-200 transition hover:border-amber-400/40 hover:bg-slate-800/90"
+        >
+          <ChevronLeft className="h-4 w-4" strokeWidth={2} />
+          Previous
+        </button>
+        <span className="text-xs tabular-nums text-slate-500">
+          {idx + 1} / {n}
+        </span>
+        <button
+          type="button"
+          onClick={() => go(idx + 1)}
+          className="inline-flex items-center gap-2 rounded-full border border-white/15 bg-slate-900/80 px-4 py-2 text-sm font-medium text-slate-200 transition hover:border-amber-400/40 hover:bg-slate-800/90"
+        >
+          Next
+          <ChevronRight className="h-4 w-4" strokeWidth={2} />
+        </button>
+      </div>
+    </div>
+  )
+}
 
 /** Silver Dollar letter — rendered inside the panel “Worked example” box for Direct Mail */
 function DirectMailWorkedExampleBody() {
@@ -1215,17 +1415,8 @@ export default function ComboProspectingApp() {
         </div>
 
         {view === "figma" ? (
-          <div className="mx-auto flex min-h-[min(72vh,640px)] max-w-6xl flex-col rounded-2xl border-2 border-dashed border-white/20 bg-slate-900/25 p-8 shadow-inner backdrop-blur-sm">
-            <p className="mb-2 text-center text-xs font-semibold uppercase tracking-[0.25em] text-slate-500">
-              FIGMA canvas
-            </p>
-            <div className="flex flex-1 flex-col items-center justify-center gap-3 rounded-xl border border-white/5 bg-slate-950/40 px-6 py-16 text-center">
-              <p className="max-w-md text-lg font-medium text-slate-300">Open workspace</p>
-              <p className="max-w-lg text-sm leading-relaxed text-slate-500">
-                Drop frames, exports, or notes here during your working session. This area stays separate from
-                the Pipeline view.
-              </p>
-            </div>
+          <div className="mx-auto flex min-h-[min(72vh,680px)] max-w-6xl flex-col rounded-2xl border-2 border-dashed border-white/20 bg-slate-900/25 p-6 shadow-inner backdrop-blur-sm md:p-10">
+            <RolePlayImpactQuotes />
           </div>
         ) : (
           <>
