@@ -205,9 +205,6 @@ function RolePlayImpactQuotes() {
     <div className="mx-auto flex w-full max-w-3xl flex-col">
       <div className="mb-5 text-center">
         <h2 className="text-xl font-bold tracking-tight text-white md:text-2xl">Role Play references</h2>
-        <p className="mt-2 text-xs text-slate-500">
-          Live meeting — pick a deck, then a chip or Previous / Next
-        </p>
 
         <div className="mx-auto mt-5 inline-flex rounded-full border border-white/10 bg-slate-950/80 p-1 shadow-inner">
           <button
@@ -219,7 +216,7 @@ function RolePlayImpactQuotes() {
                 : "text-slate-400 hover:text-white"
             }`}
           >
-            Business impact
+            Business Impact
           </button>
           <button
             type="button"
@@ -230,14 +227,14 @@ function RolePlayImpactQuotes() {
                 : "text-slate-400 hover:text-white"
             }`}
           >
-            Product &amp; harness
+            Actual quotes
           </button>
         </div>
 
         <p className="mt-4 text-sm font-medium text-slate-400">
           {deck === "impact"
             ? "Five Cursor Business Impact Quotes"
-            : "Harness & positioning — talking points"}
+            : "Harness and positioning talking points"}
         </p>
       </div>
 
@@ -1367,13 +1364,26 @@ export default function ComboProspectingApp() {
   return (
     <div className="min-h-screen bg-gradient-to-b from-slate-950 via-[#0c1222] to-slate-950 text-slate-100">
       <header className="border-b border-white/10 bg-slate-950/80 backdrop-blur-md">
-        <div className="mx-auto flex max-w-6xl flex-col gap-6 px-4 py-8 md:flex-row md:items-end md:justify-between md:py-10">
+        <div className="mx-auto flex max-w-6xl flex-col gap-6 px-4 py-8 md:flex-row md:items-start md:justify-between md:py-10">
           <div className="min-w-0 max-w-2xl space-y-3 md:max-w-none md:min-w-0 md:flex-1 md:pr-8">
             {view === "welcome" ? (
-              <div className="mx-auto w-full max-w-xl text-center md:mx-0 md:max-w-none md:text-left">
+              <div className="w-full md:max-w-none">
                 <h1 className="font-serif text-3xl font-normal tracking-tight text-[#f4f4f2] md:text-4xl">
                   Pipeline Generation and Roleplay
                 </h1>
+              </div>
+            ) : view === "roleplay" ? (
+              <div className="w-full max-w-2xl space-y-3 md:max-w-none">
+                <p className="font-mono text-[10px] font-semibold uppercase tracking-[0.28em] text-amber-500/85">
+                  Mock discovery · Figma inbound
+                </p>
+                <h1 className="font-serif text-3xl font-normal tracking-tight text-[#f4f4f2] md:text-4xl">
+                  Discovery call with Figma
+                </h1>
+                <p className="text-sm leading-relaxed text-slate-400 md:text-base">
+                  Inbound scenario with Marcel Weekes (VP Engineering) and security leadership. Pressure-test messaging,
+                  surface objections on governance and rollout, and earn a crisp next step that fits how Figma buys.
+                </p>
               </div>
             ) : (
               <>
@@ -1391,8 +1401,8 @@ export default function ComboProspectingApp() {
               </>
             )}
           </div>
-          <div className="flex flex-col items-center gap-2 md:items-end md:pb-0.5">
-            <div className="flex w-full flex-col items-center gap-2 md:w-auto">
+          <div className="flex shrink-0 flex-col items-center gap-2 md:items-end">
+            <div className="flex w-full flex-col items-center gap-2 md:w-auto md:items-end">
               <span
                 id="view-toggle-label"
                 className="text-center text-xs font-medium uppercase tracking-wider text-slate-500"

@@ -85,17 +85,15 @@ export default function WelcomePanel() {
         className={`transition-all duration-500 ${mounted ? "translate-y-0 opacity-100" : "translate-y-2 opacity-0"}`}
         style={{ transitionDelay: mounted ? "140ms" : "0ms" }}
       >
-        <h2 className="font-mono text-xs font-bold uppercase tracking-[0.22em] text-amber-400/95 md:text-sm md:tracking-[0.2em]">
-          Cursor Positioning at a Glance
-        </h2>
-        <div className="mt-8 grid gap-8 lg:mt-10 lg:grid-cols-2 lg:items-start lg:gap-x-6 lg:gap-y-4">
-          <blockquote className="font-serif text-3xl font-normal italic leading-[1.15] text-[#ececea] md:text-4xl lg:col-start-1 lg:row-start-1 lg:text-[2.75rem] lg:leading-[1.12]">
+        <div className="mt-8 grid gap-8 lg:mt-10 lg:grid-cols-2 lg:items-start lg:gap-x-6">
+          <blockquote className="order-2 font-serif text-3xl font-normal italic leading-[1.15] text-[#ececea] md:text-4xl lg:order-1 lg:col-start-1 lg:row-start-1 lg:text-[2.75rem] lg:leading-[1.12]">
             Cursor wins on workflow, context, and execution.
           </blockquote>
-          <p className="text-center font-mono text-sm font-bold uppercase tracking-[0.26em] text-slate-400 md:text-base lg:col-start-1 lg:row-start-2 lg:pt-1 lg:text-left">
-            Strategic positioning · 05.07.2026
-          </p>
-          <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 sm:gap-4 md:gap-5 lg:col-start-2 lg:row-span-2 lg:row-start-1">
+          <div className="order-1 flex flex-col lg:order-2 lg:col-start-2 lg:row-start-1">
+            <h2 className="text-center font-mono text-xs font-bold uppercase tracking-[0.22em] text-amber-400/95 md:text-sm md:tracking-[0.2em]">
+              Cursor Positioning at a Glance
+            </h2>
+            <div className="mt-6 grid grid-cols-1 gap-4 sm:grid-cols-2 sm:gap-4 md:mt-8 md:gap-5">
             {[
               {
                 n: "01",
@@ -132,6 +130,7 @@ export default function WelcomePanel() {
                 </p>
               </div>
             ))}
+            </div>
           </div>
         </div>
       </section>
@@ -153,7 +152,7 @@ export default function WelcomePanel() {
               time: "20-25 MIN",
               title: "Greenfield Account Plan",
               purpose:
-                "Build a Fortune 100 account thesis and show how I create momentum from zero.",
+                "Build a Fortune 500 account thesis and show how I create momentum from zero.",
               tags: ["Account Thesis", "Stakeholder Map", "First 90 Days"],
             },
             {
