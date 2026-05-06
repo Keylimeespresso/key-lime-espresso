@@ -32,10 +32,23 @@ type PillarDef = {
   methodologySample: string
   methodologyLink?: string
   methodologyImageUrl?: string
+  /** Long-form supplement (e.g. Boolean search string) shown in panel appendix */
+  methodologyAppendix?: string
   figmaTactics: string
   figmaSample: string
   rubric: string[]
 }
+
+const ABM_MASTER_BOOLEAN_SEARCH =
+  'NOT ("Retired" OR "Former" OR "Assistant" OR "Deputy" OR "Sales" OR "Marketing" OR "Underwriter" OR "Broker" OR "Claims" OR "Actuary") AND (("CIO" OR "CTO" OR "CISO" OR "CDO" OR "CAIO" OR "CIOO" OR "BISO") OR ("Chief" AND ("Information" OR "Technology" OR "Data" OR "AI" OR "Artificial Intelligence" OR "Digital" OR "Innovation" OR "Cyber" OR "Security" OR "Procurement" OR "Sourcing")) OR (("SVP" OR "Senior Vice President" OR "VP" OR "Vice President") AND ("Engineering" OR "Software Engineering" OR "Platform Engineering" OR "Developer Experience" OR "Developer Productivity" OR "Application Development" OR "Cloud" OR "Architecture" OR "Innovation" OR "AI" OR "Artificial Intelligence" OR "Generative AI" OR "Machine Learning" OR "Cybersecurity" OR "Application Security" OR "Information Security" OR "Information Technology" OR "Technology")) OR (("Head" OR "Director" OR "VP" OR "Vice President") AND ("IT Sourcing" OR "Technology Sourcing" OR "Strategic Sourcing" OR "IT Procurement")))'
+
+const ABM_METHOD_APPENDIX = `Master Boolean (C-level, VP, plus sourcing)
+
+Paste into LinkedIn Sales Navigator (or any search that honors Boolean). This is one working pattern to surface chiefs, senior engineering and platform leaders, and IT sourcing — while stripping assistants, alumni titles, and insurance distribution roles that clog results.
+
+You can spin dozens or hundreds of save-worthy personas from a single query like this; the account still needs judgment, but the list-building work is deliberately unlimited.
+
+${ABM_MASTER_BOOLEAN_SEARCH}`
 
 const PILLARS: PillarDef[] = [
   {
@@ -295,11 +308,12 @@ Custom-printed report on AI coding ROI in professional services for Hussey`,
     title: "Multi-threading / ABM",
     Icon: Share2,
     principle:
-      "Single-threaded deals die. Multi-thread across the account from day one. Different messages to different personas, all aligned to the same account thesis.",
+      "Single-threaded deals die. I multi-thread across the account from day one — different messages to different personas, all aligned to the same account thesis. There is no shortage of work to be done: one strong Boolean can surface dozens or hundreds of the right titles for outreach, and it still only seeds the map. The appendix walks through my master query (C-level, VP, plus sourcing) — chiefs and senior engineering leaders, IT procurement, with noise stripped out — so I can populate Personas systematically before I sequence.",
     methodologyTactics:
-      "Run parallel tracks across economic buyer, BU technology leaders, platform engineering, security, and procurement. Same north star narrative, different proof points.",
+      "I run parallel tracks across economic buyer, BU technology leaders, platform engineering, security, and procurement. Same north star narrative, different proof points. I pair that with saved Boolean cohorts so the named-person list scales beyond a short handwritten stack.",
     methodologySample:
       "Running three threads this week: CIO pattern, platform engineering throughput, security architecture deep dive. Same ninety-day consolidation thesis on all three.",
+    methodologyAppendix: ABM_METHOD_APPENDIX,
     figmaTactics: `30-40 named individuals across MMC, hit in parallel:
 1 economic buyer (Beswick)
 3 BU CIOs (Hussey, Oliver Wyman digital lead, Guy Carpenter tech lead)
@@ -762,6 +776,35 @@ function AccountThesisSupportingBlock({ text }: { text: string }) {
           </p>
         )
       })}
+    </div>
+  )
+}
+
+function PillarAppendixContent({ text }: { text: string }) {
+  const chunks = text
+    .split(/\n\n+/)
+    .map((s) => s.trim())
+    .filter(Boolean)
+  const boolIdx = chunks.findIndex((c) => c.startsWith("NOT ("))
+  const preamble = boolIdx >= 0 ? chunks.slice(0, boolIdx) : chunks
+  const boolStr = boolIdx >= 0 ? chunks[boolIdx] : null
+  return (
+    <div className="space-y-3">
+      {preamble.map((para, i) => (
+        <p
+          key={i}
+          className={`text-sm leading-relaxed ${
+            i === 0 ? "font-semibold text-slate-200" : "text-slate-400"
+          }`}
+        >
+          {para}
+        </p>
+      ))}
+      {boolStr && (
+        <pre className="overflow-x-auto rounded-lg border border-white/10 bg-slate-950/90 p-3 font-mono text-[11px] leading-relaxed text-sky-100/95">
+          {boolStr}
+        </pre>
+      )}
     </div>
   )
 }
@@ -1540,6 +1583,14 @@ export default function ComboProspectingApp() {
                       )}
                     </blockquote>
                   </div>
+                  {activePillar.methodologyAppendix && (
+                    <div className="mt-6 border-t border-white/15 pt-5">
+                      <h4 className="mb-3 text-xs font-bold uppercase tracking-wider text-amber-400/90">
+                        Appendix
+                      </h4>
+                      <PillarAppendixContent text={activePillar.methodologyAppendix} />
+                    </div>
+                  )}
                   <div>
                     <h4 className="mb-2 text-xs font-bold uppercase tracking-wider text-slate-400">
                       Rubric served
