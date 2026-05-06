@@ -367,7 +367,8 @@ const DISCO_RUBRIC_DETAILS: Record<
   { intro: string; bullets: string[]; appendix?: string[] }
 > = {
   "Account thesis": {
-    intro: "Selling Cursor to Marsh",
+    intro:
+      "Marsh has publicly bet the company on AI productivity and already proved it can ship at scale. LenAI now serves 90,000 colleagues, handles 700,000 queries per week, and saves an estimated one million hours annually. CEO John Doyle named AI productivity a strategic priority on the Q4 2025 earnings call, and CIOO Paul Beswick rang the NYSE bell for the January 2026 rebrand to Marsh.",
     bullets: [
       "The MMTech gap (platform shift urgency). Marsh built LenAI for 70,000 employees, but the same step-change hasn't reached the 5,000 engineers in MMTech who build every system underneath. Three transformations are converging right now. The BCS consolidation under Beswick, the AWS migration, and the brand simplification to \"Marsh.\" Tooling decisions made now become the new enterprise standard. Wait, and Copilot sprawl locks in across business units for years.",
       "Thrive's $400M math (cost and productivity mandate). The Thrive program is publicly committed to $400 million in efficiency savings, with AI productivity as one of three explicit pillars alongside new revenue and back-office automation through BCS. Doyle on the Q4 2025 call: Marsh has dozens of AI tools deployed and needs more colleagues becoming power users. Engineering productivity isn't a nice-to-have anymore. It's a board-level number.",
@@ -1228,7 +1229,7 @@ export default function ComboProspectingApp() {
                   <div>
                     <h4 className="mb-2 text-xs font-bold uppercase tracking-wider text-amber-400/90">
                       {rubricPanel === "Account thesis"
-                        ? "Hypothesis"
+                        ? "Core thesis"
                         : rubricPanel === "Pipeline generation"
                           ? "Core play"
                           : "Rubric detail"}
@@ -1245,52 +1246,39 @@ export default function ComboProspectingApp() {
                           ? "Operating moves"
                           : "How to use it"}
                     </h4>
-                    {rubricPanel === "Account thesis" ? (
-                      <ol className="ml-1 list-decimal space-y-3 pl-4 text-sm leading-relaxed text-slate-300 marker:font-semibold marker:text-sky-400/95">
-                        {DISCO_RUBRIC_DETAILS["Account thesis"].bullets.map((b) => (
-                          <li key={b} className="pl-1">
+                    <ul className="list-none space-y-3 text-sm leading-relaxed text-slate-300">
+                      {DISCO_RUBRIC_DETAILS[rubricPanel].bullets.map((b) => (
+                        <li key={b} className="flex gap-2">
+                          <span className="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-sky-500/80" />
+                          <span
+                            className={
+                              rubricPanel === "Pipeline generation" && b.startsWith("The Discipline:")
+                                ? "font-semibold text-slate-100"
+                                : undefined
+                            }
+                          >
                             {b}
-                          </li>
-                        ))}
-                      </ol>
-                    ) : (
-                      <ul className="list-none space-y-3 text-sm leading-relaxed text-slate-300">
-                        {DISCO_RUBRIC_DETAILS[rubricPanel].bullets.map((b) => (
-                          <li key={b} className="flex gap-2">
-                            <span className="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-sky-500/80" />
-                            <span
-                              className={
-                                rubricPanel === "Pipeline generation" && b.startsWith("The Discipline:")
-                                  ? "font-semibold text-slate-100"
-                                  : undefined
-                              }
-                            >
-                              {b}
-                            </span>
-                          </li>
-                        ))}
-                      </ul>
-                    )}
+                          </span>
+                        </li>
+                      ))}
+                    </ul>
                   </div>
                   {rubricPanel === "Account thesis" &&
                     DISCO_RUBRIC_DETAILS["Account thesis"].appendix &&
                     DISCO_RUBRIC_DETAILS["Account thesis"].appendix.length > 0 && (
-                      <>
-                        <hr className="my-6 border-t border-white/15" />
-                        <div>
-                          <h4 className="mb-3 text-xs font-bold uppercase tracking-wider text-amber-400/90">
-                            Appendix
-                          </h4>
-                          <ul className="list-none space-y-2.5 text-sm leading-relaxed text-slate-400">
-                            {DISCO_RUBRIC_DETAILS["Account thesis"].appendix.map((line, i) => (
-                              <li key={i} className="flex gap-2">
-                                <span className="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-amber-500/70" />
-                                <span>{line}</span>
-                              </li>
-                            ))}
-                          </ul>
-                        </div>
-                      </>
+                      <details className="mt-5 rounded-lg border border-white/10 bg-slate-950/40 p-3">
+                        <summary className="cursor-pointer text-xs font-semibold uppercase tracking-wider text-slate-400">
+                          Appendix
+                        </summary>
+                        <ul className="mt-3 list-none space-y-2.5 text-sm leading-relaxed text-slate-400">
+                          {DISCO_RUBRIC_DETAILS["Account thesis"].appendix.map((line, i) => (
+                            <li key={i} className="flex gap-2">
+                              <span className="mt-2 h-1 w-1 shrink-0 rounded-full bg-slate-500/80" />
+                              <span>{line}</span>
+                            </li>
+                          ))}
+                        </ul>
+                      </details>
                     )}
                     </>
                   )}
