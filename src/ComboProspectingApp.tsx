@@ -56,11 +56,11 @@ const PILLARS: PillarDef[] = [
     title: "Trigger Events",
     Icon: Zap,
     principle:
-      "Reach out when there is a compelling reason to reach out. Trigger events justify the interruption. Without a trigger, you are noise. With one, you are timely.",
+      "I reach out when I have a compelling reason to reach out. Trigger events justify the interruption. Without a trigger, I'm noise. With one, I'm timely.",
     methodologyTactics:
-      "Build a short list of account-level triggers: leadership changes, M&A, reorgs, earnings themes, major tech migrations, and public AI or efficiency commitments. Tie every first touch to one trigger so the prospect feels timing, not spray-and-pray.",
+      "I keep a short list of account-level triggers: leadership changes, M&A, reorgs, earnings themes, major tech migrations, and public AI or efficiency commitments. I tie every first touch to one trigger so the prospect feels timing, not spray-and-pray.",
     methodologySample:
-      "Saw your Q3 call emphasis on platform consolidation. That is usually the window where engineering standardization either accelerates or fragments. Worth comparing notes with two peer patterns from similar rollouts.",
+      "Saw your Q3 call emphasis on platform consolidation. That's usually the window where engineering standardization either accelerates or fragments. Happy to compare notes with two peer patterns from similar rollouts if useful.",
     figmaTactics: `January 2026 brand consolidation (Marsh, Guy Carpenter, Mercer, Oliver Wyman → single "Marsh" brand)
 New BCS (Business and Client Services) unit launched October 2025
 AWS migration in flight, retiring all data centers
@@ -69,7 +69,7 @@ CEO John Doyle's public commitment to making MMC an "AI winner"
 LenAI deployed to all 90,000 employees (700K queries per week), but no equivalent dev productivity tool for the 5,000 engineers in MMTech
 New Mercer CISO role posted (likely just filled)`,
     figmaSample:
-      "Saw the BCS announcement. Standardizing the engineering platform during a brand reset is a once-in-a-decade window. Here is what we are seeing at peer F500s in the same moment.",
+      "Saw the BCS announcement. Standardizing the engineering platform during a brand reset is a once-in-a-decade window. Here's what I'm seeing at peer F500s in the same moment.",
     rubric: ["Account thesis", "Urgency"],
   },
   {
