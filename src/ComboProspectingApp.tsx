@@ -105,9 +105,9 @@ Worth 30 minutes? I have Tuesday or Thursday open.`,
     title: "LinkedIn Engagement",
     Icon: Linkedin,
     principle:
-      "Be present in your prospect's feed before you are in their inbox. Comment substantively on their posts. Share insights they would value. Build social proof and familiarity before reaching out.",
+      "I stay present in my prospect's feed before I'm in their inbox. I comment substantively on their posts. I share insights they'd value. I build social proof and familiarity before I reach out.",
     methodologyTactics:
-      "Spend two to three weeks adding value in public before any direct ask. Comments should read like a practitioner, not a fan. Repost with a sharp one-line takeaway when it helps your credibility.",
+      "I spend two to three weeks adding value in public before any direct ask. My comments read like a practitioner, not a fan. I repost with a sharp one-line takeaway when it helps my credibility.",
     methodologySample: `74% of companies plan to deploy agentic AI within two years.
 Only 21% have a mature governance model for it.
 
