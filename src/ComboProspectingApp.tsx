@@ -50,118 +50,112 @@ You can spin dozens or hundreds of save-worthy personas from a single query like
 
 ${ABM_MASTER_BOOLEAN_SEARCH}`
 
-function DirectMailSupplement() {
+/** Silver Dollar letter — rendered inside the panel “Worked example” box for Direct Mail */
+function DirectMailWorkedExampleBody() {
   return (
-    <div className="mt-6 space-y-8 border-t border-white/15 pt-6">
-      <div>
-        <h4 className="mb-1 text-xs font-bold uppercase tracking-wider text-amber-400/90">
-          Worked example
-        </h4>
-        <p className="mb-4 text-sm font-semibold text-slate-100">
-          The Silver Dollar letter{" "}
-          <span className="font-normal text-slate-500">(selling Cursor to a CTO)</span>
-        </p>
-        <p className="mb-3 text-xs italic text-slate-500">[Silver dollar affixed to top of page]</p>
-        <p className="mb-4 text-base font-semibold leading-snug text-white">
-          Your engineering investment is a silver dollar. The face value is not the real value.
-        </p>
-        <p className="mb-3 text-sm text-slate-300">Dear [Mr./Ms. Last Name],</p>
-        <div className="space-y-3 text-sm leading-relaxed text-slate-300">
-          <p>
-            The coin above is worth one dollar. Melted down, the silver inside is worth many times that.
-            Your engineering organization works the same way. The salaries, tools, and infrastructure already
-            on your P&amp;L hold latent output most companies never extract. Cursor is how peers across the
-            Fortune 500 are extracting it.
-          </p>
-        </div>
-        <ul className="my-4 list-none space-y-2.5 text-sm leading-relaxed text-slate-300">
-          <li className="flex gap-2">
-            <span className="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-sky-500/80" />
-            <span>
-              A University of Chicago study across 1,000 organizations found teams running Cursor&apos;s agent
-              merge 39% more pull requests, with no rise in revert or bug rates.
-            </span>
-          </li>
-          <li className="flex gap-2">
-            <span className="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-sky-500/80" />
-            <span>
-              Coinbase: every engineer onboarded in weeks. Single developers now refactoring legacy codebases in
-              days instead of months.
-            </span>
-          </li>
-          <li className="flex gap-2">
-            <span className="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-sky-500/80" />
-            <span>
-              Trusted by 64% of the Fortune 500, including NVIDIA, Samsung, OpenAI, and Stripe.
-            </span>
-          </li>
-        </ul>
-        <p className="text-sm leading-relaxed text-slate-300">
-          The question is not whether AI-assisted engineering will compress your time to market. The question is
-          whether your competitors get there first.
-        </p>
-        <div className="mt-5 space-y-1 text-sm text-slate-300">
-          <p>Respectfully,</p>
-          <p>[Your Name]</p>
-          <p>[Title]</p>
-        </div>
-        <p className="mt-5 border-l-2 border-amber-500/50 pl-3 text-sm italic leading-relaxed text-slate-400">
-          P.S. I will call you Tuesday, [DATE], at 10:15 a.m. ET. [EA Name] has the time held on your calendar.
+    <>
+      <p className="mb-4 text-sm font-semibold text-slate-100">
+        The Silver Dollar letter{" "}
+        <span className="font-normal text-slate-500">(selling Cursor to a CTO)</span>
+      </p>
+      <p className="mb-3 text-xs italic text-slate-500">[Silver dollar affixed to top of page]</p>
+      <p className="mb-4 text-base font-semibold leading-snug text-white">
+        Your engineering investment is a silver dollar. The face value is not the real value.
+      </p>
+      <p className="mb-3 text-sm text-slate-300">Dear [Mr./Ms. Last Name],</p>
+      <div className="space-y-3 text-sm leading-relaxed text-slate-300">
+        <p>
+          The coin above is worth one dollar. Melted down, the silver inside is worth many times that. Your
+          engineering organization works the same way. The salaries, tools, and infrastructure already on your
+          P&amp;L hold latent output most companies never extract. Cursor is how peers across the Fortune 500 are
+          extracting it.
         </p>
       </div>
+      <ul className="my-4 list-none space-y-2.5 text-sm leading-relaxed text-slate-300">
+        <li className="flex gap-2">
+          <span className="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-sky-500/80" />
+          <span>
+            A University of Chicago study across 1,000 organizations found teams running Cursor&apos;s agent merge
+            39% more pull requests, with no rise in revert or bug rates.
+          </span>
+        </li>
+        <li className="flex gap-2">
+          <span className="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-sky-500/80" />
+          <span>
+            Coinbase: every engineer onboarded in weeks. Single developers now refactoring legacy codebases in days
+            instead of months.
+          </span>
+        </li>
+        <li className="flex gap-2">
+          <span className="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-sky-500/80" />
+          <span>Trusted by 64% of the Fortune 500, including NVIDIA, Samsung, OpenAI, and Stripe.</span>
+        </li>
+      </ul>
+      <p className="text-sm leading-relaxed text-slate-300">
+        The question is not whether AI-assisted engineering will compress your time to market. The question is
+        whether your competitors get there first.
+      </p>
+      <div className="mt-5 space-y-1 text-sm text-slate-300">
+        <p>Respectfully,</p>
+        <p>[Your Name]</p>
+        <p>[Title]</p>
+      </div>
+      <p className="mt-5 border-l-2 border-amber-500/50 pl-3 text-sm italic leading-relaxed text-slate-400">
+        P.S. I will call you Tuesday, [DATE], at 10:15 a.m. ET. [EA Name] has the time held on your calendar.
+      </p>
+    </>
+  )
+}
 
-      <div>
-        <h4 className="mb-3 text-xs font-bold uppercase tracking-wider text-sky-400/90">
-          Why this structure works (VITO v1)
-        </h4>
-        <ul className="list-none space-y-2.5 text-sm leading-relaxed text-slate-400">
-          <li className="flex gap-2">
-            <span className="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-sky-500/70" />
-            <span>
-              Headline carries the letter. VITOs scan, so the first line frames the pitch in P&amp;L language
-              before the eye drops to the body.
-            </span>
-          </li>
-          <li className="flex gap-2">
-            <span className="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-sky-500/70" />
-            <span>
-              Object becomes the metaphor. The silver dollar is not swag. It is the argument.
-            </span>
-          </li>
-          <li className="flex gap-2">
-            <span className="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-sky-500/70" />
-            <span>
-              Three proof points, ranked: independent academic study first, peer customer outcome second,
-              Fortune 500 social proof third.
-            </span>
-          </li>
-          <li className="flex gap-2">
-            <span className="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-sky-500/70" />
-            <span>
-              No &quot;I&quot; in the opening. Keep the focus on the buyer&apos;s world, not the seller&apos;s
-              introduction.
-            </span>
-          </li>
-          <li className="flex gap-2">
-            <span className="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-sky-500/70" />
-            <span>
-              Closing hook replaces the meeting ask. VITOs respond to competitive urgency, not calendar requests.
-            </span>
-          </li>
-          <li className="flex gap-2">
-            <span className="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-sky-500/70" />
-            <span>
-              CTA lives in the PS, addressed to the VITO directly, with the exact date and time of the call.
-            </span>
-          </li>
-          <li className="flex gap-2">
-            <span className="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-sky-500/70" />
-            <span>
-              Equal business stature. Sign with a title that puts you peer to peer.
-            </span>
-          </li>
-        </ul>
-      </div>
+function DirectMailVitoSection() {
+  return (
+    <div className="mt-6 border-t border-white/15 pt-6">
+      <h4 className="mb-3 text-xs font-bold uppercase tracking-wider text-sky-400/90">
+        Why this structure works (VITO v1)
+      </h4>
+      <ul className="list-none space-y-2.5 text-sm leading-relaxed text-slate-400">
+        <li className="flex gap-2">
+          <span className="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-sky-500/70" />
+          <span>
+            Headline carries the letter. VITOs scan, so the first line frames the pitch in P&amp;L language before
+            the eye drops to the body.
+          </span>
+        </li>
+        <li className="flex gap-2">
+          <span className="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-sky-500/70" />
+          <span>Object becomes the metaphor. The silver dollar is not swag. It is the argument.</span>
+        </li>
+        <li className="flex gap-2">
+          <span className="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-sky-500/70" />
+          <span>
+            Three proof points, ranked: independent academic study first, peer customer outcome second, Fortune 500
+            social proof third.
+          </span>
+        </li>
+        <li className="flex gap-2">
+          <span className="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-sky-500/70" />
+          <span>
+            No &quot;I&quot; in the opening. Keep the focus on the buyer&apos;s world, not the seller&apos;s
+            introduction.
+          </span>
+        </li>
+        <li className="flex gap-2">
+          <span className="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-sky-500/70" />
+          <span>
+            Closing hook replaces the meeting ask. VITOs respond to competitive urgency, not calendar requests.
+          </span>
+        </li>
+        <li className="flex gap-2">
+          <span className="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-sky-500/70" />
+          <span>
+            CTA lives in the PS, addressed to the VITO directly, with the exact date and time of the call.
+          </span>
+        </li>
+        <li className="flex gap-2">
+          <span className="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-sky-500/70" />
+          <span>Equal business stature. Sign with a title that puts you peer to peer.</span>
+        </li>
+      </ul>
     </div>
   )
 }
@@ -407,15 +401,14 @@ Use Cursor customer references (PwC, Accenture peer professional services firms)
     title: "Direct Mail",
     Icon: Mailbox,
     principle:
-      "Physical objects in a digital world cut through. For top-tier accounts, a thoughtful physical touchpoint (book, hand-written note, branded item with a specific reference) creates a memorable moment that no email achieves.",
+      "Physical objects in a digital world cut through — but this bucket is high-touch, executive-level outreach only. It does not scale. I use it for a tiny set of named targets after the rest of the combo has already run and I still do not have the outcome I am pushing for. Then a thoughtful physical touchpoint (book, hand-written note, branded item with a specific reference) can create a memorable moment that no email achieves.",
     methodologyTactics:
-      "Reserve for economic buyers and technical champions after digital warmth. The note must reference something they said publicly so it feels researched, not swag-driven. Coordinate with the EA in advance so the call time referenced in the PS is already held on the calendar.",
-    methodologySample: `Send the book you referenced in their post with a three-sentence note on why chapter four maps to their stated bottleneck.
-
-Or attach a physical object to a one-page letter that uses the object as the metaphor for the value you unlock.`,
-    figmaTactics: `After digital warmth: strategy book to Beswick with a handwritten note tied to his "600 AI experiments" post — EA briefed so the PS call slot is real.
-Branded Cursor Moleskine to Niall with a Codú-specific line (not generic swag).
-One-page physical letter + tangible metaphor when the thesis lands harder on paper than email — coordinate EA for the PS callback time.`,
+      "I reserve senders for economic buyers and technical champions after digital warmth — never as a volume play. The note references something they said publicly so it feels researched, not swag-driven. I coordinate with the EA in advance so the call time in the PS is already held on the calendar. Few packages, high conviction.",
+    methodologySample: "",
+    figmaTactics: `Executive-only, same deal: high-touch, does not scale — Beswick / Niall / Hussey tier after parallel digital motion has not cracked the outcome yet.
+Strategy book + handwritten tie to his "600 AI experiments" post — EA briefed so the PS slot is real.
+Branded Moleskine to Niall with a Codú-specific line (not generic swag).
+One-page letter + tangible metaphor when paper carries the thesis — EA aligned for the PS callback.`,
     figmaSample:
       "Day the package lands: light email so they know to look for it. PS references a specific call time already held with the EA — no surprise gatekeeping.",
     rubric: ["Account thesis", "Urgency"],
@@ -1670,7 +1663,11 @@ export default function ComboProspectingApp() {
                   </div>
                   <div>
                     <h4 className="mb-2 text-xs font-bold uppercase tracking-wider text-emerald-400/90">
-                      {view === "figma" ? "Sample script or message" : "Sample pattern"}
+                      {view === "figma"
+                        ? "Sample script or message"
+                        : activePillar.id === "dmail"
+                          ? "Worked example"
+                          : "Sample pattern"}
                     </h4>
                     {view !== "figma" && activePillar.methodologyImageUrl && (
                       <img
@@ -1690,9 +1687,15 @@ export default function ComboProspectingApp() {
                         {activePillar.methodologyLink}
                       </a>
                     )}
-                    <blockquote className="whitespace-pre-wrap rounded-lg border border-white/10 bg-slate-900/80 p-4 text-sm leading-relaxed text-slate-200">
+                    <blockquote
+                      className={`rounded-lg border border-white/10 bg-slate-900/80 p-4 text-sm leading-relaxed text-slate-200 ${
+                        activePillar.id === "dmail" && view !== "figma" ? "" : "whitespace-pre-wrap"
+                      }`}
+                    >
                       {view === "figma" ? (
                         activePillar.figmaSample
+                      ) : activePillar.id === "dmail" ? (
+                        <DirectMailWorkedExampleBody />
                       ) : activePillar.id === "referrals" ? (
                         <StructuredSample text={activePillar.methodologySample} />
                       ) : (
@@ -1700,7 +1703,7 @@ export default function ComboProspectingApp() {
                       )}
                     </blockquote>
                   </div>
-                  {activePillar.id === "dmail" && view !== "figma" && <DirectMailSupplement />}
+                  {activePillar.id === "dmail" && view !== "figma" && <DirectMailVitoSection />}
                   {activePillar.methodologyAppendix && (
                     <div className="mt-6 border-t border-white/15 pt-5">
                       <h4 className="mb-3 text-xs font-bold uppercase tracking-wider text-amber-400/90">
