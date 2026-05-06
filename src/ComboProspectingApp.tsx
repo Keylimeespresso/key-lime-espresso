@@ -1,14 +1,19 @@
 import { useCallback, useLayoutEffect, useState } from "react"
 import type { LucideIcon } from "lucide-react"
 import {
+  Briefcase,
+  Building2,
   FileText,
+  Heart,
   Mailbox,
   Linkedin,
   Mail,
   MessageSquare,
   Phone,
+  Repeat,
   Search,
   Share2,
+  Shield,
   Users,
   Video,
   Voicemail,
@@ -141,11 +146,14 @@ Hi Niall, just joined Cursor as a Strategic AE covering financial services. Read
 What you and Codú are building mirrors a lot of the bottom-up adoption patterns we see at our F500 customers. I'd love to compare notes some time, with no agenda. Curious how you're thinking about scaling consistent AI coding workflows from your 100-person team out to the wider 5,000 in MMTech.
 
 Example 2
-Niall, saw your Claude Code tip about the co-author footer the other day. That's the kind of small friction my team hears about constantly.
+LinkedIn Outreach to Rob Hussey (Mercer CIO)
+Different shape entirely. CIOs respond to peer references and consolidation narratives, not engineer-peer warmth.
 
-Just started at Cursor. Your AI rollout at Marsh is one of the more interesting stories I've come across, mostly because of the speed and the team scale-up. We've seen similar arcs at Coinbase, Stripe, and Notion when they hit the 100-developer mark and started caring about consistency.
+Hi Rob, reaching out from Cursor. Niall Maher's team has been visible in the Dublin AI engineering community, and we've been seeing engineers across MMTech pulling Cursor onto their own laptops.
 
-Worth a 20-min call to swap notes? Happy to share what's worked at companies your size. No pitch unless you ask. Either way, congrats on the Codú momentum.
+I'm not here to do an end run around your platform decisions. Opposite, actually. As Mercer engineers start adopting AI coding tools, I want to make sure you have the data and the architecture story to govern that adoption properly, whether you end up choosing Cursor or not.
+
+Could we get 20 minutes? I can show you what shadow usage typically looks like at your size and what the consolidation playbook is for similar firms.
 
 Example 3
 Niall, big fan of what you've built with Codú. The Dublin engineering community is lucky to have it.
@@ -407,6 +415,56 @@ const STAKEHOLDER_FUNCTION_STYLE: Record<StakeholderFunction, string> = {
   ai: "border-emerald-400/45 bg-emerald-500/10 text-emerald-100",
   engineering: "border-slate-400/35 bg-slate-500/10 text-slate-100",
 }
+
+type CorporateUnit = {
+  name: string
+  Icon: LucideIcon
+  fn: StakeholderFunction
+  lines: [string, string, string]
+}
+
+const CORPORATE_UNITS: CorporateUnit[] = [
+  {
+    name: "Marsh",
+    Icon: Shield,
+    fn: "executive",
+    lines: [
+      "Insurance broking and risk advisory",
+      "~45,000 employees",
+      "Largest BU by revenue. Customer-facing risk products (Sentrisk, Ada)",
+    ],
+  },
+  {
+    name: "Mercer",
+    Icon: Heart,
+    fn: "executive",
+    lines: [
+      "Health, wealth, retirement, investments",
+      "~25,000 employees",
+      "Heavy software for pension and benefits. Long-lived regulated codebases",
+    ],
+  },
+  {
+    name: "Guy Carpenter",
+    Icon: Repeat,
+    fn: "engineering",
+    lines: [
+      "Reinsurance broking",
+      "~3,500 employees",
+      "Actuarial models and rating engines. Smaller HC with deep technical complexity",
+    ],
+  },
+  {
+    name: "Oliver Wyman",
+    Icon: Briefcase,
+    fn: "ai",
+    lines: [
+      "Management consulting",
+      "~7,000 employees",
+      "Bespoke client code and greenfield projects. Beswick's former home and fastest adoption profile",
+    ],
+  },
+]
 
 const ORG_TOP: Stakeholder = {
   name: "Paul Beswick",
@@ -954,6 +1012,51 @@ export default function ComboProspectingApp() {
                         </h4>
                         <p className="text-sm leading-relaxed text-slate-300">
                           Clean enterprise account map for Marsh McLennan technology leadership.
+                        </p>
+                      </div>
+
+                      <div className="rounded-xl border border-amber-400/35 bg-slate-950/45 p-3">
+                        <h5 className="mb-2 text-xs font-bold uppercase tracking-wider text-amber-300/95">
+                          Marsh McLennan corporate org overview
+                        </h5>
+                        <div className="relative">
+                          <div className="mx-auto w-full max-w-md rounded-lg border border-amber-400/45 bg-amber-500/10 p-3 text-center">
+                            <div className="flex items-center justify-center gap-2 text-amber-200">
+                              <Building2 className="h-4 w-4" />
+                              <p className="text-sm font-semibold text-white">
+                                Marsh McLennan (parent holding company, rebranding to "Marsh" January 2026)
+                              </p>
+                            </div>
+                            <p className="mt-1 text-xs text-slate-200">NYSE: MMC, transitioning to MRSH</p>
+                            <p className="text-xs text-slate-200">~90,000 employees globally</p>
+                            <p className="text-xs text-slate-200">~$24B annual revenue</p>
+                            <p className="text-xs text-slate-200">~5,000 technologists in MMTech</p>
+                          </div>
+                          <div className="mx-auto h-4 w-px bg-amber-400/50" />
+                          <div className="mx-auto h-px w-[88%] bg-amber-400/50" />
+                          <div className="mx-auto -mt-px grid w-full grid-cols-4 gap-2 pt-3">
+                            {CORPORATE_UNITS.map((unit) => (
+                              <div key={unit.name} className="relative">
+                                <div className="absolute -top-3 left-1/2 h-3 w-px -translate-x-1/2 bg-amber-400/50" />
+                                <div
+                                  className={`h-full rounded-lg border p-2 text-xs transition hover:-translate-y-0.5 ${STAKEHOLDER_FUNCTION_STYLE[unit.fn]}`}
+                                >
+                                  <div className="mb-1 flex items-center gap-1.5">
+                                    <unit.Icon className="h-3.5 w-3.5" />
+                                    <p className="font-semibold text-white">{unit.name}</p>
+                                  </div>
+                                  <p>{unit.lines[0]}</p>
+                                  <p className="mt-0.5">{unit.lines[1]}</p>
+                                  <p className="mt-0.5 opacity-90">{unit.lines[2]}</p>
+                                </div>
+                              </div>
+                            ))}
+                          </div>
+                        </div>
+                        <p className="mt-2 text-[11px] leading-relaxed text-slate-300">
+                          All four BUs unify under the "Marsh" brand January 2026. BCS (Business and Client
+                          Services) is the new shared services unit consolidating tech, data, AI, and operations
+                          under CIOO Paul Beswick across all four.
                         </p>
                       </div>
 
