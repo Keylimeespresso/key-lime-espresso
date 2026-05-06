@@ -1,5 +1,6 @@
 import { useCallback, useLayoutEffect, useState } from "react"
 import type { LucideIcon } from "lucide-react"
+import WelcomePanel from "./WelcomePanel"
 import {
   Briefcase,
   Building2,
@@ -23,7 +24,7 @@ import {
   ChevronRight,
 } from "lucide-react"
 
-type ViewMode = "pipeline" | "roleplay"
+type ViewMode = "welcome" | "pipeline" | "roleplay"
 
 type PillarDef = {
   id: string
@@ -1303,7 +1304,7 @@ function ExecutiveStakeholderCard({ person }: { person: Stakeholder }) {
 }
 
 export default function ComboProspectingApp() {
-  const [view, setView] = useState<ViewMode>("pipeline")
+  const [view, setView] = useState<ViewMode>("welcome")
   const [selectedId, setSelectedId] = useState<string | null>(null)
   const [hubOpen, setHubOpen] = useState(false)
   const [rubricPanel, setRubricPanel] = useState<
@@ -1354,7 +1355,7 @@ export default function ComboProspectingApp() {
 
   const switchView = useCallback((next: ViewMode) => {
     setView(next)
-    if (next === "roleplay") {
+    if (next === "roleplay" || next === "welcome") {
       setSelectedId(null)
       setHubOpen(false)
       setRubricPanel(null)
@@ -1368,17 +1369,30 @@ export default function ComboProspectingApp() {
       <header className="border-b border-white/10 bg-slate-950/80 backdrop-blur-md">
         <div className="mx-auto flex max-w-6xl flex-col gap-6 px-4 py-8 md:flex-row md:items-end md:justify-between md:py-10">
           <div className="min-w-0 max-w-2xl space-y-3 md:max-w-none md:min-w-0 md:flex-1 md:pr-8">
-            <p className="text-xs font-semibold uppercase tracking-[0.2em] text-amber-400/90">
-              Combo Prospecting
-            </p>
-            <h1 className="text-3xl font-bold tracking-tight text-white md:text-4xl">
-              Marsh McLennan greenfield motion
-            </h1>
-            <div className="w-full min-w-0 overflow-x-auto [scrollbar-width:thin]">
-              <p className="text-lg font-medium leading-snug text-slate-200 md:text-xl whitespace-nowrap">
-                The Combo Is The Unlock. Break through the noise. Earn the meeting.
-              </p>
-            </div>
+            {view === "welcome" ? (
+              <div className="mx-auto w-full max-w-xl text-center md:mx-0 md:max-w-none md:text-left">
+                <p className="font-mono text-xs font-semibold uppercase tracking-[0.22em] text-slate-400 md:text-sm">
+                  Cursor · Hiring
+                </p>
+                <h1 className="mt-2 font-serif text-3xl font-bold tracking-tight text-[#f4f4f2] md:text-4xl">
+                  Discovery and deal review
+                </h1>
+              </div>
+            ) : (
+              <>
+                <p className="text-xs font-semibold uppercase tracking-[0.2em] text-amber-400/90">
+                  Combo Prospecting
+                </p>
+                <h1 className="text-3xl font-bold tracking-tight text-white md:text-4xl">
+                  Marsh McLennan greenfield motion
+                </h1>
+                <div className="w-full min-w-0 overflow-x-auto [scrollbar-width:thin]">
+                  <p className="text-lg font-medium leading-snug text-slate-200 md:text-xl whitespace-nowrap">
+                    The Combo Is The Unlock. Break through the noise. Earn the meeting.
+                  </p>
+                </div>
+              </>
+            )}
           </div>
           <div className="flex flex-col items-center gap-2 md:items-end md:pb-0.5">
             <div className="flex w-full flex-col items-center gap-2 md:w-auto">
@@ -1391,30 +1405,41 @@ export default function ComboProspectingApp() {
               <div
                 role="group"
                 aria-labelledby="view-toggle-label"
-                className="inline-flex items-center rounded-full border border-white/10 bg-slate-900/80 p-1 shadow-inner"
+                className="inline-flex flex-wrap items-center justify-center gap-1 rounded-full border border-white/10 bg-slate-900/80 p-1 shadow-inner"
               >
-              <button
-                type="button"
-                onClick={() => switchView("pipeline")}
-                className={`rounded-full px-4 py-2 text-sm font-medium transition ${
-                  view === "pipeline"
-                    ? "bg-amber-500 text-slate-950 shadow"
-                    : "text-slate-400 hover:text-white"
-                }`}
-              >
-                Pipeline
-              </button>
-              <button
-                type="button"
-                onClick={() => switchView("roleplay")}
-                className={`rounded-full px-4 py-2 text-sm font-medium transition ${
-                  view === "roleplay"
-                    ? "bg-amber-500 text-slate-950 shadow"
-                    : "text-slate-400 hover:text-white"
-                }`}
-              >
-                Role Play
-              </button>
+                <button
+                  type="button"
+                  onClick={() => switchView("welcome")}
+                  className={`rounded-full px-3 py-2 text-sm font-medium transition md:px-4 ${
+                    view === "welcome"
+                      ? "bg-amber-500 text-slate-950 shadow"
+                      : "text-slate-400 hover:text-white"
+                  }`}
+                >
+                  Welcome
+                </button>
+                <button
+                  type="button"
+                  onClick={() => switchView("pipeline")}
+                  className={`rounded-full px-3 py-2 text-sm font-medium transition md:px-4 ${
+                    view === "pipeline"
+                      ? "bg-amber-500 text-slate-950 shadow"
+                      : "text-slate-400 hover:text-white"
+                  }`}
+                >
+                  Pipeline
+                </button>
+                <button
+                  type="button"
+                  onClick={() => switchView("roleplay")}
+                  className={`rounded-full px-3 py-2 text-sm font-medium transition md:px-4 ${
+                    view === "roleplay"
+                      ? "bg-amber-500 text-slate-950 shadow"
+                      : "text-slate-400 hover:text-white"
+                  }`}
+                >
+                  Role Play
+                </button>
               </div>
             </div>
           </div>
@@ -1503,7 +1528,9 @@ export default function ComboProspectingApp() {
         </div>
         )}
 
-        {view === "roleplay" ? (
+        {view === "welcome" ? (
+          <WelcomePanel />
+        ) : view === "roleplay" ? (
           <div className="mx-auto flex min-h-[min(70vh,720px)] w-full max-w-4xl flex-col px-1 pb-6 pt-2 md:px-4">
             <RolePlayImpactQuotes />
           </div>
@@ -1981,7 +2008,13 @@ export default function ComboProspectingApp() {
       )}
 
       <footer className="border-t border-white/10 py-8 text-center text-xs text-slate-600">
-        Marsh McLennan (MMC) · Combo Prospecting visualization · interview artifact
+        {view === "welcome" ? (
+          <span className="font-mono text-[10px] uppercase tracking-[0.2em] text-slate-600">
+            Cursor · Discovery panel · 05.06.2026
+          </span>
+        ) : (
+          <>Marsh McLennan (MMC) · Combo Prospecting visualization · interview artifact</>
+        )}
       </footer>
     </div>
   )

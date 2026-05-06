@@ -1,5 +1,6 @@
 node_modules
 .tools
 dist
+*.tsbuildinfo
 *.local
 .DS_Store
